@@ -1,0 +1,15 @@
+C:\SoftwareProjects\EnhanceGroupBox\EnhanceGroupBoxDemo\bin\Debug\GroupBoxDemo.exe
+C:\SoftwareProjects\EnhanceGroupBox\EnhanceGroupBoxDemo\bin\Debug\GroupBoxDemo.pdb
+C:\SoftwareProjects\EnhanceGroupBox\EnhanceGroupBoxDemo\bin\Debug\EnhanceGroupBox.dll
+C:\SoftwareProjects\EnhanceGroupBox\EnhanceGroupBoxDemo\bin\Debug\EnumExtensions.dll
+C:\SoftwareProjects\EnhanceGroupBox\EnhanceGroupBoxDemo\bin\Debug\EnhanceGroupBox.pdb
+C:\SoftwareProjects\EnhanceGroupBox\EnhanceGroupBoxDemo\bin\Debug\EnumExtensions.pdb
+C:\SoftwareProjects\EnhanceGroupBox\EnhanceGroupBoxDemo\obj\Debug\GroupBoxDemo.csprojAssemblyReference.cache
+C:\SoftwareProjects\EnhanceGroupBox\EnhanceGroupBoxDemo\obj\Debug\GroupBoxDemo.ContentView.resources
+C:\SoftwareProjects\EnhanceGroupBox\EnhanceGroupBoxDemo\obj\Debug\GroupBoxDemo.Form1.resources
+C:\SoftwareProjects\EnhanceGroupBox\EnhanceGroupBoxDemo\obj\Debug\GroupBoxDemo.Properties.Resources.resources
+C:\SoftwareProjects\EnhanceGroupBox\EnhanceGroupBoxDemo\obj\Debug\GroupBoxDemo.csproj.GenerateResource.cache
+C:\SoftwareProjects\EnhanceGroupBox\EnhanceGroupBoxDemo\obj\Debug\GroupBoxDemo.csproj.CoreCompileInputs.cache
+C:\SoftwareProjects\EnhanceGroupBox\EnhanceGroupBoxDemo\obj\Debug\GroupBoxDemo.csproj.CopyComplete
+C:\SoftwareProjects\EnhanceGroupBox\EnhanceGroupBoxDemo\obj\Debug\GroupBoxDemo.exe
+C:\SoftwareProjects\EnhanceGroupBox\EnhanceGroupBoxDemo\obj\Debug\GroupBoxDemo.pdb

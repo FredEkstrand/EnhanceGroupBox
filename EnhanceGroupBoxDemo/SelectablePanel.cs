@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-// taken from: https://stackoverflow.com/questions/3562235/panel-not-getting-focus
+// taken from: https://stackoverflow.com/questions/3562235/panel-not-getting-focus 
 namespace GroupBoxDemo
 {
     class SelectablePanel : Panel
@@ -33,12 +33,12 @@ namespace GroupBoxDemo
 
         private void InitGroupBox()
         {
-            this.Controls.Add(_groupBox);
-            this._groupBox.Width = this.Width-5;
-            this._groupBox.Height = this.Height-5;
-            this._groupBox.Left = (this.Width - this._groupBox.Width) / 2;
-            this._groupBox.Top = (this.Height - this._groupBox.Height) / 2;
-            this._groupBox.Click+= SelectablePanel_GotFocus;
+            Controls.Add(_groupBox);
+            _groupBox.Width = this.Width-5;
+            _groupBox.Height = this.Height-5;
+            _groupBox.Left = (this.Width - this._groupBox.Width) / 2;
+            _groupBox.Top = (this.Height - this._groupBox.Height) / 2;
+            _groupBox.Click+= SelectablePanel_GotFocus;
             
             Invalidate();
         }

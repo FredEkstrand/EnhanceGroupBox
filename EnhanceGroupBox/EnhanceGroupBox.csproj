@@ -33,6 +33,7 @@
   <ItemGroup>
     <Reference Include="EnumExtensions">
       <HintPath>..\..\EnumUtilities\EnumUtilities\bin\Release\EnumExtensions.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

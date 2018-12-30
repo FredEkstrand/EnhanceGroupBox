@@ -4,7 +4,7 @@
 The Enhanced GroupBox control is a collection of features from several presented custom versions of the GroupBox control into a single control. 
 
 ## Features
-* Rendering of the GroupBox border no longer follows the groove effect. Borders can be colored and with can be set.
+* Rendering of the GroupBox border no longer follows the groove effect. Borders can now have their color and width set.
 * Border rendering can have dash styles. 
 * Border rendering can have LineCap styles.
 * Text can be placed top left, top right, top center, bottom left, bottom right, and bottom center.

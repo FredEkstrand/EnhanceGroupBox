@@ -31,7 +31,7 @@ Sample view of the demo program below.<br/>
 * Add .dll download
 * Include sources used for project
 * Provide API documentation
-* Procide quick start guide
+* Provide quick start guide
 
 ## Documentation
 [none]

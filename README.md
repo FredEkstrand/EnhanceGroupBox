@@ -20,7 +20,8 @@ The Enhanced GroupBox control is a collection of features from several presented
 ## Sample View
 Below are sample views of the Enhance GroupBox control from the demo program.
 ![Project type](https://github.com/FredEkstrand/ImageFiles/raw/master/GroupBoxExamples.png)
-Sample view of the demo program below.
+
+Sample view of the demo program below.<br/>
 ![Project type](https://github.com/FredEkstrand/ImageFiles/raw/master/EnhanceGroupBoxDemo.PNG)
 ## Documentation
 [none]

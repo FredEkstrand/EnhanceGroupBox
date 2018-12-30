@@ -23,6 +23,16 @@ Below are sample views of the Enhance GroupBox control from the demo program.
 
 Sample view of the demo program below.<br/>
 ![Project type](https://github.com/FredEkstrand/ImageFiles/raw/master/EnhanceGroupBoxDemo.PNG)
+
+## TODO
+* Remove need for double buffering of control.
+* Fix gradient rendering for text background issue.
+* Add toolbox icon
+* Add .dll download
+* Include sources used for project
+* Provide API documentation
+* Procide quick start guide
+
 ## Documentation
 [none]
 

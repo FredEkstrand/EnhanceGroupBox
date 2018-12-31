@@ -6,14 +6,17 @@ using System.Drawing.Drawing2D;
 
 namespace Ekstrand.Windows.Forms
 {
+    /// <summary>
+    /// Properties grouped for rendering group box header area.
+    /// </summary>
     [TypeConverter(typeof(HeaderElementsConverter))]
     public class HeaderElements
     {
         #region Fields
 
-        public Color _backColorHeader = SystemColors.Control;
-        public int _radiusHeader = 0;
-        public int _widthHeader = 1;
+        private Color _backColorHeader = SystemColors.Control;
+        private int _radiusHeader = 0;
+        private int _widthHeader = 1;
         private Color _borderColorHeader = SystemColors.ControlDark;
         private BorderCorners _borderCornersHeader = BorderCorners.None;
         private EnhanceGroupBoxGradientMode _BoxGradientModeHeader = EnhanceGroupBoxGradientMode.None;
@@ -28,9 +31,11 @@ namespace Ekstrand.Windows.Forms
 
         #endregion Fields
 
-
         #region Constructors
-
+        /// <summary>
+        /// Initializes a new instance of the HeaderElements class.
+        /// </summary>
+        /// <param name="ecb">GroupBox instance</param>
         public HeaderElements(GroupBox ecb) //EnhanceGroupBox ecb
         {
             _egroupBox = ecb;
@@ -40,6 +45,9 @@ namespace Ekstrand.Windows.Forms
 
         #region Properties
 
+        /// <summary>
+        /// Gets or sets color of the text background.
+        /// </summary>
         [Browsable(true)]
         [NotifyParentProperty(true)]
         [Category("Appearance Header Area")]
@@ -55,6 +63,9 @@ namespace Ekstrand.Windows.Forms
             }
         }
 
+        /// <summary>
+        /// Gets or sets color of the border in the text header area.
+        /// </summary>
         [Browsable(true)]
         [NotifyParentProperty(true)]
         [Category("Appearance Header Area")]
@@ -66,6 +77,9 @@ namespace Ekstrand.Windows.Forms
             set { _borderColorHeader = value; _egroupBox.Invalidate(); }
         }
 
+        /// <summary>
+        /// Gets or sets the corners to have a rounded edge
+        /// </summary>
         [Browsable(true)]
         [NotifyParentProperty(true)]
         [DefaultValue("None")]
@@ -79,6 +93,9 @@ namespace Ekstrand.Windows.Forms
             set { _borderCornersHeader = value; _egroupBox.Invalidate(); }
         }
 
+        /// <summary>
+        /// Specifies the type of graphic shape to use on both ends of each dash in a dashed line.
+        /// </summary>
         [Browsable(true)]
         [DefaultValue(DashCap.Flat)]
         [NotifyParentProperty(true)]
@@ -91,6 +108,9 @@ namespace Ekstrand.Windows.Forms
             set { _dashCapHeader = value; _egroupBox.Invalidate(); }
         }
 
+        /// <summary>
+        /// Gets or sets the distance from the start of a line to the beginning of a dash pattern.
+        /// </summary>
         [Browsable(true)]
         [DefaultValue(0.0f)]
         [NotifyParentProperty(true)]
@@ -103,6 +123,9 @@ namespace Ekstrand.Windows.Forms
             set { _dashOffsetHeader = value; _egroupBox.Invalidate(); }
         }
 
+        /// <summary>
+        /// Gets or sets an array of custom dashes and spaces.
+        /// </summary>
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public float[] DashPattern
@@ -111,6 +134,9 @@ namespace Ekstrand.Windows.Forms
             set { _dashPatternHeader = value; _egroupBox.Invalidate(); }
         }
 
+        /// <summary>
+        /// Gets or sets the style used for dashed lines drawn.
+        /// </summary>
         [Browsable(true)]
         [DefaultValue(DashStyle.Solid)]
         [NotifyParentProperty(true)]
@@ -123,6 +149,9 @@ namespace Ekstrand.Windows.Forms
             set { _dashStyleHeader = value; _egroupBox.Invalidate(); }
         }
 
+        /// <summary>
+        /// Gets or sets the gradient end color.
+        /// </summary>
         [Browsable(true)]
         [NotifyParentProperty(true)]
         [Category("Appearance Header Area")]
@@ -138,6 +167,9 @@ namespace Ekstrand.Windows.Forms
             }
         }
 
+        /// <summary>
+        /// Gets or sets the gradient mode.
+        /// </summary>
         [Browsable(true)]
         [NotifyParentProperty(true)]
         [Category("Appearance Header Area")]
@@ -154,6 +186,9 @@ namespace Ekstrand.Windows.Forms
             }
         }
 
+        /// <summary>
+        /// Gets or sets the gradient start color.
+        /// </summary>
         [Browsable(true)]
         [NotifyParentProperty(true)]
         [Category("Appearance Header Area")]
@@ -169,6 +204,9 @@ namespace Ekstrand.Windows.Forms
             }
         }
 
+        /// <summary>
+        /// Gets or sets the radius for each cornner.
+        /// </summary>
         [Browsable(true)]
         [DefaultValue(0)]
         [NotifyParentProperty(true)]
@@ -199,6 +237,9 @@ namespace Ekstrand.Windows.Forms
             }
         }
 
+        /// <summary>
+        /// Gets or sets the text aligment.
+        /// </summary>
         [Browsable(true)]
         [DefaultValue(BorderTextAlignment.TopLeft)]
         [NotifyParentProperty(true)]
@@ -211,6 +252,9 @@ namespace Ekstrand.Windows.Forms
             set { m_TextAlignment = value; _egroupBox.Invalidate(); }
         }
 
+        /// <summary>
+        /// Gets or sets the width of the border.
+        /// </summary>
         [Browsable(true)]
         [DefaultValue(1)]
         [NotifyParentProperty(true)]
@@ -241,15 +285,5 @@ namespace Ekstrand.Windows.Forms
         }
 
         #endregion Properties
-
-        #region Methods
-
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public override string ToString()
-        {
-            return "Expand for more options";
-        }
-
-        #endregion Methods
     }
 }

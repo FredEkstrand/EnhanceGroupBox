@@ -7,8 +7,14 @@ namespace GroupBoxDemo
 {
     class SelectablePanel : Panel
     {
+        #region Fields
+
         private Ekstrand.Windows.Forms.GroupBox _groupBox;
         private bool _haveFocus = false;
+
+        #endregion Fields
+
+        #region Constructors
 
         public SelectablePanel()
         {
@@ -16,8 +22,12 @@ namespace GroupBoxDemo
             this.TabStop = true;
             this.GotFocus += SelectablePanel_GotFocus;
             this.Size = new Size(225, 100);
-           
+
         }
+
+        #endregion Constructors
+
+        #region Properties
 
         public Ekstrand.Windows.Forms.GroupBox GroupBox
         {
@@ -29,6 +39,52 @@ namespace GroupBoxDemo
         {
             get { return _haveFocus; }
             set {  _haveFocus = value; Invalidate();}
+        }
+
+        #endregion Properties
+
+        #region Methods
+
+        protected override bool IsInputKey(Keys keyData)
+        {
+            if (keyData == Keys.Up || keyData == Keys.Down) return true;
+            if (keyData == Keys.Left || keyData == Keys.Right) return true;
+            return base.IsInputKey(keyData);
+        }
+
+        protected override void OnEnter(EventArgs e)
+        {
+            this.Invalidate();
+            base.OnEnter(e);
+        }
+
+        protected override void OnLeave(EventArgs e)
+        {
+            this.Invalidate();
+            base.OnLeave(e);
+        }
+
+        protected override void OnMouseDown(MouseEventArgs e)
+        {
+            if (ClientRectangle.Contains(e.Location))
+            {
+                Focus();
+                HaveFocus = true;
+                Invalidate();
+            }
+
+            base.OnMouseDown(e);
+        }
+
+        protected override void OnPaint(PaintEventArgs pe)
+        {
+            base.OnPaint(pe);
+            if (HaveFocus)
+            {
+                var rc = this.ClientRectangle;
+                rc.Inflate(-1, -1);
+                pe.Graphics.DrawRectangle(SystemPens.Highlight, rc);
+            }
         }
 
         private void InitGroupBox()
@@ -43,66 +99,30 @@ namespace GroupBoxDemo
             Invalidate();
         }
 
+        private void RaiseSelected(Ekstrand.Windows.Forms.GroupBox groupBox)
+        {
+            EventHandler<SelectedEventArgs> handler = Selected;
+            if (handler != null)
+            {
+                handler(this, new SelectedEventArgs(groupBox));
+            }
+        }
+
         private void SelectablePanel_GotFocus(object sender, EventArgs e)
         {
             Focus();
             HaveFocus = true;
             Invalidate();
             RaiseSelected(this.Controls[0] as Ekstrand.Windows.Forms.GroupBox);
-            
+
         }
 
-        protected override void OnMouseDown(MouseEventArgs e)
-        {
-            if(ClientRectangle.Contains(e.Location))
-            {
-                Focus();
-                HaveFocus = true;
-                Invalidate();
-            }
-            
-            base.OnMouseDown(e);
-        }
-        protected override bool IsInputKey(Keys keyData)
-        {
-            if (keyData == Keys.Up || keyData == Keys.Down) return true;
-            if (keyData == Keys.Left || keyData == Keys.Right) return true;
-            return base.IsInputKey(keyData);
-        }
-        protected override void OnEnter(EventArgs e)
-        {
-            this.Invalidate();
-            base.OnEnter(e);
-        }
-        protected override void OnLeave(EventArgs e)
-        {
-            this.Invalidate();
-            base.OnLeave(e);
-        }
-        protected override void OnPaint(PaintEventArgs pe)
-        {
-            base.OnPaint(pe);
-            if (HaveFocus)
-            {
-                var rc = this.ClientRectangle;
-                rc.Inflate(-1, -1);
-                pe.Graphics.DrawRectangle(SystemPens.Highlight,rc);
-            }
-        }
+        #endregion Methods
+
+        #region Delegates + Events
 
         public event EventHandler<SelectedEventArgs> Selected;
 
-        private void RaiseSelected(Ekstrand.Windows.Forms.GroupBox groupBox)
-        {
-            EventHandler<SelectedEventArgs> handler = Selected;
-            if(handler != null)
-            {
-                handler(this,new SelectedEventArgs(groupBox));
-            }
-        }
-
-
-
-        
+        #endregion Delegates + Events
     }
 }

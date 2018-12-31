@@ -1,0 +1,824 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>EnhanceGroupBox</name>
+    </assembly>
+    <members>
+        <member name="T:Ekstrand.Windows.Forms.BorderElements">
+            <summary>
+            Properties grouped for border apperance
+            </summary>
+        </member>
+        <member name="M:Ekstrand.Windows.Forms.BorderElements.#ctor(Ekstrand.Windows.Forms.GroupBox)">
+            <summary>
+            Initializes a new instance of the BorderElements class.
+            </summary>
+            <param name="egb">Instance of GroupBox</param>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.BorderElements.BackColor">
+            <summary>
+            In Excitative style the border back color.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.BorderElements.BorderColor">
+            <summary>
+            Color of the border.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.BorderElements.BorderCorners">
+            <summary>
+            Corners to have a rounded apperance.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.BorderElements.DashCap">
+            <summary>
+            Specifies the type of graphic shape to use on both ends of each dash in a dashed line.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.BorderElements.DashOffset">
+            <summary>
+            Gets or sets the distance from the start of a line to the beginning of a dash pattern.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.BorderElements.DashPattern">
+            <summary>
+            Gets or sets an array of custom dashes and spaces.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.BorderElements.DashStyle">
+            <summary>
+            Gets or sets the style used for dashed lines drawn.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.BorderElements.Radius">
+            <summary>
+            Gets or sets the radius for each cornner.
+            </summary>
+            <remarks>Radius value is restricted to the range of 0 to 10.</remarks>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.BorderElements.Width">
+            <summary>
+            Gets or sets the width of the border.
+            </summary>
+        </member>
+        <member name="T:Ekstrand.Windows.Forms.BorderElementsConverter">
+            <summary>
+            Provides a type converter to convert BorderElements objects to and from various other representations.
+            </summary>
+        </member>
+        <member name="M:Ekstrand.Windows.Forms.BorderElementsConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)">
+            <summary>
+            Converts the given value object to the specified type, using the specified context and culture information.
+            </summary>
+            <param name="context">An ITypeDescriptorContext that provides a format context.</param>
+            <param name="culture">A CultureInfo. If null is passed, the current culture is assumed.</param>
+            <param name="value">The Object to convert.</param>
+            <param name="destinationType">The Type to convert the value parameter to.</param>
+            <returns>An Object that represents the converted value.</returns>
+        </member>
+        <member name="F:Ekstrand.Windows.Forms.CornerSelector.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Ekstrand.Windows.Forms.CornerSelector.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Ekstrand.Windows.Forms.CornerSelector.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:Ekstrand.Windows.Forms.GroupBox">
+            <summary>
+            Represents a control that creates a container that has a border and a header for user interface (UI) content.
+            </summary>
+        </member>
+        <member name="M:Ekstrand.Windows.Forms.GroupBox.#ctor">
+            <summary>
+            Represents a control that creates a container that has a border and a header for user interface (UI) content.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.GroupBox.AllowDrop">
+            <summary>
+            Gets or sets a value indicating whether the control can accept data that the user drags onto it.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.GroupBox.AutoSize">
+            <summary>
+            Gets or sets a value that indicates whether the GroupBox resizes based on its contents.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.GroupBox.BorderItems">
+            <summary>
+            Gets or sets border items properties
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.GroupBox.DisabledTextColor">
+            <summary>
+            Gets or sets text disabled color
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.GroupBox.Enabled">
+            <summary>
+            Gets or sets a value indicating whether the control can respond to user interaction.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.GroupBox.GroupBoxStyles">
+            <summary>
+            Get or sets GroupBox Style used for rendering
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.GroupBox.Header">
+            <summary>
+            Gets or sets header properties
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.GroupBox.InsideBorder">
+            <summary>
+            Gets or sets inside border properties
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.GroupBox.TabStop">
+            <summary>
+            Gets or sets a value that indicates whether the user can press the TAB key to give the focus to the GroupBox.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.GroupBox.Text">
+            <summary>
+            Gets or sets the text associated with this control.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.GroupBox.CreateParams">
+            <summary>
+            Gets the required creation parameters when the control handle is created.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.GroupBox.DefaultPadding">
+            <summary>
+            Gets the Padding structure that contains the default padding settings for a GroupBox control.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.GroupBox.DefaultSize">
+            <summary>
+            Gets the default size of the control.
+            </summary>
+        </member>
+        <member name="M:Ekstrand.Windows.Forms.GroupBox.ToString">
+            <summary>
+             Returns a String containing the name of the Component, if any.This method should not be overridden.
+            </summary>
+            <returns>Return the text repersentation of the control</returns>
+        </member>
+        <member name="M:Ekstrand.Windows.Forms.GroupBox.CreateAccessibilityInstance">
+            <summary>
+            Creates a new accessibility object for the GroupBox.
+            </summary>
+            <returns>A new AccessibleObject for the GroupBox.</returns>
+        </member>
+        <member name="M:Ekstrand.Windows.Forms.GroupBox.OnFontChanged(System.EventArgs)">
+            <summary>
+            Raises the FontChanged event.
+            </summary>
+            <param name="e">An EventArgs that contains the event data.</param>
+        </member>
+        <member name="M:Ekstrand.Windows.Forms.GroupBox.OnPaint(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            Raises the Paint event.
+            </summary>
+            <param name="e">A PaintEventArgs that contains the event data.</param>
+        </member>
+        <member name="M:Ekstrand.Windows.Forms.GroupBox.ProcessMnemonic(System.Char)">
+            <summary>
+            Processes a mnemonic character.
+            </summary>
+            <param name="charCode">The character to process.</param>
+            <returns></returns>
+        </member>
+        <member name="E:Ekstrand.Windows.Forms.GroupBox.AutoSizeChanged">
+            <summary>
+            Occurs when the value of the AutoSize property changes.
+            </summary>
+        </member>
+        <member name="E:Ekstrand.Windows.Forms.GroupBox.Click">
+            <summary>
+            Occurs when the user clicks the GroupBox control.
+            </summary>
+        </member>
+        <member name="E:Ekstrand.Windows.Forms.GroupBox.DoubleClick">
+            <summary>
+            Occurs when the user double-clicks the GroupBox control.
+            </summary>
+        </member>
+        <member name="E:Ekstrand.Windows.Forms.GroupBox.KeyDown">
+            <summary>
+            Occurs when the user presses a key while the GroupBox control has focus.
+            </summary>
+        </member>
+        <member name="E:Ekstrand.Windows.Forms.GroupBox.KeyPress">
+            <summary>
+            Occurs when the user presses a key while the GroupBox control has focus.
+            </summary>
+        </member>
+        <member name="E:Ekstrand.Windows.Forms.GroupBox.KeyUp">
+            <summary>
+             Occurs when the user releases a key while the GroupBox control has focus.
+            </summary>
+        </member>
+        <member name="E:Ekstrand.Windows.Forms.GroupBox.MouseClick">
+            <summary>
+            Occurs when the user clicks the GroupBox control with the mouse.
+            </summary>
+        </member>
+        <member name="E:Ekstrand.Windows.Forms.GroupBox.MouseDoubleClick">
+            <summary>
+            Occurs when the user double-clicks the GroupBox control with the mouse.
+            </summary>
+        </member>
+        <member name="E:Ekstrand.Windows.Forms.GroupBox.MouseDown">
+            <summary>
+            Occurs when the user presses a mouse button while the mouse pointer is over the control.
+            </summary>
+        </member>
+        <member name="E:Ekstrand.Windows.Forms.GroupBox.MouseEnter">
+            <summary>
+            Occurs when the mouse pointer enters the control.
+            </summary>
+        </member>
+        <member name="E:Ekstrand.Windows.Forms.GroupBox.MouseLeave">
+            <summary>
+            Occurs when the mouse pointer leaves the control.
+            </summary>
+        </member>
+        <member name="E:Ekstrand.Windows.Forms.GroupBox.MouseMove">
+            <summary>
+            Occurs when the user moves the mouse pointer over the control.
+            </summary>
+        </member>
+        <member name="E:Ekstrand.Windows.Forms.GroupBox.MouseUp">
+            <summary>
+            Occurs when the user releases a mouse button while the mouse pointer is over the control.
+            </summary>
+        </member>
+        <member name="E:Ekstrand.Windows.Forms.GroupBox.TabStopChanged">
+            <summary>
+            Occurs when the value of the TabStop property changes.
+            </summary>
+        </member>
+        <member name="T:Ekstrand.Windows.Forms.GroupBoxRenderer">
+            <summary>
+            Provides methods used to render a group box control with visual styles. This class cannot be inherited.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.GroupBoxRenderer.RenderMatchingApplicationState">
+            <summary>
+            Gets or sets a value indicating whether the renderer uses the application state to determine rendering style.
+            </summary>
+        </member>
+        <member name="M:Ekstrand.Windows.Forms.GroupBoxRenderer.DrawEnhanceGroupBox(Ekstrand.Windows.Forms.GroupBox,System.Drawing.Graphics,System.Drawing.Rectangle,System.String,System.Drawing.Font,System.Drawing.Color,System.Windows.Forms.TextFormatFlags,Ekstrand.Windows.Forms.EnhanceGroupBoxState)">
+            <summary>
+            Draws a group box control in the specified state and bounds, with the specified groupbox, graphics, bounds, text, font, textcolor, text format flags, and state.
+            </summary>
+            <param name="ecb">GroupBox object</param>
+            <param name="g">The Graphics used to draw the group box.</param>
+            <param name="bounds">The Rectangle that specifies the bounds of the group box.</param>
+            <param name="text">The String to draw with the group box.</param>
+            <param name="font">The Font to apply to groupBoxText.</param>
+            <param name="textColor">The Color to apply to groupBoxText.</param>
+            <param name="flags">A bitwise combination of the TextFormatFlags values.</param>
+            <param name="state">One of the EnhanceGroupBoxState values that specifies the visual state of the group box.</param>
+        </member>
+        <member name="T:Ekstrand.Windows.Forms.BorderCorners">
+            <summary>
+            Specifies  which rectangle corner to be rounded.
+            </summary>
+        </member>
+        <member name="F:Ekstrand.Windows.Forms.BorderCorners.None">
+            <summary>
+            Specifies no borders to be rounded.
+            </summary>
+        </member>
+        <member name="F:Ekstrand.Windows.Forms.BorderCorners.TopLeft">
+            <summary>
+            Specifies top left corner to be rounded.
+            </summary>
+        </member>
+        <member name="F:Ekstrand.Windows.Forms.BorderCorners.TopRight">
+            <summary>
+            Specifies top right corner to be rounded.
+            </summary>
+        </member>
+        <member name="F:Ekstrand.Windows.Forms.BorderCorners.BottomLeft">
+            <summary>
+            Specifies bottom left corner to be rounded.
+            </summary>
+        </member>
+        <member name="F:Ekstrand.Windows.Forms.BorderCorners.BottomRight">
+            <summary>
+            Specifies bottom right corner to be rounded.
+            </summary>
+        </member>
+        <member name="F:Ekstrand.Windows.Forms.BorderCorners.All">
+            <summary>
+            Specifies all corners to be rounded.
+            </summary>
+        </member>
+        <member name="T:Ekstrand.Windows.Forms.BorderTextAlignment">
+            <summary>
+            Specifies text alignment in the group box
+            </summary>
+        </member>
+        <member name="F:Ekstrand.Windows.Forms.BorderTextAlignment.TopLeft">
+            <summary>
+            Specifies top left side.
+            </summary>
+        </member>
+        <member name="F:Ekstrand.Windows.Forms.BorderTextAlignment.TopRight">
+            <summary>
+            Specifies top right side.
+            </summary>
+        </member>
+        <member name="F:Ekstrand.Windows.Forms.BorderTextAlignment.TopCenter">
+            <summary>
+            Specifies top center.
+            </summary>
+        </member>
+        <member name="F:Ekstrand.Windows.Forms.BorderTextAlignment.BottomLeft">
+            <summary>
+            Specifies bottom left side.
+            </summary>
+        </member>
+        <member name="F:Ekstrand.Windows.Forms.BorderTextAlignment.BottomRight">
+            <summary>
+            Specifies bottom right side.
+            </summary>
+        </member>
+        <member name="F:Ekstrand.Windows.Forms.BorderTextAlignment.BottomCenter">
+            <summary>
+            Specifies bottom center.
+            </summary>
+        </member>
+        <member name="T:Ekstrand.Windows.Forms.EnhanceGroupBoxGradientMode">
+            <summary>
+            Specifies the linear gradient direction.
+            </summary>
+        </member>
+        <member name="F:Ekstrand.Windows.Forms.EnhanceGroupBoxGradientMode.None">
+            <summary>No gradient.</summary>
+        </member>
+        <member name="F:Ekstrand.Windows.Forms.EnhanceGroupBoxGradientMode.BackwardDiagonal">
+            <summary>Specifies a gradient from upper right to lower left.</summary>
+        </member>
+        <member name="F:Ekstrand.Windows.Forms.EnhanceGroupBoxGradientMode.ForwardDiagonal">
+            <summary>Specifies a gradient from upper left to lower right.</summary>
+        </member>
+        <member name="F:Ekstrand.Windows.Forms.EnhanceGroupBoxGradientMode.Horizontal">
+            <summary>Specifies a gradient from left to right.</summary>
+        </member>
+        <member name="F:Ekstrand.Windows.Forms.EnhanceGroupBoxGradientMode.Vertical">
+            <summary>Specifies a gradient from top to bottom.</summary>
+        </member>
+        <member name="T:Ekstrand.Windows.Forms.EnhanceGroupBoxState">
+            <summary>
+            Specifies the group box state in rendering.
+            </summary>
+        </member>
+        <member name="F:Ekstrand.Windows.Forms.EnhanceGroupBoxState.Normal">
+            <summary>
+            Specifies normal rendering.
+            </summary>
+        </member>
+        <member name="F:Ekstrand.Windows.Forms.EnhanceGroupBoxState.Disabled">
+            <summary>
+            Specifies rendering to be disabled.
+            </summary>
+        </member>
+        <member name="T:Ekstrand.Windows.Forms.GroupBoxStyles">
+            <summary>
+            Specifies the group box rendering styles.
+            </summary>
+        </member>
+        <member name="F:Ekstrand.Windows.Forms.GroupBoxStyles.Standard">
+            <summary>
+            Specifies the standard style.
+            </summary>
+        </member>
+        <member name="F:Ekstrand.Windows.Forms.GroupBoxStyles.Enhance">
+            <summary>
+            Specifies the enhance style.
+            </summary>
+        </member>
+        <member name="F:Ekstrand.Windows.Forms.GroupBoxStyles.Excitative">
+            <summary>
+            Specifies the excitative style.
+            </summary>
+        </member>
+        <member name="F:Ekstrand.Windows.Forms.GroupBoxStyles.Header">
+            <summary>
+            Specifies the header style.
+            </summary>
+        </member>
+        <member name="T:Ekstrand.Windows.Forms.HeaderElements">
+            <summary>
+            Properties grouped for rendering group box header area.
+            </summary>
+        </member>
+        <member name="M:Ekstrand.Windows.Forms.HeaderElements.#ctor(Ekstrand.Windows.Forms.GroupBox)">
+            <summary>
+            Initializes a new instance of the HeaderElements class.
+            </summary>
+            <param name="ecb">GroupBox instance</param>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.HeaderElements.BackColor">
+            <summary>
+            Gets or sets color of the text background.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.HeaderElements.BorderColor">
+            <summary>
+            Gets or sets color of the border in the text header area.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.HeaderElements.BorderCorners">
+            <summary>
+            Gets or sets the corners to have a rounded edge
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.HeaderElements.DashCap">
+            <summary>
+            Specifies the type of graphic shape to use on both ends of each dash in a dashed line.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.HeaderElements.DashOffset">
+            <summary>
+            Gets or sets the distance from the start of a line to the beginning of a dash pattern.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.HeaderElements.DashPattern">
+            <summary>
+            Gets or sets an array of custom dashes and spaces.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.HeaderElements.DashStyle">
+            <summary>
+            Gets or sets the style used for dashed lines drawn.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.HeaderElements.GradientEndColor">
+            <summary>
+            Gets or sets the gradient end color.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.HeaderElements.GradientMode">
+            <summary>
+            Gets or sets the gradient mode.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.HeaderElements.GradientStartColor">
+            <summary>
+            Gets or sets the gradient start color.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.HeaderElements.Radius">
+            <summary>
+            Gets or sets the radius for each cornner.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.HeaderElements.TextAlignment">
+            <summary>
+            Gets or sets the text aligment.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.HeaderElements.Width">
+            <summary>
+            Gets or sets the width of the border.
+            </summary>
+        </member>
+        <member name="T:Ekstrand.Windows.Forms.HeaderElementsConverter">
+            <summary>
+            Provides a type converter to convert HeaderElements objects to and from various other representations.
+            </summary>
+        </member>
+        <member name="M:Ekstrand.Windows.Forms.HeaderElementsConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)">
+            <summary>
+            Converts the given value object to the specified type, using the specified context and culture information.
+            </summary>
+            <param name="context">An ITypeDescriptorContext that provides a format context.</param>
+            <param name="culture">A CultureInfo. If null is passed, the current culture is assumed.</param>
+            <param name="value">The Object to convert.</param>
+            <param name="destinationType">The Type to convert the value parameter to.</param>
+            <returns>An Object that represents the converted value.</returns>
+        </member>
+        <member name="T:Ekstrand.Windows.Forms.InsideBorderElements">
+            <summary>
+            Properties grouped for rendering group box inside border area.
+            </summary>
+        </member>
+        <member name="M:Ekstrand.Windows.Forms.InsideBorderElements.#ctor(Ekstrand.Windows.Forms.GroupBox)">
+            <summary>
+            Initializes a new instance of the HeaderElements class.
+            </summary>
+            <param name="egb">GroupBox instance</param>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.InsideBorderElements.BackColor">
+            <summary>
+            Gets or sets the inside border area color.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.InsideBorderElements.GradientEndColor">
+            <summary>
+            Gets or sets the gradient end color.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.InsideBorderElements.GradientMode">
+            <summary>
+            Gets or sets the gradient mode.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.InsideBorderElements.GradientStartColor">
+            <summary>
+            Gets or sets the gradient start color.
+            </summary>
+        </member>
+        <member name="T:Ekstrand.Windows.Forms.InsideBorderElementsConverter">
+            <summary>
+            Provides a type converter to convert InsideBorderElements objects to and from various other representations.
+            </summary>
+        </member>
+        <member name="M:Ekstrand.Windows.Forms.InsideBorderElementsConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)">
+            <summary>
+            Converts the given value object to the specified type, using the specified context and culture information.
+            </summary>
+            <param name="context">An ITypeDescriptorContext that provides a format context.</param>
+            <param name="culture">A CultureInfo. If null is passed, the current culture is assumed.</param>
+            <param name="value">The Object to convert.</param>
+            <param name="destinationType">The Type to convert the value parameter to.</param>
+            <returns>An Object that represents the converted value.</returns>
+        </member>
+        <member name="T:Ekstrand.Windows.Forms.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.Properties.Resources.GroupBox_16x">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="T:Ekstrand.Drawing.GraphicsExtension">
+            <summary>
+            Graphics extension to drawing rounded rectangle
+            </summary>
+        </member>
+        <member name="M:Ekstrand.Drawing.GraphicsExtension.DrawRoundedRectangle(System.Drawing.Graphics,System.Drawing.Pen,System.Single,System.Single,System.Single,System.Single,System.Single,Ekstrand.Windows.Forms.BorderCorners)">
+            <summary>
+            Draws a rounded rectangle with specified parameters.
+            </summary>
+            <param name="graphics">An encapsulated GDI+ drawing surface instance.</param>
+            <param name="pen">Pen that determines the color, width, and style of the rectangle.</param>
+            <param name="x">The x-coordinate of the upper-left corner of the rectangle to draw.</param>
+            <param name="y">The y-coordinate of the upper-left corner of the rectangle to draw.</param>
+            <param name="width">Width of the rectangle to draw.</param>
+            <param name="height">Height of the rectangle to draw.</param>
+            <param name="radius">The radius for each corners</param>
+            <param name="filter">The corners to have a radius</param>
+        </member>
+        <member name="M:Ekstrand.Drawing.GraphicsExtension.DrawRoundedRectangle(System.Drawing.Graphics,System.Drawing.Pen,System.Single,System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Draws a rounded rectangle with specified parameters.
+            </summary>
+            <param name="graphics">An encapsulated GDI+ drawing surface instance.</param>
+            <param name="pen">Pen that determines the color, width, and style of the rectangle.</param>
+            <param name="x">The x-coordinate of the upper-left corner of the rectangle to draw.</param>
+            <param name="y">The y-coordinate of the upper-left corner of the rectangle to draw.</param>
+            <param name="width">Width of the rectangle to draw.</param>
+            <param name="height">Height of the rectangle to draw.</param>
+            <param name="radius">The radius for each corners</param>
+        </member>
+        <member name="M:Ekstrand.Drawing.GraphicsExtension.DrawRoundedRectangle(System.Drawing.Graphics,System.Drawing.Pen,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Draws a rounded rectangle with specified parameters.
+            </summary>
+            <param name="graphics">An encapsulated GDI+ drawing surface instance.</param>
+            <param name="pen">Pen that determines the color, width, and style of the rectangle.</param>
+            <param name="x">The x-coordinate of the upper-left corner of the rectangle to draw.</param>
+            <param name="y">The y-coordinate of the upper-left corner of the rectangle to draw.</param>
+            <param name="width">Width of the rectangle to draw.</param>
+            <param name="height">Height of the rectangle to draw.</param>
+            <param name="radius">The radius for each corners</param>
+        </member>
+        <member name="M:Ekstrand.Drawing.GraphicsExtension.DrawRoundedRectangle(System.Drawing.Graphics,System.Drawing.Pen,System.Drawing.Rectangle,System.Int32,Ekstrand.Windows.Forms.BorderCorners)">
+            <summary>
+            Draws a rounded rectangle with specified parameters.
+            </summary>
+            <param name="graphics">An encapsulated GDI+ drawing surface instance.</param>
+            <param name="pen">Pen that determines the color, width, and style of the rectangle.</param>
+            <param name="rectangle">A Rectangle structure that represents the boundary to draw.</param>
+            <param name="radius">The radius for each corners</param>
+            <param name="filter">The corners to have a radius</param>
+        </member>
+        <member name="M:Ekstrand.Drawing.GraphicsExtension.DrawRoundedRectangle(System.Drawing.Graphics,System.Drawing.Pen,System.Drawing.Rectangle,System.Int32)">
+            <summary>
+            Draws a rounded rectangle with specified parameters.
+            </summary>
+            <param name="graphics">An encapsulated GDI+ drawing surface instance.</param>
+            <param name="pen">Pen that determines the color, width, and style of the rectangle.</param>
+            <param name="rectangle">A Rectangle structure that represents the boundary to draw.</param>
+            <param name="radius">The radius for each corners</param>
+        </member>
+        <member name="M:Ekstrand.Drawing.GraphicsExtension.DrawRoundedRectangle(System.Drawing.Graphics,System.Drawing.Pen,System.Drawing.RectangleF,System.Int32,Ekstrand.Windows.Forms.BorderCorners)">
+            <summary>
+            Draws a rounded rectangle with specified parameters.
+            </summary>
+            <param name="graphics">An encapsulated GDI+ drawing surface instance.</param>
+            <param name="pen">Pen that determines the color, width, and style of the rectangle.</param>
+            <param name="rectangle">A Rectangle structure that represents the boundary to draw.</param>
+            <param name="radius">The radius for each corners</param>
+            <param name="filter">The corners to have a radius</param>
+        </member>
+        <member name="M:Ekstrand.Drawing.GraphicsExtension.DrawRoundedRectangle(System.Drawing.Graphics,System.Drawing.Pen,System.Drawing.RectangleF,System.Int32)">
+            <summary>
+            Draws a rounded rectangle with specified parameters.
+            </summary>
+            <param name="graphics">An encapsulated GDI+ drawing surface instance.</param>
+            <param name="pen">Pen that determines the color, width, and style of the rectangle.</param>
+            <param name="rectangle">A Rectangle structure that represents the boundary to draw.</param>
+            <param name="radius">The radius for each corners</param>
+        </member>
+        <member name="M:Ekstrand.Drawing.GraphicsExtension.FillRoundedRectangle(System.Drawing.Graphics,System.Drawing.Brush,System.Single,System.Single,System.Single,System.Single,System.Single,Ekstrand.Windows.Forms.BorderCorners)">
+            <summary>
+            Fills a rounded rectangle with specified parameters.
+            </summary>
+            <param name="graphics">An encapsulated GDI+ drawing surface instance.</param>
+            <param name="brush">Defines objects used to fill the interiors of graphical shapes such as rectangles, ellipses, pies, polygons, and paths.</param>
+            <param name="x">The x-coordinate of the upper-left corner of the rectangle to draw.</param>
+            <param name="y">The y-coordinate of the upper-left corner of the rectangle to draw.</param>
+            <param name="width">Width of the rectangle to draw.</param>
+            <param name="height">Height of the rectangle to draw.</param>
+            <param name="radius">The radius for each corners</param>
+            <param name="filter">The corners to have a radius</param>
+        </member>
+        <member name="M:Ekstrand.Drawing.GraphicsExtension.FillRoundedRectangle(System.Drawing.Graphics,System.Drawing.Drawing2D.LinearGradientBrush,System.Single,System.Single,System.Single,System.Single,System.Single,Ekstrand.Windows.Forms.BorderCorners)">
+            <summary>
+            Fills a rounded rectangle with specified parameters.
+            </summary>
+            <param name="graphics">An encapsulated GDI+ drawing surface instance.</param>
+            <param name="brush">Defines objects used to fill the interiors of graphical shapes such as rectangles, ellipses, pies, polygons, and paths.</param>
+            <param name="x">The x-coordinate of the upper-left corner of the rectangle to draw.</param>
+            <param name="y">The y-coordinate of the upper-left corner of the rectangle to draw.</param>
+            <param name="width">Width of the rectangle to draw.</param>
+            <param name="height">Height of the rectangle to draw.</param>
+            <param name="radius">The radius for each corners</param>
+            <param name="filter">The corners to have a radius</param>
+        </member>
+        <member name="M:Ekstrand.Drawing.GraphicsExtension.FillRoundedRectangle(System.Drawing.Graphics,System.Drawing.Brush,System.Single,System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Fills a rounded rectangle with specified parameters.
+            </summary>
+            <param name="graphics">An encapsulated GDI+ drawing surface instance.</param>
+            <param name="brush">Defines objects used to fill the interiors of graphical shapes such as rectangles, ellipses, pies, polygons, and paths.</param>
+            <param name="x">The x-coordinate of the upper-left corner of the rectangle to draw.</param>
+            <param name="y">The y-coordinate of the upper-left corner of the rectangle to draw.</param>
+            <param name="width">Width of the rectangle to draw.</param>
+            <param name="height">Height of the rectangle to draw.</param>
+            <param name="radius">The radius for each corners</param>
+        </member>
+        <member name="M:Ekstrand.Drawing.GraphicsExtension.FillRoundedRectangle(System.Drawing.Graphics,System.Drawing.Drawing2D.LinearGradientBrush,System.Single,System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Fills a rounded rectangle with specified parameters.
+            </summary>
+            <param name="graphics">An encapsulated GDI+ drawing surface instance.</param>
+            <param name="brush">Defines objects used to fill the interiors of graphical shapes such as rectangles, ellipses, pies, polygons, and paths.</param>
+            <param name="x">The x-coordinate of the upper-left corner of the rectangle to draw.</param>
+            <param name="y">The y-coordinate of the upper-left corner of the rectangle to draw.</param>
+            <param name="width">Width of the rectangle to draw.</param>
+            <param name="height">Height of the rectangle to draw.</param>
+            <param name="radius">The radius for each corners</param>
+        </member>
+        <member name="M:Ekstrand.Drawing.GraphicsExtension.FillRoundedRectangle(System.Drawing.Graphics,System.Drawing.Brush,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Fills a rounded rectangle with specified parameters.
+            </summary>
+            <param name="graphics">An encapsulated GDI+ drawing surface instance.</param>
+            <param name="brush">Defines objects used to fill the interiors of graphical shapes such as rectangles, ellipses, pies, polygons, and paths.</param>
+            <param name="x">The x-coordinate of the upper-left corner of the rectangle to draw.</param>
+            <param name="y">The y-coordinate of the upper-left corner of the rectangle to draw.</param>
+            <param name="width">Width of the rectangle to draw.</param>
+            <param name="height">Height of the rectangle to draw.</param>
+            <param name="radius">The radius for each corners</param>
+        </member>
+        <member name="M:Ekstrand.Drawing.GraphicsExtension.FillRoundedRectangle(System.Drawing.Graphics,System.Drawing.Drawing2D.LinearGradientBrush,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Fills a rounded rectangle with specified parameters.
+            </summary>
+            <param name="graphics">An encapsulated GDI+ drawing surface instance.</param>
+            <param name="brush">Defines objects used to fill the interiors of graphical shapes such as rectangles, ellipses, pies, polygons, and paths.</param>
+            <param name="x">The x-coordinate of the upper-left corner of the rectangle to draw.</param>
+            <param name="y">The y-coordinate of the upper-left corner of the rectangle to draw.</param>
+            <param name="width">Width of the rectangle to draw.</param>
+            <param name="height">Height of the rectangle to draw.</param>
+            <param name="radius">The radius for each corners</param>
+        </member>
+        <member name="M:Ekstrand.Drawing.GraphicsExtension.FillRoundedRectangle(System.Drawing.Graphics,System.Drawing.Brush,System.Drawing.Rectangle,System.Int32,Ekstrand.Windows.Forms.BorderCorners)">
+            <summary>
+            Fills a rounded rectangle with specified parameters.
+            </summary>
+            <param name="graphics">An encapsulated GDI+ drawing surface instance.</param>
+            <param name="brush">Defines objects used to fill the interiors of graphical shapes such as rectangles, ellipses, pies, polygons, and paths.</param>
+            <param name="rectangle">A Rectangle structure that represents the boundary to draw.</param>
+            <param name="radius">The radius for each corners</param>
+            <param name="filter">The corners to have a radius</param>
+        </member>
+        <member name="M:Ekstrand.Drawing.GraphicsExtension.FillRoundedRectangle(System.Drawing.Graphics,System.Drawing.Drawing2D.LinearGradientBrush,System.Drawing.Rectangle,System.Int32,Ekstrand.Windows.Forms.BorderCorners)">
+            <summary>
+            Fills a rounded rectangle with specified parameters.
+            </summary>
+            <param name="graphics">An encapsulated GDI+ drawing surface instance.</param>
+            <param name="brush">Defines objects used to fill the interiors of graphical shapes such as rectangles, ellipses, pies, polygons, and paths.</param>
+            <param name="rectangle">A Rectangle structure that represents the boundary to draw.</param>
+            <param name="radius">The radius for each corners</param>
+            <param name="filter">The corners to have a radius</param>
+        </member>
+        <member name="M:Ekstrand.Drawing.GraphicsExtension.FillRoundedRectangle(System.Drawing.Graphics,System.Drawing.Brush,System.Drawing.Rectangle,System.Int32)">
+            <summary>
+            Fills a rounded rectangle with specified parameters.
+            </summary>
+            <param name="graphics">An encapsulated GDI+ drawing surface instance.</param>
+            <param name="brush">Defines objects used to fill the interiors of graphical shapes such as rectangles, ellipses, pies, polygons, and paths.</param>
+            <param name="rectangle">A Rectangle structure that represents the boundary to draw.</param>
+            <param name="radius">The radius for each corners</param>
+        </member>
+        <member name="M:Ekstrand.Drawing.GraphicsExtension.FillRoundedRectangle(System.Drawing.Graphics,System.Drawing.Drawing2D.LinearGradientBrush,System.Drawing.Rectangle,System.Int32)">
+            <summary>
+            Fills a rounded rectangle with specified parameters.
+            </summary>
+            <param name="graphics">An encapsulated GDI+ drawing surface instance.</param>
+            <param name="brush">Defines objects used to fill the interiors of graphical shapes such as rectangles, ellipses, pies, polygons, and paths.</param>
+            <param name="rectangle">A Rectangle structure that represents the boundary to draw.</param>
+            <param name="radius">The radius for each corners</param>
+        </member>
+        <member name="M:Ekstrand.Drawing.GraphicsExtension.FillRoundedRectangle(System.Drawing.Graphics,System.Drawing.Brush,System.Drawing.RectangleF,System.Int32,Ekstrand.Windows.Forms.BorderCorners)">
+            <summary>
+            Fills a rounded rectangle with specified parameters.
+            </summary>
+            <param name="graphics">An encapsulated GDI+ drawing surface instance.</param>
+            <param name="brush">Defines objects used to fill the interiors of graphical shapes such as rectangles, ellipses, pies, polygons, and paths.</param>
+            <param name="rectangle">A Rectangle structure that represents the boundary to draw.</param>
+            <param name="radius">The radius for each corners</param>
+            <param name="filter">The corners to have a radius</param>
+        </member>
+        <member name="M:Ekstrand.Drawing.GraphicsExtension.FillRoundedRectangle(System.Drawing.Graphics,System.Drawing.Drawing2D.LinearGradientBrush,System.Drawing.RectangleF,System.Int32,Ekstrand.Windows.Forms.BorderCorners)">
+            <summary>
+            Fills a rounded rectangle with specified parameters.
+            </summary>
+            <param name="graphics">An encapsulated GDI+ drawing surface instance.</param>
+            <param name="brush">Defines objects used to fill the interiors of graphical shapes such as rectangles, ellipses, pies, polygons, and paths.</param>
+            <param name="rectangle">A Rectangle structure that represents the boundary to draw.</param>
+            <param name="radius">The radius for each corners</param>
+            <param name="filter">The corners to have a radius</param>
+        </member>
+        <member name="M:Ekstrand.Drawing.GraphicsExtension.FillRoundedRectangle(System.Drawing.Graphics,System.Drawing.Brush,System.Drawing.RectangleF,System.Int32)">
+            <summary>
+            Fills a rounded rectangle with specified parameters.
+            </summary>
+            <param name="graphics">An encapsulated GDI+ drawing surface instance.</param>
+            <param name="brush">Defines objects used to fill the interiors of graphical shapes such as rectangles, ellipses, pies, polygons, and paths.</param>
+            <param name="rectangle">A Rectangle structure that represents the boundary to draw.</param>
+            <param name="radius">The radius for each corners</param>
+        </member>
+        <member name="M:Ekstrand.Drawing.GraphicsExtension.FillRoundedRectangle(System.Drawing.Graphics,System.Drawing.Drawing2D.LinearGradientBrush,System.Drawing.RectangleF,System.Int32)">
+            <summary>
+            Fills a rounded rectangle with specified parameters.
+            </summary>
+            <param name="graphics">An encapsulated GDI+ drawing surface instance.</param>
+            <param name="brush">Defines objects used to fill the interiors of graphical shapes such as rectangles, ellipses, pies, polygons, and paths.</param>
+            <param name="rectangle">A Rectangle structure that represents the boundary to draw.</param>
+            <param name="radius">The radius for each corners</param>
+        </member>
+        <member name="M:Ekstrand.Drawing.GraphicsExtension.RoundedRectanglePath(System.Drawing.Graphics,System.Drawing.RectangleF,System.Single,Ekstrand.Windows.Forms.BorderCorners)">
+            <summary>
+            Returns a graphic path of a rounded rectangle with specified parameters.
+            </summary>
+            <param name="graphics">An encapsulated GDI+ drawing surface instance.</param>
+            <param name="rectangle">A Rectangle structure that represents the boundary to draw.</param>
+            <param name="radius">The radius for each corners</param>
+            <param name="filter">The corners to have a radius</param>
+            <returns>Returns a GraphicsPath of a rounded rectangle</returns>
+        </member>
+    </members>
+</doc>

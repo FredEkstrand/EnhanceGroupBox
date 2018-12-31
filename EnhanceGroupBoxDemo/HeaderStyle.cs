@@ -24,7 +24,7 @@ namespace GroupBoxDemo
                 _groupBoxes[i] = new GroupBox();
             }
 
-            // top left text with text background color SkyBlue
+            
             _groupBoxes[0].Text = "Header";
             _groupBoxes[0].GroupBoxStyles = GroupBoxStyles.Header;
             _groupBoxes[0].Header.BackColor = System.Drawing.Color.SkyBlue;
@@ -32,14 +32,14 @@ namespace GroupBoxDemo
             _groupBoxes[0].BorderItems.Width = 0;
             
 
-            // top left text with header text area with rounded corners
+            
             _groupBoxes[1].Text = "Header";
             _groupBoxes[1].GroupBoxStyles = GroupBoxStyles.Header;
             _groupBoxes[1].Header.BackColor = System.Drawing.Color.SkyBlue;
             _groupBoxes[1].Header.BorderColor = System.Drawing.Color.Transparent;
 
 
-            // top right text with dash border color tomato red and width
+            
             _groupBoxes[2].Text = "Header";
             _groupBoxes[2].GroupBoxStyles = GroupBoxStyles.Header;
             _groupBoxes[2].Header.BorderColor = System.Drawing.Color.Black;
@@ -48,7 +48,7 @@ namespace GroupBoxDemo
             _groupBoxes[2].BorderItems.BorderCorners = BorderCorners.All;
             _groupBoxes[2].BackColor = System.Drawing.Color.White;
 
-            // bottom left text with width to normal
+            
             _groupBoxes[3].Text = "Header";
             _groupBoxes[3].GroupBoxStyles = GroupBoxStyles.Header;
             _groupBoxes[3].Header.BackColor = System.Drawing.Color.SkyBlue;
@@ -59,7 +59,7 @@ namespace GroupBoxDemo
             _groupBoxes[3].BorderItems.BorderCorners = BorderCorners.All;
             _groupBoxes[3].BackColor = System.Drawing.Color.White;
 
-            // bottom left text with width to normal
+           
             _groupBoxes[4].Text = "Header";
             _groupBoxes[4].GroupBoxStyles = GroupBoxStyles.Header;
             _groupBoxes[4].Header.GradientStartColor = System.Drawing.Color.Tomato;

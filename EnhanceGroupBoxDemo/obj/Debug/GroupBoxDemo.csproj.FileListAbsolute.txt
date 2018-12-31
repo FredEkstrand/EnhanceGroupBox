@@ -1,8 +1,10 @@
+C:\SoftwareProjects\EnhanceGroupBox\EnhanceGroupBoxDemo\bin\Debug\Resources\GroupBox_16x.bmp
 C:\SoftwareProjects\EnhanceGroupBox\EnhanceGroupBoxDemo\bin\Debug\GroupBoxDemo.exe
 C:\SoftwareProjects\EnhanceGroupBox\EnhanceGroupBoxDemo\bin\Debug\GroupBoxDemo.pdb
 C:\SoftwareProjects\EnhanceGroupBox\EnhanceGroupBoxDemo\bin\Debug\EnhanceGroupBox.dll
 C:\SoftwareProjects\EnhanceGroupBox\EnhanceGroupBoxDemo\bin\Debug\EnumExtensions.dll
 C:\SoftwareProjects\EnhanceGroupBox\EnhanceGroupBoxDemo\bin\Debug\EnhanceGroupBox.pdb
+C:\SoftwareProjects\EnhanceGroupBox\EnhanceGroupBoxDemo\bin\Debug\EnhanceGroupBox.xml
 C:\SoftwareProjects\EnhanceGroupBox\EnhanceGroupBoxDemo\bin\Debug\EnumExtensions.pdb
 C:\SoftwareProjects\EnhanceGroupBox\EnhanceGroupBoxDemo\obj\Debug\GroupBoxDemo.csprojAssemblyReference.cache
 C:\SoftwareProjects\EnhanceGroupBox\EnhanceGroupBoxDemo\obj\Debug\GroupBoxDemo.ContentView.resources

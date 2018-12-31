@@ -24,7 +24,7 @@ namespace GroupBoxDemo
                 _groupBoxes[i] = new GroupBox();
             }
 
-            // top left text with text background color SkyBlue
+            
             _groupBoxes[0].Text = "Excitative";
             _groupBoxes[0].GroupBoxStyles = GroupBoxStyles.Excitative;
 
@@ -36,7 +36,7 @@ namespace GroupBoxDemo
             _groupBoxes[1].Header.Width = 0;
 
 
-            // top right text with dash border color tomato red and width
+            
             _groupBoxes[2].Text = "Excitative";
             _groupBoxes[2].GroupBoxStyles = GroupBoxStyles.Excitative;
             _groupBoxes[2].BorderItems.BorderColor = System.Drawing.Color.Black;
@@ -46,7 +46,7 @@ namespace GroupBoxDemo
             _groupBoxes[2].Header.BorderCorners = BorderCorners.All;
             _groupBoxes[2].Header.DashStyle = System.Drawing.Drawing2D.DashStyle.Dot;
 
-            // bottom left text with width to normal
+            
             _groupBoxes[3].Text = "Excitative";
             _groupBoxes[3].GroupBoxStyles = GroupBoxStyles.Excitative;
             _groupBoxes[3].Header.GradientMode = EnhanceGroupBoxGradientMode.Horizontal;

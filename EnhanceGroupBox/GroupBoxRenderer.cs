@@ -6,8 +6,12 @@ using Ekstrand.Drawing;
 
 namespace Ekstrand.Windows.Forms
 {
+    /// <summary>
+    /// Provides methods used to render a group box control with visual styles. This class cannot be inherited.
+    /// </summary>
     public sealed class GroupBoxRenderer
     {
+
         #region Fields
 
         private const int boxHeaderWidth = 7;           // The frame shows 7 pixels before the caption
@@ -19,7 +23,7 @@ namespace Ekstrand.Windows.Forms
         private static bool _renderMatchingApplicationState = false;
 
         #endregion Fields
-      
+
         #region Constructors
 
         private GroupBoxRenderer() { }
@@ -28,6 +32,9 @@ namespace Ekstrand.Windows.Forms
 
         #region Properties
 
+        /// <summary>
+        /// Gets or sets a value indicating whether the renderer uses the application state to determine rendering style.
+        /// </summary>
         public static bool RenderMatchingApplicationState
         {
             get
@@ -47,7 +54,17 @@ namespace Ekstrand.Windows.Forms
         #endregion Properties
 
         #region Methods
-
+        /// <summary>
+        /// Draws a group box control in the specified state and bounds, with the specified groupbox, graphics, bounds, text, font, textcolor, text format flags, and state.
+        /// </summary>
+        /// <param name="ecb">GroupBox object</param>
+        /// <param name="g">The Graphics used to draw the group box.</param>
+        /// <param name="bounds">The Rectangle that specifies the bounds of the group box.</param>
+        /// <param name="text">The String to draw with the group box.</param>
+        /// <param name="font">The Font to apply to groupBoxText.</param>
+        /// <param name="textColor">The Color to apply to groupBoxText.</param>
+        /// <param name="flags">A bitwise combination of the TextFormatFlags values.</param>
+        /// <param name="state">One of the EnhanceGroupBoxState values that specifies the visual state of the group box.</param>
         public static void DrawEnhanceGroupBox(GroupBox ecb, Graphics g, Rectangle bounds, string text, Font font, Color textColor, TextFormatFlags flags, EnhanceGroupBoxState state)
         {
             _eGroupBox = ecb;
@@ -56,7 +73,8 @@ namespace Ekstrand.Windows.Forms
             DrawText(g, bounds, text, font, textColor, flags, state);
         }
 
-        public static void DrawText(Graphics g, Rectangle bounds, string text, Font font, Color textColor, TextFormatFlags flags, EnhanceGroupBoxState state)
+
+        private static void DrawText(Graphics g, Rectangle bounds, string text, Font font, Color textColor, TextFormatFlags flags, EnhanceGroupBoxState state)
         {
             Rectangle r = Textbounds(g, bounds, text, font, flags);
             DrawTextBackground(g, r);

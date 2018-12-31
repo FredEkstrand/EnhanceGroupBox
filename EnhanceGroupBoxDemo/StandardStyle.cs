@@ -23,30 +23,30 @@ namespace GroupBoxDemo
                 _groupBoxes[i] = new GroupBox();
             }
 
-            // top left text with square border colored control dark (default)
+            
             _groupBoxes[0].Text = "Standard";
             
-            // top center text with dash border color tomato red
+            
             _groupBoxes[1].Text = "Standard";
             _groupBoxes[1].BorderItems.BorderColor = System.Drawing.Color.Tomato;
             _groupBoxes[1].BorderItems.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
             _groupBoxes[1].Header.TextAlignment = BorderTextAlignment.TopCenter;
 
-            // top right text with dash border color tomato red and width
+            
             _groupBoxes[2].Text = "Standard";
             _groupBoxes[2].BorderItems.BorderColor = System.Drawing.Color.Tomato;
             _groupBoxes[2].BorderItems.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
             _groupBoxes[2].BorderItems.Width = 2;
             _groupBoxes[2].Header.TextAlignment = BorderTextAlignment.TopRight;
 
-            // bottom left text with width to normal
+            
             _groupBoxes[3].Text = "Standard";
             _groupBoxes[3].BorderItems.BorderColor = System.Drawing.Color.Tomato;
             _groupBoxes[3].BorderItems.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
             _groupBoxes[3].BorderItems.Width = 1;
             _groupBoxes[3].Header.TextAlignment = BorderTextAlignment.BottomLeft;
 
-            // bottom center text with all corners having a radius value
+            
             _groupBoxes[4].Text = "Standard";
             _groupBoxes[4].BorderItems.BorderColor = System.Drawing.Color.Tomato;
             _groupBoxes[4].BorderItems.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
@@ -57,7 +57,7 @@ namespace GroupBoxDemo
             _groupBoxes[4].ForeColor = System.Drawing.Color.DarkOrange;
 
 
-            // bottom right text with top two corners having a radius value
+           
             _groupBoxes[5].Text = "Standard";
             _groupBoxes[5].BorderItems.BorderColor = System.Drawing.Color.Tomato;
             _groupBoxes[5].BorderItems.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;

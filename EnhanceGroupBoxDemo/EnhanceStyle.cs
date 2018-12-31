@@ -24,14 +24,14 @@ namespace GroupBoxDemo
                 _groupBoxes[i] = new GroupBox();
             }
 
-            // top left text with text background color SkyBlue
+            
             _groupBoxes[0].Text = "Enhance";
             _groupBoxes[0].GroupBoxStyles = GroupBoxStyles.Enhance;
             _groupBoxes[0].Header.BackColor = System.Drawing.Color.SkyBlue;
             _groupBoxes[0].BorderItems.BorderColor = System.Drawing.Color.Black;
             _groupBoxes[0].Header.BorderColor = System.Drawing.Color.Black;
 
-            // top left text with header text area with rounded corners
+            
             _groupBoxes[1].Text = "Enhance";
             _groupBoxes[1].GroupBoxStyles = GroupBoxStyles.Enhance;
             _groupBoxes[1].BorderItems.BorderColor = System.Drawing.Color.Black;
@@ -50,7 +50,7 @@ namespace GroupBoxDemo
             _groupBoxes[2].Header.BorderCorners = BorderCorners.All;
             _groupBoxes[2].Header.DashStyle = System.Drawing.Drawing2D.DashStyle.Dot;
 
-            // bottom left text with width to normal
+            
             _groupBoxes[3].Text = "Enhance";
             _groupBoxes[3].GroupBoxStyles = GroupBoxStyles.Enhance;
             _groupBoxes[3].Header.BackColor = System.Drawing.Color.SkyBlue;
@@ -61,7 +61,7 @@ namespace GroupBoxDemo
             _groupBoxes[3].InsideBorder.BackColor = System.Drawing.Color.SkyBlue;
             _groupBoxes[3].Header.Width = 0;
 
-            // bottom left text with width to normal
+            
             _groupBoxes[4].Text = "Enhance";
             _groupBoxes[4].GroupBoxStyles = GroupBoxStyles.Enhance;
             _groupBoxes[4].Header.GradientStartColor = System.Drawing.Color.Tomato;

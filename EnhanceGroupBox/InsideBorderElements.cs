@@ -8,6 +8,9 @@ using System.Text;
 
 namespace Ekstrand.Windows.Forms
 {
+    /// <summary>
+    /// Properties grouped for rendering group box inside border area.
+    /// </summary>
     [TypeConverter(typeof(InsideBorderElementsConverter))]
     [Serializable]
     public class InsideBorderElements
@@ -19,12 +22,15 @@ namespace Ekstrand.Windows.Forms
         private GroupBox _egroupBox;
         private Color _gradientEndColorIBorder;
         private Color _gradientStartColorIBorder = Color.Empty;
-        private Image _image = null;
+        //private Image _image = null;
 
         #endregion Fields
 
         #region Constructors
-
+        /// <summary>
+        /// Initializes a new instance of the HeaderElements class.
+        /// </summary>
+        /// <param name="egb">GroupBox instance</param>
         public InsideBorderElements(GroupBox egb) //EnhanceGroupBox egb
         {
             _egroupBox = egb;
@@ -34,6 +40,9 @@ namespace Ekstrand.Windows.Forms
 
         #region Properties
 
+        /// <summary>
+        /// Gets or sets the inside border area color.
+        /// </summary>
         [Browsable(true)]
         [NotifyParentProperty(true)]
         [Category("Appearance Inside Border Area")]
@@ -50,6 +59,9 @@ namespace Ekstrand.Windows.Forms
             }
         }
 
+        /// <summary>
+        /// Gets or sets the gradient end color.
+        /// </summary>
         [Browsable(true)]
         [NotifyParentProperty(true)]
         [Category("Appearance Inside Border Area")]
@@ -66,6 +78,9 @@ namespace Ekstrand.Windows.Forms
             }
         }
 
+        /// <summary>
+        /// Gets or sets the gradient mode.
+        /// </summary>
         [Browsable(true)]
         [NotifyParentProperty(true)]
         [Category("Appearance Inside Border Area")]
@@ -82,6 +97,9 @@ namespace Ekstrand.Windows.Forms
             }
         }
 
+        /// <summary>
+        /// Gets or sets the gradient start color.
+        /// </summary>
         [Browsable(true)]
         [NotifyParentProperty(true)]
         [Category("Appearance Inside Border Area")]
@@ -97,31 +115,27 @@ namespace Ekstrand.Windows.Forms
                 _egroupBox.Invalidate();
             }
         }
-        [Browsable(true)]
-        [NotifyParentProperty(true)]
-        [Category("Appearance Inside Border Area")]
-        [Description("Specifies the background image inside the border.")]
-        [DefaultValue(null)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
-        public Image Image
-        {
-            get { return _image; }
-            set
-            {
-                _image = value;
-                _egroupBox.Invalidate();
-            }
-        }
+
+        ///// <summary>
+        ///// Gets or sets the image inside the border area.
+        ///// </summary>
+        //[Browsable(true)]
+        //[NotifyParentProperty(true)]
+        //[Category("Appearance Inside Border Area")]
+        //[Description("Specifies the background image inside the border.")]
+        //[DefaultValue(null)]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        //public Image Image
+        //{
+        //    get { return _image; }
+        //    set
+        //    {
+        //        _image = value;
+        //        _egroupBox.Invalidate();
+        //    }
+        //}
 
         #endregion Properties
 
-        #region Methods
-
-        public override string ToString()
-        {
-            return "Expand for more options";
-        }
-
-        #endregion Methods
     }
 }

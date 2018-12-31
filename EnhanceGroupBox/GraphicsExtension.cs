@@ -5,10 +5,24 @@ using Ekstrand.Windows.Forms;
 
 namespace Ekstrand.Drawing
 {
+    /// <summary>
+    /// Graphics extension to drawing rounded rectangle
+    /// </summary>
     public static class GraphicsExtension
     {
         #region Methods
 
+        /// <summary>
+        /// Draws a rounded rectangle with specified parameters.
+        /// </summary>
+        /// <param name="graphics">An encapsulated GDI+ drawing surface instance.</param>
+        /// <param name="pen">Pen that determines the color, width, and style of the rectangle.</param>
+        /// <param name="x">The x-coordinate of the upper-left corner of the rectangle to draw.</param>
+        /// <param name="y">The y-coordinate of the upper-left corner of the rectangle to draw.</param>
+        /// <param name="width">Width of the rectangle to draw.</param>
+        /// <param name="height">Height of the rectangle to draw.</param>
+        /// <param name="radius">The radius for each corners</param>
+        /// <param name="filter">The corners to have a radius</param>
         public static void DrawRoundedRectangle(this Graphics graphics, Pen pen, float x, float y, float width, float height, float radius, BorderCorners filter)
         {
             RectangleF rectangle = new RectangleF(x, y, width, height);
@@ -19,6 +33,16 @@ namespace Ekstrand.Drawing
             graphics.SmoothingMode = old;
         }
 
+        /// <summary>
+        /// Draws a rounded rectangle with specified parameters.
+        /// </summary>
+        /// <param name="graphics">An encapsulated GDI+ drawing surface instance.</param>
+        /// <param name="pen">Pen that determines the color, width, and style of the rectangle.</param>
+        /// <param name="x">The x-coordinate of the upper-left corner of the rectangle to draw.</param>
+        /// <param name="y">The y-coordinate of the upper-left corner of the rectangle to draw.</param>
+        /// <param name="width">Width of the rectangle to draw.</param>
+        /// <param name="height">Height of the rectangle to draw.</param>
+        /// <param name="radius">The radius for each corners</param>
         public static void DrawRoundedRectangle(this Graphics graphics, Pen pen, float x, float y, float width, float height, float radius)
         {
             graphics.DrawRoundedRectangle(
@@ -31,6 +55,16 @@ namespace Ekstrand.Drawing
                     BorderCorners.All);
         }
 
+        /// <summary>
+        /// Draws a rounded rectangle with specified parameters.
+        /// </summary>
+        /// <param name="graphics">An encapsulated GDI+ drawing surface instance.</param>
+        /// <param name="pen">Pen that determines the color, width, and style of the rectangle.</param>
+        /// <param name="x">The x-coordinate of the upper-left corner of the rectangle to draw.</param>
+        /// <param name="y">The y-coordinate of the upper-left corner of the rectangle to draw.</param>
+        /// <param name="width">Width of the rectangle to draw.</param>
+        /// <param name="height">Height of the rectangle to draw.</param>
+        /// <param name="radius">The radius for each corners</param>
         public static void DrawRoundedRectangle(this Graphics graphics, Pen pen, int x, int y, int width, int height, int radius)
         {
             graphics.DrawRoundedRectangle(
@@ -42,6 +76,14 @@ namespace Ekstrand.Drawing
                     Convert.ToSingle(radius));
         }
 
+        /// <summary>
+        /// Draws a rounded rectangle with specified parameters.
+        /// </summary>
+        /// <param name="graphics">An encapsulated GDI+ drawing surface instance.</param>
+        /// <param name="pen">Pen that determines the color, width, and style of the rectangle.</param>
+        /// <param name="rectangle">A Rectangle structure that represents the boundary to draw.</param>
+        /// <param name="radius">The radius for each corners</param>
+        /// <param name="filter">The corners to have a radius</param>
         public static void DrawRoundedRectangle(this Graphics graphics, Pen pen, Rectangle rectangle, int radius, BorderCorners filter)
         {
             graphics.DrawRoundedRectangle(
@@ -54,6 +96,13 @@ namespace Ekstrand.Drawing
                 filter);
         }
 
+        /// <summary>
+        /// Draws a rounded rectangle with specified parameters.
+        /// </summary>
+        /// <param name="graphics">An encapsulated GDI+ drawing surface instance.</param>
+        /// <param name="pen">Pen that determines the color, width, and style of the rectangle.</param>
+        /// <param name="rectangle">A Rectangle structure that represents the boundary to draw.</param>
+        /// <param name="radius">The radius for each corners</param>
         public static void DrawRoundedRectangle(this Graphics graphics, Pen pen, Rectangle rectangle, int radius)
         {
             graphics.DrawRoundedRectangle(
@@ -66,6 +115,14 @@ namespace Ekstrand.Drawing
                 BorderCorners.All);
         }
 
+        /// <summary>
+        /// Draws a rounded rectangle with specified parameters.
+        /// </summary>
+        /// <param name="graphics">An encapsulated GDI+ drawing surface instance.</param>
+        /// <param name="pen">Pen that determines the color, width, and style of the rectangle.</param>
+        /// <param name="rectangle">A Rectangle structure that represents the boundary to draw.</param>
+        /// <param name="radius">The radius for each corners</param>
+        /// <param name="filter">The corners to have a radius</param>
         public static void DrawRoundedRectangle(this Graphics graphics, Pen pen, RectangleF rectangle, int radius, BorderCorners filter)
         {
             graphics.DrawRoundedRectangle(
@@ -78,6 +135,13 @@ namespace Ekstrand.Drawing
                 filter);
         }
 
+        /// <summary>
+        /// Draws a rounded rectangle with specified parameters.
+        /// </summary>
+        /// <param name="graphics">An encapsulated GDI+ drawing surface instance.</param>
+        /// <param name="pen">Pen that determines the color, width, and style of the rectangle.</param>
+        /// <param name="rectangle">A Rectangle structure that represents the boundary to draw.</param>
+        /// <param name="radius">The radius for each corners</param>
         public static void DrawRoundedRectangle(this Graphics graphics, Pen pen, RectangleF rectangle, int radius)
         {
             graphics.DrawRoundedRectangle(
@@ -90,6 +154,17 @@ namespace Ekstrand.Drawing
                 BorderCorners.All);
         }
 
+        /// <summary>
+        /// Fills a rounded rectangle with specified parameters.
+        /// </summary>
+        /// <param name="graphics">An encapsulated GDI+ drawing surface instance.</param>
+        /// <param name="brush">Defines objects used to fill the interiors of graphical shapes such as rectangles, ellipses, pies, polygons, and paths.</param>
+        /// <param name="x">The x-coordinate of the upper-left corner of the rectangle to draw.</param>
+        /// <param name="y">The y-coordinate of the upper-left corner of the rectangle to draw.</param>
+        /// <param name="width">Width of the rectangle to draw.</param>
+        /// <param name="height">Height of the rectangle to draw.</param>
+        /// <param name="radius">The radius for each corners</param>
+        /// <param name="filter">The corners to have a radius</param>
         public static void FillRoundedRectangle(this Graphics graphics, Brush brush, float x, float y, float width, float height, float radius, BorderCorners filter)
         {
             RectangleF rectangle = new RectangleF(x, y, width, height);
@@ -100,6 +175,17 @@ namespace Ekstrand.Drawing
             graphics.SmoothingMode = old;
         }
 
+        /// <summary>
+        /// Fills a rounded rectangle with specified parameters.
+        /// </summary>
+        /// <param name="graphics">An encapsulated GDI+ drawing surface instance.</param>
+        /// <param name="brush">Defines objects used to fill the interiors of graphical shapes such as rectangles, ellipses, pies, polygons, and paths.</param>
+        /// <param name="x">The x-coordinate of the upper-left corner of the rectangle to draw.</param>
+        /// <param name="y">The y-coordinate of the upper-left corner of the rectangle to draw.</param>
+        /// <param name="width">Width of the rectangle to draw.</param>
+        /// <param name="height">Height of the rectangle to draw.</param>
+        /// <param name="radius">The radius for each corners</param>
+        /// <param name="filter">The corners to have a radius</param>
         public static void FillRoundedRectangle(this Graphics graphics, LinearGradientBrush brush, float x, float y, float width, float height, float radius, BorderCorners filter)
         {
             RectangleF rectangle = new RectangleF(x, y, width, height);
@@ -110,6 +196,16 @@ namespace Ekstrand.Drawing
             graphics.SmoothingMode = old;
         }
 
+        /// <summary>
+        /// Fills a rounded rectangle with specified parameters.
+        /// </summary>
+        /// <param name="graphics">An encapsulated GDI+ drawing surface instance.</param>
+        /// <param name="brush">Defines objects used to fill the interiors of graphical shapes such as rectangles, ellipses, pies, polygons, and paths.</param>
+        /// <param name="x">The x-coordinate of the upper-left corner of the rectangle to draw.</param>
+        /// <param name="y">The y-coordinate of the upper-left corner of the rectangle to draw.</param>
+        /// <param name="width">Width of the rectangle to draw.</param>
+        /// <param name="height">Height of the rectangle to draw.</param>
+        /// <param name="radius">The radius for each corners</param>
         public static void FillRoundedRectangle(this Graphics graphics, Brush brush, float x, float y, float width, float height, float radius)
         {
             graphics.FillRoundedRectangle(
@@ -122,6 +218,16 @@ namespace Ekstrand.Drawing
                     BorderCorners.All);
         }
 
+        /// <summary>
+        /// Fills a rounded rectangle with specified parameters.
+        /// </summary>
+        /// <param name="graphics">An encapsulated GDI+ drawing surface instance.</param>
+        /// <param name="brush">Defines objects used to fill the interiors of graphical shapes such as rectangles, ellipses, pies, polygons, and paths.</param>
+        /// <param name="x">The x-coordinate of the upper-left corner of the rectangle to draw.</param>
+        /// <param name="y">The y-coordinate of the upper-left corner of the rectangle to draw.</param>
+        /// <param name="width">Width of the rectangle to draw.</param>
+        /// <param name="height">Height of the rectangle to draw.</param>
+        /// <param name="radius">The radius for each corners</param>
         public static void FillRoundedRectangle(this Graphics graphics, LinearGradientBrush brush, float x, float y, float width, float height, float radius)
         {
             graphics.FillRoundedRectangle(
@@ -134,6 +240,16 @@ namespace Ekstrand.Drawing
                     BorderCorners.All);
         }
 
+        /// <summary>
+        /// Fills a rounded rectangle with specified parameters.
+        /// </summary>
+        /// <param name="graphics">An encapsulated GDI+ drawing surface instance.</param>
+        /// <param name="brush">Defines objects used to fill the interiors of graphical shapes such as rectangles, ellipses, pies, polygons, and paths.</param>
+        /// <param name="x">The x-coordinate of the upper-left corner of the rectangle to draw.</param>
+        /// <param name="y">The y-coordinate of the upper-left corner of the rectangle to draw.</param>
+        /// <param name="width">Width of the rectangle to draw.</param>
+        /// <param name="height">Height of the rectangle to draw.</param>
+        /// <param name="radius">The radius for each corners</param>
         public static void FillRoundedRectangle(this Graphics graphics, Brush brush, int x, int y, int width, int height, int radius)
         {
             graphics.FillRoundedRectangle(
@@ -145,6 +261,16 @@ namespace Ekstrand.Drawing
                     Convert.ToSingle(radius));
         }
 
+        /// <summary>
+        /// Fills a rounded rectangle with specified parameters.
+        /// </summary>
+        /// <param name="graphics">An encapsulated GDI+ drawing surface instance.</param>
+        /// <param name="brush">Defines objects used to fill the interiors of graphical shapes such as rectangles, ellipses, pies, polygons, and paths.</param>
+        /// <param name="x">The x-coordinate of the upper-left corner of the rectangle to draw.</param>
+        /// <param name="y">The y-coordinate of the upper-left corner of the rectangle to draw.</param>
+        /// <param name="width">Width of the rectangle to draw.</param>
+        /// <param name="height">Height of the rectangle to draw.</param>
+        /// <param name="radius">The radius for each corners</param>
         public static void FillRoundedRectangle(this Graphics graphics, LinearGradientBrush brush, int x, int y, int width, int height, int radius)
         {
             graphics.FillRoundedRectangle(
@@ -156,6 +282,14 @@ namespace Ekstrand.Drawing
                     Convert.ToSingle(radius));
         }
 
+        /// <summary>
+        /// Fills a rounded rectangle with specified parameters.
+        /// </summary>
+        /// <param name="graphics">An encapsulated GDI+ drawing surface instance.</param>
+        /// <param name="brush">Defines objects used to fill the interiors of graphical shapes such as rectangles, ellipses, pies, polygons, and paths.</param>
+        /// <param name="rectangle">A Rectangle structure that represents the boundary to draw.</param>
+        /// <param name="radius">The radius for each corners</param>
+        /// <param name="filter">The corners to have a radius</param>
         public static void FillRoundedRectangle(this Graphics graphics, Brush brush, Rectangle rectangle, int radius,
             BorderCorners filter)
         {
@@ -169,6 +303,14 @@ namespace Ekstrand.Drawing
                 filter);
         }
 
+        /// <summary>
+        /// Fills a rounded rectangle with specified parameters.
+        /// </summary>
+        /// <param name="graphics">An encapsulated GDI+ drawing surface instance.</param>
+        /// <param name="brush">Defines objects used to fill the interiors of graphical shapes such as rectangles, ellipses, pies, polygons, and paths.</param>
+        /// <param name="rectangle">A Rectangle structure that represents the boundary to draw.</param>
+        /// <param name="radius">The radius for each corners</param>
+        /// <param name="filter">The corners to have a radius</param>
         public static void FillRoundedRectangle(this Graphics graphics, LinearGradientBrush brush, Rectangle rectangle, int radius,
             BorderCorners filter)
         {
@@ -182,6 +324,13 @@ namespace Ekstrand.Drawing
                 filter);
         }
 
+        /// <summary>
+        /// Fills a rounded rectangle with specified parameters.
+        /// </summary>
+        /// <param name="graphics">An encapsulated GDI+ drawing surface instance.</param>
+        /// <param name="brush">Defines objects used to fill the interiors of graphical shapes such as rectangles, ellipses, pies, polygons, and paths.</param>
+        /// <param name="rectangle">A Rectangle structure that represents the boundary to draw.</param>
+        /// <param name="radius">The radius for each corners</param>
         public static void FillRoundedRectangle(this Graphics graphics, Brush brush, Rectangle rectangle, int radius)
         {
             graphics.FillRoundedRectangle(
@@ -194,6 +343,13 @@ namespace Ekstrand.Drawing
                 BorderCorners.All);
         }
 
+        /// <summary>
+        /// Fills a rounded rectangle with specified parameters.
+        /// </summary>
+        /// <param name="graphics">An encapsulated GDI+ drawing surface instance.</param>
+        /// <param name="brush">Defines objects used to fill the interiors of graphical shapes such as rectangles, ellipses, pies, polygons, and paths.</param>
+        /// <param name="rectangle">A Rectangle structure that represents the boundary to draw.</param>
+        /// <param name="radius">The radius for each corners</param>
         public static void FillRoundedRectangle(this Graphics graphics, LinearGradientBrush brush, Rectangle rectangle, int radius)
         {
             graphics.FillRoundedRectangle(
@@ -206,6 +362,14 @@ namespace Ekstrand.Drawing
                 BorderCorners.All);
         }
 
+        /// <summary>
+        /// Fills a rounded rectangle with specified parameters.
+        /// </summary>
+        /// <param name="graphics">An encapsulated GDI+ drawing surface instance.</param>
+        /// <param name="brush">Defines objects used to fill the interiors of graphical shapes such as rectangles, ellipses, pies, polygons, and paths.</param>
+        /// <param name="rectangle">A Rectangle structure that represents the boundary to draw.</param>
+        /// <param name="radius">The radius for each corners</param>
+        /// <param name="filter">The corners to have a radius</param>
         public static void FillRoundedRectangle(this Graphics graphics, Brush brush, RectangleF rectangle, int radius,
             BorderCorners filter)
         {
@@ -219,6 +383,14 @@ namespace Ekstrand.Drawing
                 filter);
         }
 
+        /// <summary>
+        /// Fills a rounded rectangle with specified parameters.
+        /// </summary>
+        /// <param name="graphics">An encapsulated GDI+ drawing surface instance.</param>
+        /// <param name="brush">Defines objects used to fill the interiors of graphical shapes such as rectangles, ellipses, pies, polygons, and paths.</param>
+        /// <param name="rectangle">A Rectangle structure that represents the boundary to draw.</param>
+        /// <param name="radius">The radius for each corners</param>
+        /// <param name="filter">The corners to have a radius</param>
         public static void FillRoundedRectangle(this Graphics graphics, LinearGradientBrush brush, RectangleF rectangle, int radius,
             BorderCorners filter)
         {
@@ -232,6 +404,13 @@ namespace Ekstrand.Drawing
                 filter);
         }
 
+        /// <summary>
+        /// Fills a rounded rectangle with specified parameters.
+        /// </summary>
+        /// <param name="graphics">An encapsulated GDI+ drawing surface instance.</param>
+        /// <param name="brush">Defines objects used to fill the interiors of graphical shapes such as rectangles, ellipses, pies, polygons, and paths.</param>
+        /// <param name="rectangle">A Rectangle structure that represents the boundary to draw.</param>
+        /// <param name="radius">The radius for each corners</param>
         public static void FillRoundedRectangle(this Graphics graphics, Brush brush, RectangleF rectangle, int radius)
         {
             graphics.FillRoundedRectangle(
@@ -244,6 +423,13 @@ namespace Ekstrand.Drawing
                 BorderCorners.All);
         }
 
+        /// <summary>
+        /// Fills a rounded rectangle with specified parameters.
+        /// </summary>
+        /// <param name="graphics">An encapsulated GDI+ drawing surface instance.</param>
+        /// <param name="brush">Defines objects used to fill the interiors of graphical shapes such as rectangles, ellipses, pies, polygons, and paths.</param>
+        /// <param name="rectangle">A Rectangle structure that represents the boundary to draw.</param>
+        /// <param name="radius">The radius for each corners</param>
         public static void FillRoundedRectangle(this Graphics graphics, LinearGradientBrush brush, RectangleF rectangle, int radius)
         {
             graphics.FillRoundedRectangle(
@@ -254,6 +440,19 @@ namespace Ekstrand.Drawing
                 rectangle.Height,
                 radius,
                 BorderCorners.All);
+        }
+
+        /// <summary>
+        /// Returns a graphic path of a rounded rectangle with specified parameters.
+        /// </summary>
+        /// <param name="graphics">An encapsulated GDI+ drawing surface instance.</param>
+        /// <param name="rectangle">A Rectangle structure that represents the boundary to draw.</param>
+        /// <param name="radius">The radius for each corners</param>
+        /// <param name="filter">The corners to have a radius</param>
+        /// <returns>Returns a GraphicsPath of a rounded rectangle</returns>
+        public static GraphicsPath RoundedRectanglePath(this Graphics graphics, RectangleF rectangle, float radius, BorderCorners filter)
+        {
+            return GenerateRoundedRectangle(graphics, rectangle, radius, filter);
         }
 
         private static GraphicsPath GenerateCapsule(this Graphics graphics, RectangleF rectangle)
@@ -289,7 +488,7 @@ namespace Ekstrand.Drawing
             return path;
         }
 
-        public static GraphicsPath GenerateRoundedRectangle(this Graphics graphics, RectangleF rectangle, float radius, BorderCorners filter)
+        private static GraphicsPath GenerateRoundedRectangle(this Graphics graphics, RectangleF rectangle, float radius, BorderCorners filter)
         {
             float diameter;
             GraphicsPath path = new GraphicsPath();

@@ -13,14 +13,18 @@ using System.Web.UI.Design;
 
 namespace Ekstrand.Windows.Forms
 {
+    /// <summary>
+    /// Represents a control that creates a container that has a border and a header for user interface (UI) content.
+    /// </summary>
     [Serializable]
     [ComVisible(false),
     ClassInterface(ClassInterfaceType.AutoDispatch),
     DefaultEvent("Enter"),
     DefaultProperty("Text"),
-    Description("GroupBox")]
-    [ToolboxItem(true)]
-    [Designer("System.Windows.Forms.Design.ParentControlDesigner, System.Design", typeof(IDesigner))]
+    Description("Enhance GroupBox"),
+    ToolboxItem(true),
+    ToolboxBitmap(typeof(GroupBox), "Resources.GroupBox_16x"),
+    Designer("System.Windows.Forms.Design.ParentControlDesigner, System.Design", typeof(IDesigner))]  
     public class GroupBox : Control
     {
         #region Fields
@@ -32,11 +36,14 @@ namespace Ekstrand.Windows.Forms
         private HeaderElements _headerElements;
         private InsideBorderElements _insideBoarderElements;
         private TextFormatFlags _textFlags = TextFormatFlags.Default | TextFormatFlags.TextBoxControl | TextFormatFlags.WordBreak | TextFormatFlags.PreserveGraphicsTranslateTransform | TextFormatFlags.PreserveGraphicsClipping;
+        private Color _disabledTextColor = SystemColors.GrayText;
 
         #endregion Fields
 
         #region Constructors
-
+        /// <summary>
+        /// Represents a control that creates a container that has a border and a header for user interface (UI) content.
+        /// </summary>
         public GroupBox() : base()
         {
             SetStyle(ControlStyles.ContainerControl, true);
@@ -57,7 +64,9 @@ namespace Ekstrand.Windows.Forms
 
 
         #region Properties
-
+        /// <summary>
+        /// Gets or sets a value indicating whether the control can accept data that the user drags onto it.
+        /// </summary>
         [Browsable(false), EditorBrowsable(EditorBrowsableState.Advanced)]
         public override bool AllowDrop
         {
@@ -71,6 +80,9 @@ namespace Ekstrand.Windows.Forms
             }
         }
 
+        /// <summary>
+        /// Gets or sets a value that indicates whether the GroupBox resizes based on its contents.
+        /// </summary>
         [Browsable(true), EditorBrowsable(EditorBrowsableState.Always),
         DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public override bool AutoSize
@@ -85,8 +97,12 @@ namespace Ekstrand.Windows.Forms
             }
         }
 
+        /// <summary>
+        /// Gets or sets border items properties
+        /// </summary>
         [NotifyParentProperty(true)]
         [CategoryAttribute("Appearance")]
+        [Description("Properties for BorderItems apperance")]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public BorderElements BorderItems
         {
@@ -94,8 +110,11 @@ namespace Ekstrand.Windows.Forms
             private set { _borderElements = value; }
         }
 
-        private Color _disabledTextColor = SystemColors.GrayText;
+        
 
+        /// <summary>
+        /// Gets or sets text disabled color
+        /// </summary>
         [NotifyParentProperty(true)]
         [CategoryAttribute("Appearance")]
         [DefaultValue("SystemColors.GrayText")]
@@ -106,6 +125,9 @@ namespace Ekstrand.Windows.Forms
             set { _disabledTextColor = value; }
         }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether the control can respond to user interaction.
+        /// </summary>
         [Category("Behavior")]
         [Localizable(true)]
         [Description("Gets or sets a value indicating whether the control can respond to user interaction.")]
@@ -119,6 +141,9 @@ namespace Ekstrand.Windows.Forms
             }
         }
 
+        /// <summary>
+        /// Get or sets GroupBox Style used for rendering
+        /// </summary>
         [Browsable(true)]
         [DefaultValue(GroupBoxStyles.Standard)]
         [NotifyParentProperty(true)]
@@ -138,8 +163,12 @@ namespace Ekstrand.Windows.Forms
             }
         }
 
+        /// <summary>
+        /// Gets or sets header properties
+        /// </summary>
         [NotifyParentProperty(true)]
         [CategoryAttribute("Appearance")]
+        [Description("Properties for header area apperance")]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public HeaderElements Header
         {
@@ -148,8 +177,12 @@ namespace Ekstrand.Windows.Forms
 
         }
 
+        /// <summary>
+        /// Gets or sets inside border properties
+        /// </summary>
         [NotifyParentProperty(true)]
         [CategoryAttribute("Appearance")]
+        [Description("Properties for InsideBorder area apperance")]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public InsideBorderElements InsideBorder
         {
@@ -157,6 +190,9 @@ namespace Ekstrand.Windows.Forms
             private set {  _insideBoarderElements = value; }
         }
 
+        /// <summary>
+        /// Gets or sets a value that indicates whether the user can press the TAB key to give the focus to the GroupBox.
+        /// </summary>
         [Browsable(false), EditorBrowsable(EditorBrowsableState.Advanced)]
         new public bool TabStop
         {
@@ -170,6 +206,9 @@ namespace Ekstrand.Windows.Forms
             }
         }
 
+        /// <summary>
+        /// Gets or sets the text associated with this control.
+        /// </summary>
         [Localizable(true)]
         public override string Text
         {
@@ -184,6 +223,9 @@ namespace Ekstrand.Windows.Forms
             }
         }
 
+        /// <summary>
+        /// Gets the required creation parameters when the control handle is created.
+        /// </summary>
         protected override CreateParams CreateParams
         {
             [SecurityPermission(SecurityAction.LinkDemand)]
@@ -196,6 +238,9 @@ namespace Ekstrand.Windows.Forms
             }
         }
 
+        /// <summary>
+        /// Gets the Padding structure that contains the default padding settings for a GroupBox control.
+        /// </summary>
         protected override Padding DefaultPadding
         {
             get
@@ -204,6 +249,9 @@ namespace Ekstrand.Windows.Forms
             }
         }
 
+        /// <summary>
+        /// Gets the default size of the control.
+        /// </summary>
         protected override Size DefaultSize
         {
             get
@@ -215,7 +263,10 @@ namespace Ekstrand.Windows.Forms
         #endregion Properties
 
         #region Methods
-
+        /// <summary>
+        ///  Returns a String containing the name of the Component, if any.This method should not be overridden.
+        /// </summary>
+        /// <returns>Return the text repersentation of the control</returns>
         public override string ToString()
         {
 
@@ -223,17 +274,29 @@ namespace Ekstrand.Windows.Forms
             return s + ", Text: " + Text;
         }
 
+        /// <summary>
+        /// Creates a new accessibility object for the GroupBox.
+        /// </summary>
+        /// <returns>A new AccessibleObject for the GroupBox.</returns>
         protected override AccessibleObject CreateAccessibilityInstance()
         {
             return new EnhanceGroupBoxAccessibleObject(this);
         }
 
+        /// <summary>
+        /// Raises the FontChanged event.
+        /// </summary>
+        /// <param name="e">An EventArgs that contains the event data.</param>
         protected override void OnFontChanged(EventArgs e)
         {
             base.OnFontChanged(e);
             Invalidate();
         }
 
+        /// <summary>
+        /// Raises the Paint event.
+        /// </summary>
+        /// <param name="e">A PaintEventArgs that contains the event data.</param>
         protected override void OnPaint(PaintEventArgs e)
         {
 
@@ -250,6 +313,11 @@ namespace Ekstrand.Windows.Forms
             base.OnPaint(e); // raise paint event
         }
 
+        /// <summary>
+        /// Processes a mnemonic character.
+        /// </summary>
+        /// <param name="charCode">The character to process.</param>
+        /// <returns></returns>
         [UIPermission(SecurityAction.LinkDemand, Window = UIPermissionWindow.AllWindows)]
         protected override bool ProcessMnemonic(char charCode)
         {
@@ -265,7 +333,7 @@ namespace Ekstrand.Windows.Forms
         {
             GraphicsPath controlEdge = new GraphicsPath();
             Rectangle newRectangle = ClientRectangle;
-            controlEdge.AddPath(e.Graphics.GenerateRoundedRectangle(newRectangle, BorderItems.Radius, BorderItems.BorderCorners), true);
+            controlEdge.AddPath(e.Graphics.RoundedRectanglePath(newRectangle, BorderItems.Radius, BorderItems.BorderCorners), true);
 
             Region = new Region(controlEdge);
             _clientRectangle = Rectangle.Inflate(ClientRectangle, -4, -4);
@@ -277,6 +345,9 @@ namespace Ekstrand.Windows.Forms
 
         #region Delegates + Events
 
+        /// <summary>
+        /// Occurs when the value of the AutoSize property changes.
+        /// </summary>
         [Browsable(true), EditorBrowsable(EditorBrowsableState.Always)]
         new public event EventHandler AutoSizeChanged
         {
@@ -290,6 +361,9 @@ namespace Ekstrand.Windows.Forms
             }
         }
 
+        /// <summary>
+        /// Occurs when the user clicks the GroupBox control.
+        /// </summary>
         [Browsable(false), EditorBrowsable(EditorBrowsableState.Advanced)]
         public new event EventHandler Click
         {
@@ -303,6 +377,9 @@ namespace Ekstrand.Windows.Forms
             }
         }
 
+        /// <summary>
+        /// Occurs when the user double-clicks the GroupBox control.
+        /// </summary>
         [Browsable(false), EditorBrowsable(EditorBrowsableState.Advanced)]
         public new event EventHandler DoubleClick
         {
@@ -316,6 +393,9 @@ namespace Ekstrand.Windows.Forms
             }
         }
 
+        /// <summary>
+        /// Occurs when the user presses a key while the GroupBox control has focus.
+        /// </summary>
         [Browsable(false), EditorBrowsable(EditorBrowsableState.Advanced)]
         public new event KeyEventHandler KeyDown
         {
@@ -329,6 +409,9 @@ namespace Ekstrand.Windows.Forms
             }
         }
 
+        /// <summary>
+        /// Occurs when the user presses a key while the GroupBox control has focus.
+        /// </summary>
         [Browsable(false), EditorBrowsable(EditorBrowsableState.Advanced)]
         public new event KeyPressEventHandler KeyPress
         {
@@ -342,6 +425,9 @@ namespace Ekstrand.Windows.Forms
             }
         }
 
+        /// <summary>
+        ///  Occurs when the user releases a key while the GroupBox control has focus.
+        /// </summary>
         [Browsable(false), EditorBrowsable(EditorBrowsableState.Advanced)]
         public new event KeyEventHandler KeyUp
         {
@@ -355,6 +441,9 @@ namespace Ekstrand.Windows.Forms
             }
         }
 
+        /// <summary>
+        /// Occurs when the user clicks the GroupBox control with the mouse.
+        /// </summary>
         [Browsable(false), EditorBrowsable(EditorBrowsableState.Advanced)]
         public new event MouseEventHandler MouseClick
         {
@@ -368,6 +457,9 @@ namespace Ekstrand.Windows.Forms
             }
         }
 
+        /// <summary>
+        /// Occurs when the user double-clicks the GroupBox control with the mouse.
+        /// </summary>
         [Browsable(false), EditorBrowsable(EditorBrowsableState.Advanced)]
         public new event MouseEventHandler MouseDoubleClick
         {
@@ -381,6 +473,9 @@ namespace Ekstrand.Windows.Forms
             }
         }
 
+        /// <summary>
+        /// Occurs when the user presses a mouse button while the mouse pointer is over the control.
+        /// </summary>
         [Browsable(false), EditorBrowsable(EditorBrowsableState.Advanced)]
         public new event MouseEventHandler MouseDown
         {
@@ -394,6 +489,9 @@ namespace Ekstrand.Windows.Forms
             }
         }
 
+        /// <summary>
+        /// Occurs when the mouse pointer enters the control.
+        /// </summary>
         [Browsable(false), EditorBrowsable(EditorBrowsableState.Advanced)]
         public new event EventHandler MouseEnter
         {
@@ -407,6 +505,9 @@ namespace Ekstrand.Windows.Forms
             }
         }
 
+        /// <summary>
+        /// Occurs when the mouse pointer leaves the control.
+        /// </summary>
         [Browsable(false), EditorBrowsable(EditorBrowsableState.Advanced)]
         public new event EventHandler MouseLeave
         {
@@ -420,6 +521,9 @@ namespace Ekstrand.Windows.Forms
             }
         }
 
+        /// <summary>
+        /// Occurs when the user moves the mouse pointer over the control.
+        /// </summary>
         [Browsable(false), EditorBrowsable(EditorBrowsableState.Advanced)]
         public new event MouseEventHandler MouseMove
         {
@@ -433,6 +537,9 @@ namespace Ekstrand.Windows.Forms
             }
         }
 
+        /// <summary>
+        /// Occurs when the user releases a mouse button while the mouse pointer is over the control.
+        /// </summary>
         [Browsable(false), EditorBrowsable(EditorBrowsableState.Advanced)]
         public new event MouseEventHandler MouseUp
         {
@@ -446,8 +553,11 @@ namespace Ekstrand.Windows.Forms
             }
         }
 
+        /// <summary>
+        /// Occurs when the value of the TabStop property changes.
+        /// </summary>
         [Browsable(false), EditorBrowsable(EditorBrowsableState.Advanced)]
-        new public event EventHandler TabStopChanged
+        public new event EventHandler TabStopChanged
         {
             add
             {

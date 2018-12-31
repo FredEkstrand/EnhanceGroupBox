@@ -10,18 +10,6 @@ using Ekstrand;
 
 namespace Ekstrand.Windows.Forms
 {
-    //[Flags]
-    //public enum BorderCorners
-    //{
-
-    //    None = 0x01,
-    //    TopLeft = 0x02,
-    //    TopRight = 0x04,
-    //    BottomLeft = 0x08,
-    //    BottomRight = 0x10,
-    //    All = TopLeft | TopRight | BottomLeft | BottomRight
-    //}
-
     internal partial class CornerSelector : UserControl
     {
 

@@ -7,6 +7,9 @@ using System.Drawing.Drawing2D;
 
 namespace Ekstrand.Windows.Forms
 {
+    /// <summary>
+    /// Properties grouped for border apperance
+    /// </summary>
     [TypeConverter(typeof(BorderElementsConverter))]
     [Serializable]
     public class BorderElements
@@ -27,8 +30,11 @@ namespace Ekstrand.Windows.Forms
         #endregion Fields
 
         #region Constructors
-
-        public BorderElements(GroupBox egb) //EnhanceGroupBox egb 
+        /// <summary>
+        /// Initializes a new instance of the BorderElements class.
+        /// </summary>
+        /// <param name="egb">Instance of GroupBox</param>
+        public BorderElements(GroupBox egb) 
         {
             _egroupBox = egb;
         }
@@ -36,7 +42,9 @@ namespace Ekstrand.Windows.Forms
         #endregion Constructors
 
         #region Properties
-
+        /// <summary>
+        /// In Excitative style the border back color.
+        /// </summary>
         [Browsable(true)]
         [DefaultValue("SystemColors.Control")]
         [NotifyParentProperty(true)]
@@ -53,6 +61,9 @@ namespace Ekstrand.Windows.Forms
             }
         }
 
+        /// <summary>
+        /// Color of the border.
+        /// </summary>
         [Browsable(true)]
         [NotifyParentProperty(true)]
         [Description("Color of the border")]
@@ -68,6 +79,9 @@ namespace Ekstrand.Windows.Forms
             }
         }
 
+        /// <summary>
+        /// Corners to have a rounded apperance.
+        /// </summary>
         [Browsable(true)]
         [NotifyParentProperty(true)]
         [DefaultValue("None")]
@@ -85,6 +99,9 @@ namespace Ekstrand.Windows.Forms
             }
         }
 
+        /// <summary>
+        /// Specifies the type of graphic shape to use on both ends of each dash in a dashed line.
+        /// </summary>
         [Browsable(true)]
         [DefaultValue(DashCap.Flat)]
         [NotifyParentProperty(true)]
@@ -101,6 +118,9 @@ namespace Ekstrand.Windows.Forms
             }
         }
 
+        /// <summary>
+        /// Gets or sets the distance from the start of a line to the beginning of a dash pattern.
+        /// </summary>
         [Browsable(true)]
         [DefaultValue(0.0f)]
         [NotifyParentProperty(true)]
@@ -117,6 +137,9 @@ namespace Ekstrand.Windows.Forms
             }
         }
 
+        /// <summary>
+        /// Gets or sets an array of custom dashes and spaces.
+        /// </summary>
         [Browsable(false)]
         public float[] DashPattern
         {
@@ -128,6 +151,9 @@ namespace Ekstrand.Windows.Forms
             }
         }
 
+        /// <summary>
+        /// Gets or sets the style used for dashed lines drawn.
+        /// </summary>
         [Browsable(true)]
         [DefaultValue(DashStyle.Solid)]
         [NotifyParentProperty(true)]
@@ -144,6 +170,10 @@ namespace Ekstrand.Windows.Forms
             }
         }
 
+        /// <summary>
+        /// Gets or sets the radius for each cornner.
+        /// </summary>
+        /// <remarks>Radius value is restricted to the range of 0 to 10.</remarks>
         [Browsable(true)]
         [DefaultValue(0)]
         [NotifyParentProperty(true)]
@@ -174,6 +204,9 @@ namespace Ekstrand.Windows.Forms
             }
         }
 
+        /// <summary>
+        /// Gets or sets the width of the border.
+        /// </summary>
         [Browsable(true)]
         [DefaultValue(1)]
         [NotifyParentProperty(true)]
@@ -204,14 +237,5 @@ namespace Ekstrand.Windows.Forms
         }
 
         #endregion Properties
-
-        #region Methods
-
-        public override string ToString()
-        {
-            return "Expand for more options";
-        }
-
-        #endregion Methods
     }
 }

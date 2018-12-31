@@ -34,7 +34,7 @@ Sample view of the demo program below.<br/>
 * Provide quick start guide
 
 ## Documentation
-[none]
+Class documentation can be found [here](http://fredekstrand.github.io/EnhanceGroupBox).
 
 ## History
  1.0.0 Initial release into the wild.

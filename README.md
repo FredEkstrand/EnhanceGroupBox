@@ -1,5 +1,8 @@
 # The Enhanced GroupBox Project
-![Version 1.0.0](https://img.shields.io/badge/Version-1.0.0-brightgreen.svg) ![License MIT](https://img.shields.io/badge/Licence-MIT-blue.svg)<br/>
+![image](https://github.com/FredEkstrand/ImageFiles/raw/master/GroupBoxExamplesA.png)
+
+![Version 1.0.0](https://img.shields.io/badge/Version-1.0.0-brightgreen.svg) ![License MIT](https://img.shields.io/badge/Licence-MIT-blue.svg)
+# Overview
 The Enhanced GroupBox control is a collection of features and stylying to provide a rich UI development.
 
 ## Features
@@ -30,10 +33,6 @@ branch. Pull requests are always welcome.
 
 ## Contact
 Fred Ekstrand 
-email: fredekstrandgithub@gmail.com
-## Licensing
-
-This project is licensed under the MIT License - see the LICENSE.md file for details. 
 email: fredekstrandgithub@gmail.com
 ## Licensing
 

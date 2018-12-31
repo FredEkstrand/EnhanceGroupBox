@@ -1,7 +1,7 @@
-# [Active project]
+# The Enhanced GroupBox Project
 ![Version 1.0.0](https://img.shields.io/badge/Version-1.0.0-brightgreen.svg) ![License MIT](https://img.shields.io/badge/Licence-MIT-blue.svg)
 # Overview
-The Enhanced GroupBox control is a collection of features from several presented custom versions of the GroupBox control into a single control. 
+The Enhanced GroupBox control is a collection of features and stylying to provide a rich UI development.
 
 ## Features
 * Rendering of the GroupBox border no longer follows the groove effect. Borders can now have their color and width set.
@@ -15,26 +15,11 @@ The Enhanced GroupBox control is a collection of features from several presented
 * Inner border area can have a gradient start and end color.
 * Rendering overall styles: Standard, Enhanced, Executive, and Header.
 
-## Getting started
+## Code Sample
 [none]
-## Sample View
-Below are sample views of the Enhance GroupBox control from the demo program.
-![Project type](https://github.com/FredEkstrand/ImageFiles/raw/master/GroupBoxExamples.png)
 
-Sample view of the demo program below.<br/>
-![Project type](https://github.com/FredEkstrand/ImageFiles/raw/master/EnhanceGroupBoxDemo.PNG)
-
-## TODO
-* Remove need for double buffering of control.
-* Fix gradient rendering for text background issue.
-* Add toolbox icon
-* Add .dll download
-* Include sources used for project
-* Provide API documentation
-* Provide quick start guide
-
-## Documentation
-Class documentation can be found [here](http://fredekstrand.github.io/EnhanceGroupBox).
+## API
+API can be found [here](http://fredekstrand.github.io/EnhanceGroupBox).
 
 ## History
  1.0.0 Initial release into the wild.

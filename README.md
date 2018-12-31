@@ -22,8 +22,9 @@ Below are sample views of the Enhance GroupBox control from the demo program.
 ![Project type](https://github.com/FredEkstrand/ImageFiles/raw/master/GroupBoxExamples.png)
 Sample view of the demo program below.
 ![Project type](https://github.com/FredEkstrand/ImageFiles/raw/master/EnhanceGroupBoxDemo.PNG)
+
 ## Documentation
-[none]
+Class documentation can be found [here](http://fredekstrand.github.io/EnhanceGroupBox).
 
 ## History
  1.0.0 Initial release into the wild.

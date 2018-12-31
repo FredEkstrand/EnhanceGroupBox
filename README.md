@@ -1,4 +1,4 @@
-# [Active project]
+
 ![Version 1.0.0](https://img.shields.io/badge/Version-1.0.0-brightgreen.svg) ![License MIT](https://img.shields.io/badge/Licence-MIT-blue.svg)
 # Overview
 The Enhanced GroupBox control is a collection of features from several presented custom versions of the GroupBox control into a single control. 

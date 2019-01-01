@@ -48,6 +48,12 @@ branch. Pull requests are always welcome.
 ## Contact
 Fred Ekstrand
 email: fredekstrandgithub@gmail.com
-## Licensing
 
+## Licensing
 This project is licensed under the MIT License - see the LICENSE.md file for details.
+
+## Inspiration
+The project came about through the need in an application development to allow the user to easily and cleanly locate controls in defined sections. The Visual Studio standard GroupBox control is limited in setting its appearance to allow for an intuitive UI flow for the end user. From the initial quick extension which lead to further extensions of the control from project to projects had me take another look at a more formal enhance GroupBox control. In the development of the enhance group box control I had taken a survey of other group box development available on the web. From that survey I had taken those ideas and incorporated them into this control.
+##### The Grouper - A Custom Groupbox Control by: MadHatter
+##### Rounded GroupBox by: Kevin Carbis 
+##### Header-only GroupBox By: Matthew Adams

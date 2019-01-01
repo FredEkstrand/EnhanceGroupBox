@@ -53,7 +53,7 @@ email: fredekstrandgithub@gmail.com
 This project is licensed under the MIT License - see the LICENSE.md file for details.
 
 ## Inspiration
-The project came about through the need in an application development to allow the user to easily and cleanly locate controls in defined sections. The Visual Studio standard GroupBox control is limited in setting its appearance to allow for an intuitive UI flow for the end user. From the initial quick extension which lead to further extensions of the control from project to projects had me take another look at a more formal enhance GroupBox control. In the development of the enhance group box control I had taken a survey of other group box development available on the web. From that survey I had taken those ideas and incorporated them into this control.<br/>
+The project came about through the need in an application development to allow the user to easily and cleanly locate controls in defined sections. The Visual Studio standard GroupBox control is limited in setting its appearance to allow for an intuitive UI flow for the end user. From the initial quick extension which lead to further extensions of the control from project to projects had me take another look at a more formal enhance GroupBox control. In the development of the enhance group box control I had taken a survey of other group box development available on the web. From that survey I had taken some those ideas and incorporated them into this control.<br/>
 Sources for project feature ideas.<br/>
 **The Grouper - A Custom Groupbox Control by: MadHatter**<br/>
 **Rounded GroupBox by: Kevin Carbis** <br/>

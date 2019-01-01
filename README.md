@@ -22,6 +22,7 @@ In visual studio make a reference to the .dll file. Then add to the toolbox.
 Once in the toolbox just drag and drop like any other UI control on the design surface and go through the properties grid to set the style and appearance to desire.
 
 The properties are dived into groups as seen in the image below.
+
 ![image](https://github.com/FredEkstrand/ImageFiles/raw/master/EnhanceGroupBoxParts.png)
 
 ## API

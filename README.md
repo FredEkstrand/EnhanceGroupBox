@@ -40,7 +40,7 @@ In the image below is a screen shot of the property grid with the parts highligh
 
 ![image](https://github.com/FredEkstrand/ImageFiles/raw/master/PropertiesGridView.png)
 
-### UI samples
+### Examples
 Below are some example configurations.
 ![image](https://github.com/FredEkstrand/ImageFiles/raw/master/GroupBoxExamplesA.png)
 

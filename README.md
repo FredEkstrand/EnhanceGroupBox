@@ -3,9 +3,10 @@
 
 ![Version 1.0.0](https://img.shields.io/badge/Version-1.0.0-brightgreen.svg) ![License MIT](https://img.shields.io/badge/Licence-MIT-blue.svg)
 
+## Overview
 The Enhanced GroupBox control is a collection of features and styling to provide a richer UI control for application development.
 
-## Features
+### Features
 *	Borders can now have their color and width set.
 *	Borders corners can be rounded. 
 *	Border rendering can have Dash styles.
@@ -20,8 +21,8 @@ The Enhanced GroupBox control is a collection of features and styling to provide
 *	Defined rendering styles: Standard, Enhanced, Executive, and Header.
 
 
-## Download
-The source code and provided installer is written in C# and targeted for the .Net Framework 4.0 and later. 
+## Packaged
+The source code is written in C# and targeted for the .Net Framework 4.0 and later. 
 ### Option 1:
 A VSIX installer is created for installation into the toolbox for Visual Studio 2012, 2013, 2015, 2017 
 
@@ -40,7 +41,7 @@ In the image below is a screen shot of the property grid with the parts highligh
 ![image](https://github.com/FredEkstrand/ImageFiles/raw/master/PropertiesGridView.png)
 
 ## API
-Code documentation can be found [here](http://fredekstrand.github.io/EnhanceGroupBox).
+Code API can be found [here](http://fredekstrand.github.io/EnhanceGroupBox).
 
 ## History
  1.0.0 Initial release into the wild.

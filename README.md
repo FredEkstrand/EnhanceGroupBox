@@ -39,7 +39,7 @@ In the image below is a screen shot of the property grid with the parts highligh
 
 ![image](https://github.com/FredEkstrand/ImageFiles/raw/master/PropertiesGridView.png)
 
-## Documentation
+## API
 Code documentation can be found [here](http://fredekstrand.github.io/EnhanceGroupBox).
 
 ## History

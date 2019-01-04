@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2046
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnhanceGroupBox", "EnhanceGroupBox\EnhanceGroupBox.csproj", "{A8D02833-0065-401C-86B4-9D3040E80B96}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroupBox", "EnhanceGroupBox\GroupBox.csproj", "{A8D02833-0065-401C-86B4-9D3040E80B96}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroupBoxDemo", "EnhanceGroupBoxDemo\GroupBoxDemo.csproj", "{0855C9C9-207E-4367-AC71-9E8A3D8782B1}"
 EndProject

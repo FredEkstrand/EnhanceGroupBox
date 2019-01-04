@@ -76,7 +76,7 @@ namespace Ekstrand.Windows.Forms
 
         private static void DrawText(Graphics g, Rectangle bounds, string text, Font font, Color textColor, TextFormatFlags flags, EnhanceGroupBoxState state)
         {
-            Rectangle r = Textbounds(g, bounds, text, font, flags);
+            Rectangle r = Textbounds(g, bounds, text, font, flags);  
             DrawTextBackground(g, r);
 
             if (state == EnhanceGroupBoxState.Disabled)
@@ -214,13 +214,6 @@ namespace Ekstrand.Windows.Forms
                             g.FillRectangle(gb, body);
                             gb.Dispose();
                         }
-
-                        //Pen p = PenBorder(_eGroupBox.BorderItems.BorderColor, _eGroupBox.BorderItems.Width, _eGroupBox.BorderItems.DashCap,
-                        //    _eGroupBox.BorderItems.DashStyle, _eGroupBox.BorderItems.DashOffset, _eGroupBox.BorderItems.DashPattern);
-
-                        //Brush pp = GradientBrush(border, _eGroupBox.Header.BackColor, _eGroupBox.Header.BackColor, EnhanceGroupBoxGradientMode.Horizontal);
-
-
                     }
                     break;
             }
@@ -243,24 +236,22 @@ namespace Ekstrand.Windows.Forms
                     break;
                 case GroupBoxStyles.Enhance:
                     {
-                        Rectangle r = bounds;
-                        r.Inflate(1, 1);                          
-                        r.Width -=2;
+                        RectangleF rr =  bounds;
+                        rr.Width += .5f;
 
                         if (_eGroupBox.Header.GradientMode != EnhanceGroupBoxGradientMode.None)
                         {
-                            LinearGradientBrush gb = GradientBrush(r, _eGroupBox.Header.GradientStartColor,
+                            LinearGradientBrush gb = GradientBrush(rr, _eGroupBox.Header.GradientStartColor,
                                 _eGroupBox.Header.GradientEndColor, _eGroupBox.Header.GradientMode);
                             
 
                             if (_eGroupBox.Header.Radius != 0)
                             {
-                                g.FillRoundedRectangle(gb, r, _eGroupBox.Header.Radius, _eGroupBox.Header.BorderCorners);
+                                g.FillRoundedRectangle(gb, rr, _eGroupBox.Header.Radius, _eGroupBox.Header.BorderCorners);
                             }
                             else
                             {
-                                
-                                g.FillRectangle(gb, r.X+1, r.Y, r.Width, r.Height);
+                                g.FillRectangle(gb,rr.X+1,rr.Y, rr.Width-1, rr.Height);
                             }
 
                             gb.Dispose();
@@ -268,7 +259,7 @@ namespace Ekstrand.Windows.Forms
                         else
                         {
                             SolidBrush b = new SolidBrush(_eGroupBox.Header.BackColor);
-                            g.FillRoundedRectangle(b, r, _eGroupBox.Header.Radius);
+                            g.FillRoundedRectangle(b, rr, _eGroupBox.Header.Radius);
                             b.Dispose();
                         }
 
@@ -277,7 +268,7 @@ namespace Ekstrand.Windows.Forms
                             Pen p = PenBorder(_eGroupBox.Header.BorderColor, _eGroupBox.Header.Width, _eGroupBox.Header.DashCap,
                                 _eGroupBox.Header.DashStyle, _eGroupBox.Header.DashOffset, _eGroupBox.Header.DashPattern);
 
-                            g.DrawRoundedRectangle(p, r, _eGroupBox.Header.Radius, _eGroupBox.Header.BorderCorners);
+                            g.DrawRoundedRectangle(p, rr, _eGroupBox.Header.Radius, _eGroupBox.Header.BorderCorners);
                             p.Dispose();
                         }
                     }
@@ -317,7 +308,7 @@ namespace Ekstrand.Windows.Forms
                 case GroupBoxStyles.Header:
                     {
                         Rectangle border = HeaderRectangle(_clientRectangle, _eGroupBox.Font);
-                        Brush pp; //= GradientBrush(border, _eGroupBox.Header.BackColor, _eGroupBox.Header.BackColor, EnhanceGroupBoxGradientMode.Horizontal);
+                        Brush pp;
 
                         Pen p = PenBorder(_eGroupBox.Header.BorderColor, _eGroupBox.Header.Width, _eGroupBox.Header.DashCap,
                             _eGroupBox.Header.DashStyle, _eGroupBox.Header.DashOffset, _eGroupBox.Header.DashPattern);
@@ -372,7 +363,7 @@ namespace Ekstrand.Windows.Forms
             return TextSide.Top;
         }
 
-        private static LinearGradientBrush GradientBrush(Rectangle r, Color start, Color end, EnhanceGroupBoxGradientMode gradientMode)
+        private static LinearGradientBrush GradientBrush(RectangleF r, Color start, Color end, EnhanceGroupBoxGradientMode gradientMode)
         {
             _gradientBrush = new LinearGradientBrush(r, start, end, (LinearGradientMode)gradientMode);
             return _gradientBrush;
@@ -411,11 +402,9 @@ namespace Ekstrand.Windows.Forms
         }
         private static Rectangle Textbounds(Graphics g, Rectangle bounds, string text, Font font, TextFormatFlags textFlags)
         {
-            Rectangle r = bounds;
-            r.X = r.Y = 0;
-            Size measuredBounds = TextRenderer.MeasureText(g, text, font, new Size(r.Width, r.Height), textFlags);
-            r.Width = measuredBounds.Width;
-            r.Height = measuredBounds.Height;
+            Size measured = TextRenderer.MeasureText(g, text, font, new Size(Int32.MaxValue, Int32.MaxValue), textFlags);
+            Rectangle r = new Rectangle();
+            Point location = new Point(0,0);
 
             switch (_eGroupBox.Header.TextAlignment)
             {
@@ -425,21 +414,21 @@ namespace Ekstrand.Windows.Forms
                         {
                             case GroupBoxStyles.Header:
                                 {
-                                    r.X += boxHeaderWidth;
-                                    r.Y = (font.Height - (font.Height / 2)) / 2;
+                                    location.X = boxHeaderWidth;
+                                    location.Y = (measured.Height - (measured.Height / 2)) / 2;
                                 }
                                 break;
                             case GroupBoxStyles.Excitative:
                                 {
-                                    r.X += boxHeaderWidth + 4;
-                                    r.Y = font.Height / 2;
+                                    location.X = boxHeaderWidth + 4;
+                                    location.Y = measured.Height / 2;
                                 }
                                 break;
                             case GroupBoxStyles.Enhance:
                             case GroupBoxStyles.Standard:
                                 {
-                                    r.X += boxHeaderWidth + _eGroupBox.BorderItems.Radius + 4;
-                                    r.Y = font.Height / 2;
+                                    location.X = boxHeaderWidth + _eGroupBox.BorderItems.Radius + 4;
+                                    location.Y = measured.Height / 2;
                                 }
                                 break;
                         }
@@ -451,21 +440,21 @@ namespace Ekstrand.Windows.Forms
                         {
                             case GroupBoxStyles.Header:
                                 {
-                                    r.X += bounds.Width - r.Width - boxHeaderWidth - 3;
-                                    r.Y = (font.Height - (font.Height / 2)) / 2;
+                                    location.X = bounds.Width - measured.Width - boxHeaderWidth - 3;
+                                    location.Y = (measured.Height - (measured.Height / 2)) / 2;
                                 }
                                 break;
                             case GroupBoxStyles.Excitative:
                                 {
-                                    r.X += bounds.Width - r.Width - boxHeaderWidth - 3;
-                                    r.Y = font.Height / 2;
+                                    location.X = bounds.Width - measured.Width - boxHeaderWidth - 3;
+                                    location.Y = measured.Height / 2;
                                 }
                                 break;
                             case GroupBoxStyles.Enhance:
                             case GroupBoxStyles.Standard:
                                 {
-                                    r.X += bounds.Width - r.Width - _eGroupBox.BorderItems.Radius - boxHeaderWidth - 3;
-                                    r.Y = font.Height / 2;
+                                    location.X = bounds.Width - measured.Width - _eGroupBox.BorderItems.Radius - boxHeaderWidth - 3;
+                                    location.Y = measured.Height / 2;
                                 }
                                 break;
                         }
@@ -474,15 +463,15 @@ namespace Ekstrand.Windows.Forms
                     break;
                 case BorderTextAlignment.TopCenter:
                     {
-                        r.X += (bounds.Width / 2) - (r.Width / 2);
+                        location.X = (bounds.Width / 2) - (measured.Width / 2);
 
                         if (_eGroupBox.GroupBoxStyles == GroupBoxStyles.Header)
                         {
-                            r.Y = (font.Height - (font.Height / 2)) / 2;
+                            location.Y = (measured.Height - (measured.Height / 2)) / 2;
                         }
                         else
                         {
-                            r.Y = font.Height / 2;
+                            location.Y = measured.Height / 2;
                         }
                     }
                     break;
@@ -492,21 +481,21 @@ namespace Ekstrand.Windows.Forms
                         {
                             case GroupBoxStyles.Header:
                                 {
-                                    r.X += boxHeaderWidth + 4;
-                                    r.Y = bounds.Height - (font.Height + (font.Height / 3) - 1);
+                                    location.X = boxHeaderWidth + 4;
+                                    location.Y = bounds.Height - (measured.Height + (measured.Height / 3) - 1);
                                 }
                                 break;
                             case GroupBoxStyles.Excitative:
                                 {
-                                    r.X += boxHeaderWidth + 4;
-                                    r.Y = bounds.Height - font.Height - _eGroupBox.Padding.Horizontal;
+                                    location.X = boxHeaderWidth + 4;
+                                    location.Y = bounds.Height - font.Height - _eGroupBox.Padding.Horizontal;
                                 }
                                 break;
                             case GroupBoxStyles.Enhance:
                             case GroupBoxStyles.Standard:
                                 {
-                                    r.X += boxHeaderWidth + _eGroupBox.BorderItems.Radius + 4;
-                                    r.Y = bounds.Height - font.Height - _eGroupBox.Padding.Horizontal;
+                                    location.X = boxHeaderWidth + _eGroupBox.BorderItems.Radius + 4;
+                                    location.Y = bounds.Height - measured.Height - _eGroupBox.Padding.Horizontal;
                                 }
                                 break;
                         }
@@ -518,21 +507,21 @@ namespace Ekstrand.Windows.Forms
                         {
                             case GroupBoxStyles.Header:
                                 {
-                                    r.X += bounds.Width - r.Width - boxHeaderWidth - 3;
-                                    r.Y = bounds.Height - (font.Height + (font.Height / 3) - 1);
+                                    location.X = bounds.Width - measured.Width - boxHeaderWidth - 3;
+                                    location.Y = bounds.Height - (measured.Height + (measured.Height / 3) - 1);
                                 }
                                 break;
                             case GroupBoxStyles.Excitative:
                                 {
-                                    r.X += bounds.Width - r.Width - boxHeaderWidth - 3;
-                                    r.Y = bounds.Height - font.Height - _eGroupBox.Padding.Horizontal;
+                                    location.X = bounds.Width - measured.Width - boxHeaderWidth - 3;
+                                    location.Y = bounds.Height - measured.Height - _eGroupBox.Padding.Horizontal;
                                 }
                                 break;
                             case GroupBoxStyles.Enhance:
                             case GroupBoxStyles.Standard:
                                 {
-                                    r.X += bounds.Width - r.Width - _eGroupBox.BorderItems.Radius - boxHeaderWidth - 3;
-                                    r.Y = bounds.Height - font.Height - _eGroupBox.Padding.Horizontal;
+                                    location.X = bounds.Width - measured.Width - _eGroupBox.BorderItems.Radius - boxHeaderWidth - 3;
+                                    location.Y = bounds.Height - measured.Height - _eGroupBox.Padding.Horizontal;
                                 }
                                 break;
                         }
@@ -540,19 +529,22 @@ namespace Ekstrand.Windows.Forms
                     break;
                 case BorderTextAlignment.BottomCenter:
                     {
-                        r.X += (bounds.Width / 2) - (r.Width / 2);
+                        location.X = (bounds.Width / 2) - (measured.Width / 2);
                         if (_eGroupBox.GroupBoxStyles == GroupBoxStyles.Header)
                         {
-                            r.Y = bounds.Height - (font.Height + (font.Height / 3) - 1);
+                            location.Y = bounds.Height - (measured.Height + (font.Height / 3) - 1);
                         }
                         else
                         {
-                            r.Y = bounds.Height - font.Height - _eGroupBox.Padding.Horizontal;
+                            location.Y = bounds.Height - measured.Height - _eGroupBox.Padding.Horizontal;
                         }
                     }
                     break;
             }
 
+            r.Location = location;
+            r.Width = measured.Width;
+            r.Height = measured.Height;
             return r;
         }
 

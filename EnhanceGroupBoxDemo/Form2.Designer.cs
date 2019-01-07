@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form2));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox1 = new Ekstrand.Windows.Forms.GroupBox();
             this.SuspendLayout();
@@ -52,16 +53,15 @@
             this.groupBox1.Header.BackColor = System.Drawing.SystemColors.Control;
             this.groupBox1.Header.BorderColor = System.Drawing.SystemColors.ControlDark;
             this.groupBox1.Header.BorderCorners = Ekstrand.Windows.Forms.BorderCorners.None;
-            this.groupBox1.Header.GradientEndColor = System.Drawing.Color.White;
-            this.groupBox1.Header.GradientMode = Ekstrand.Windows.Forms.EnhanceGroupBoxGradientMode.Horizontal;
-            this.groupBox1.Header.GradientStartColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.groupBox1.Header.TextAlignment = Ekstrand.Windows.Forms.BorderTextAlignment.TopCenter;
-            this.groupBox1.Header.Width = 0;
+            this.groupBox1.Header.GradientEndColor = System.Drawing.Color.Empty;
+            this.groupBox1.Header.GradientStartColor = System.Drawing.Color.Empty;
+            this.groupBox1.Header.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
+            this.groupBox1.Header.ImageSide = Ekstrand.Windows.Forms.ImageSide.Left;
             this.groupBox1.InsideBorder.GradientEndColor = System.Drawing.Color.Empty;
             this.groupBox1.InsideBorder.GradientStartColor = System.Drawing.Color.Empty;
-            this.groupBox1.Location = new System.Drawing.Point(208, 156);
+            this.groupBox1.Location = new System.Drawing.Point(221, 156);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(200, 96);
+            this.groupBox1.Size = new System.Drawing.Size(200, 100);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";

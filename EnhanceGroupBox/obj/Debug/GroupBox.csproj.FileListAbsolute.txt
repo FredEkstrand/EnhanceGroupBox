@@ -4,7 +4,6 @@ C:\SoftwareProjects\EnhanceGroupBox\EnhanceGroupBox\bin\Debug\GroupBox.dll
 C:\SoftwareProjects\EnhanceGroupBox\EnhanceGroupBox\bin\Debug\GroupBox.pdb
 C:\SoftwareProjects\EnhanceGroupBox\EnhanceGroupBox\bin\Debug\EnumExtensions.dll
 C:\SoftwareProjects\EnhanceGroupBox\EnhanceGroupBox\bin\Debug\EnumExtensions.pdb
-C:\SoftwareProjects\EnhanceGroupBox\EnhanceGroupBox\obj\Debug\GroupBox.csprojAssemblyReference.cache
 C:\SoftwareProjects\EnhanceGroupBox\EnhanceGroupBox\obj\Debug\Ekstrand.Windows.Forms.CornerSelector.resources
 C:\SoftwareProjects\EnhanceGroupBox\EnhanceGroupBox\obj\Debug\Ekstrand.Windows.Forms.Properties.Resources.resources
 C:\SoftwareProjects\EnhanceGroupBox\EnhanceGroupBox\obj\Debug\GroupBox.csproj.GenerateResource.cache

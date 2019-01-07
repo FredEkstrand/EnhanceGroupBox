@@ -422,6 +422,21 @@
             Specifies the header style.
             </summary>
         </member>
+        <member name="T:Ekstrand.Windows.Forms.ImageSide">
+            <summary>
+            Specifies which side should the image be rendered to the header text.
+            </summary>
+        </member>
+        <member name="F:Ekstrand.Windows.Forms.ImageSide.Left">
+            <summary>
+            Specifies the left hand side of the header text area.
+            </summary>
+        </member>
+        <member name="F:Ekstrand.Windows.Forms.ImageSide.Right">
+            <summary>
+            Specifies the right hand side of the header text area.
+            </summary>
+        </member>
         <member name="T:Ekstrand.Windows.Forms.HeaderElements">
             <summary>
             Properties grouped for rendering group box header area.
@@ -498,6 +513,17 @@
             Gets or sets the width of the border.
             </summary>
         </member>
+        <member name="P:Ekstrand.Windows.Forms.HeaderElements.Image">
+            <summary>
+            Gets or sets the image inside the header area.
+            </summary>
+            <remarks>The image is restricted to a maximum size of 16x16 pixels.</remarks>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.HeaderElements.ImageSide">
+            <summary>
+            Gets or sets the placement of the image in relation to the header text.
+            </summary>
+        </member>
         <member name="T:Ekstrand.Windows.Forms.HeaderElementsConverter">
             <summary>
             Provides a type converter to convert HeaderElements objects to and from various other representations.
@@ -542,6 +568,16 @@
         <member name="P:Ekstrand.Windows.Forms.InsideBorderElements.GradientStartColor">
             <summary>
             Gets or sets the gradient start color.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.InsideBorderElements.Image">
+            <summary>
+            Gets or sets the image inside the border area.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.InsideBorderElements.ImageLayout">
+            <summary>
+            Gets or sets the image layout
             </summary>
         </member>
         <member name="T:Ekstrand.Windows.Forms.InsideBorderElementsConverter">

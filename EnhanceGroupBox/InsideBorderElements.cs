@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Drawing.Design;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 namespace Ekstrand.Windows.Forms
 {
@@ -22,7 +23,8 @@ namespace Ekstrand.Windows.Forms
         private GroupBox _egroupBox;
         private Color _gradientEndColorIBorder;
         private Color _gradientStartColorIBorder = Color.Empty;
-        //private Image _image = null;
+        private Image _image = null;
+        private ImageLayout _imageLayout = ImageLayout.Tile;
 
         #endregion Fields
 
@@ -116,24 +118,44 @@ namespace Ekstrand.Windows.Forms
             }
         }
 
-        ///// <summary>
-        ///// Gets or sets the image inside the border area.
-        ///// </summary>
-        //[Browsable(true)]
-        //[NotifyParentProperty(true)]
-        //[Category("Appearance Inside Border Area")]
-        //[Description("Specifies the background image inside the border.")]
-        //[DefaultValue(null)]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
-        //public Image Image
-        //{
-        //    get { return _image; }
-        //    set
-        //    {
-        //        _image = value;
-        //        _egroupBox.Invalidate();
-        //    }
-        //}
+        /// <summary>
+        /// Gets or sets the image inside the border area.
+        /// </summary>
+        [Browsable(true)]
+        [NotifyParentProperty(true)]
+        [Category("Appearance Inside Border Area")]
+        [Description("Specifies the background image inside the border.")]
+        [DefaultValue(null)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        public Image Image
+        {
+            get { return _image; }
+            set
+            {
+                _image = value;
+                _egroupBox.Invalidate();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the image layout
+        /// </summary>
+        [Browsable(true)]
+        [NotifyParentProperty(true)]
+        [Category("Appearance Inside Border Area")]
+        [Description("Seecifies the image layout to use in presenting the image.")]
+        [DefaultValue(ImageLayout.Tile)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        public ImageLayout ImageLayout
+        {
+            get { return _imageLayout; }
+            set
+            {
+                _imageLayout = value;
+                _egroupBox.Invalidate();
+            }
+        }
+
 
         #endregion Properties
 

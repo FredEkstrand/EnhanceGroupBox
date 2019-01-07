@@ -83,7 +83,11 @@ namespace Ekstrand.Windows.Forms
 
             if (state == EnhanceGroupBoxState.Disabled)
             {
+                //
+                // TODO: Update this code side to reflect active view
+                //
                 TextRenderer.DrawText(g, text, font, r, _eGroupBox.DisabledTextColor, flags);
+
                 if (_eGroupBox.Header.Image != null)
                 {
                     if (_eGroupBox.Header.ImageSide == ImageSide.Left)
@@ -103,13 +107,13 @@ namespace Ekstrand.Windows.Forms
                 
                 if (_eGroupBox.Header.Image != null)
                 {
-                    Rectangle ir = new Rectangle(0, 0, _eGroupBox.Header.Image.Width + 4, _eGroupBox.Header.Image.Height);
+                    Rectangle ir = new Rectangle(0, 0, _eGroupBox.Header.Image.Width , _eGroupBox.Header.Image.Height);
 
                     if (_eGroupBox.Header.ImageSide == ImageSide.Left)
                     {
                         if (GetTextSide() == TextSide.Top)
                         {
-                            Point p = new Point(r.X - _imagePlaceHolder - 4, r.Y / 2);
+                            Point p = new Point(r.X - _imagePlaceHolder, r.Y / 2);
                             ir.Location = p;
                             Brush ib = GradientBrush(ir,_eGroupBox.BackColor,_eGroupBox.BackColor, EnhanceGroupBoxGradientMode.Horizontal);
                             g.FillRectangle(ib, ir);
@@ -118,7 +122,7 @@ namespace Ekstrand.Windows.Forms
                         }
                         else
                         {
-                            Point p = new Point(r.X - _imagePlaceHolder - 4, r.Y - 4);
+                            Point p = new Point(r.X - _imagePlaceHolder, r.Y - 4);
                             ir.Location = p;
                             Brush ib = GradientBrush(ir, _eGroupBox.BackColor, _eGroupBox.BackColor, EnhanceGroupBoxGradientMode.Horizontal);
                             g.FillRectangle(ib, ir);
@@ -130,7 +134,7 @@ namespace Ekstrand.Windows.Forms
                     {
                         if (GetTextSide() == TextSide.Top)
                         {
-                            Point p = new Point(r.X + r.Width, r.Y / 2);
+                            Point p = new Point(r.X + r.Width + (_eGroupBox.Header.Width/2), r.Y / 2);
                             ir.Location = p;
                             Brush ib = GradientBrush(ir, _eGroupBox.BackColor, _eGroupBox.BackColor, EnhanceGroupBoxGradientMode.Horizontal);
                             g.FillRectangle(ib, ir);
@@ -139,7 +143,7 @@ namespace Ekstrand.Windows.Forms
                         }
                         else
                         {
-                            Point p = new Point(r.X + r.Width, r.Y - 4);
+                            Point p = new Point(r.X + r.Width + (_eGroupBox.Header.Width / 2), r.Y - 4);
                             ir.Location = p;
                             Brush ib = GradientBrush(ir, _eGroupBox.BackColor, _eGroupBox.BackColor, EnhanceGroupBoxGradientMode.Horizontal);
                             g.FillRectangle(ib, ir);
@@ -333,7 +337,8 @@ namespace Ekstrand.Windows.Forms
                 case GroupBoxStyles.Enhance:
                     {
                         RectangleF rr =  bounds;
-                        rr.Width += .5f;
+                        rr.Inflate(1,1);
+                        rr.Width -= 1.5f;
 
                         if (_eGroupBox.Header.GradientMode != EnhanceGroupBoxGradientMode.None)
                         {
@@ -521,15 +526,23 @@ namespace Ekstrand.Windows.Forms
                             case GroupBoxStyles.Enhance:
                             case GroupBoxStyles.Standard:
                                 {
-                                    if (_eGroupBox.Header.Image == null || _eGroupBox.Header.ImageSide == ImageSide.Right)
+                                    if (_eGroupBox.Header.Image == null)
                                     {
                                         location.X = boxHeaderWidth + _eGroupBox.BorderItems.Radius + 4;
                                         location.Y = measured.Height / 2;
                                     }
                                     else
                                     {
-                                        location.X = boxHeaderWidth + _eGroupBox.BorderItems.Radius + 4 + _imagePlaceHolder;
-                                        location.Y = measured.Height / 2;
+                                        if (_eGroupBox.Header.Image == null || _eGroupBox.Header.ImageSide == ImageSide.Right)
+                                        {
+                                            location.X = boxHeaderWidth + _eGroupBox.BorderItems.Radius + 4;
+                                            location.Y = measured.Height / 2;
+                                        }
+                                        else
+                                        {
+                                            location.X = boxHeaderWidth + _eGroupBox.BorderItems.Radius + 4 + _imagePlaceHolder;
+                                            location.Y = measured.Height / 2;
+                                        }
                                     }
                                 }
                                 break;
@@ -557,12 +570,12 @@ namespace Ekstrand.Windows.Forms
                                 {
                                     if (_eGroupBox.Header.Image == null || _eGroupBox.Header.ImageSide == ImageSide.Left)
                                     {
-                                        location.X = bounds.Width - measured.Width - _eGroupBox.BorderItems.Radius - boxHeaderWidth - 3;
+                                        location.X = bounds.Width - measured.Width - _eGroupBox.BorderItems.Radius - boxHeaderWidth - 4;
                                         location.Y = measured.Height / 2;
                                     }
                                     else
                                     {
-                                        location.X = bounds.Width - measured.Width - _eGroupBox.BorderItems.Radius - boxHeaderWidth - _imagePlaceHolder - 3;
+                                        location.X = bounds.Width - measured.Width - _eGroupBox.BorderItems.Radius - boxHeaderWidth - _imagePlaceHolder - 4;
                                         location.Y = measured.Height / 2;
                                     }
                                 }

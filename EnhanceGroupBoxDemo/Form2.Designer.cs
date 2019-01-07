@@ -51,12 +51,13 @@
             this.groupBox1.DisabledTextColor = System.Drawing.SystemColors.GrayText;
             this.groupBox1.GroupBoxStyles = Ekstrand.Windows.Forms.GroupBoxStyles.Enhance;
             this.groupBox1.Header.BackColor = System.Drawing.SystemColors.Control;
-            this.groupBox1.Header.BorderColor = System.Drawing.SystemColors.ControlDark;
+            this.groupBox1.Header.BorderColor = System.Drawing.Color.Red;
             this.groupBox1.Header.BorderCorners = Ekstrand.Windows.Forms.BorderCorners.None;
-            this.groupBox1.Header.GradientEndColor = System.Drawing.Color.Empty;
-            this.groupBox1.Header.GradientStartColor = System.Drawing.Color.Empty;
+            this.groupBox1.Header.GradientEndColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.groupBox1.Header.GradientStartColor = System.Drawing.Color.White;
             this.groupBox1.Header.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
-            this.groupBox1.Header.ImageSide = Ekstrand.Windows.Forms.ImageSide.Left;
+            this.groupBox1.Header.ImageSide = Ekstrand.Windows.Forms.ImageSide.Right;
+            this.groupBox1.Header.Width = 2;
             this.groupBox1.InsideBorder.GradientEndColor = System.Drawing.Color.Empty;
             this.groupBox1.InsideBorder.GradientStartColor = System.Drawing.Color.Empty;
             this.groupBox1.Location = new System.Drawing.Point(221, 156);
@@ -64,7 +65,7 @@
             this.groupBox1.Size = new System.Drawing.Size(200, 100);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
+            this.groupBox1.Text = "groupBoxB";
             // 
             // Form2
             // 

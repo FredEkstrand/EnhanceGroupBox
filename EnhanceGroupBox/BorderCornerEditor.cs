@@ -28,9 +28,9 @@ namespace Ekstrand.Windows.Forms
                 IWindowsFormsEditorService editorService = provider.GetService(
                             typeof(IWindowsFormsEditorService))
                             as IWindowsFormsEditorService;
-                if (editorService != null)
-                {
-                    CornerSelector cs = new CornerSelector();
+                if (editorService != null)                {
+                    
+                    CornerSelector cs = new CornerSelector(value);
                     editorService.DropDownControl(cs);
                     value = cs.BorderCorners;
                 }

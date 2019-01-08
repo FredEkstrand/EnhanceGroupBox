@@ -10,6 +10,7 @@ namespace Ekstrand.Windows.Forms
     /// Properties grouped for rendering group box header area.
     /// </summary>
     [TypeConverter(typeof(HeaderElementsConverter))]
+    [Serializable]
     public class HeaderElements
     {
         #region Fields

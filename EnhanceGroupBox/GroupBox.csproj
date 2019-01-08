@@ -58,7 +58,7 @@
     <Compile Include="CornerSelector.Designer.cs">
       <DependentUpon>CornerSelector.cs</DependentUpon>
     </Compile>
-    <Compile Include="EnhanceGroupBox.cs">
+    <Compile Include="GroupBox.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="GroupBoxRenderer.cs" />

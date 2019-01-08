@@ -15,6 +15,7 @@ namespace Ekstrand.Windows.Forms
 
         #region Fields
 
+        private const int _imagePlaceHolder = 16;
         private const int boxHeaderWidth = 7;           // The frame shows 7 pixels before the caption
         private const int textOffset = 8;               // A MAGIC NUMBER      
         private static Rectangle _clientRectangle;      // Control client area
@@ -22,7 +23,6 @@ namespace Ekstrand.Windows.Forms
         private static LinearGradientBrush _gradientBrush = null;
         private static Pen _Pen = null;
         private static bool _renderMatchingApplicationState = false;
-        private const int _imagePlaceHolder = 16;
 
         #endregion Fields
 
@@ -56,6 +56,7 @@ namespace Ekstrand.Windows.Forms
         #endregion Properties
 
         #region Methods
+
         /// <summary>
         /// Draws a group box control in the specified state and bounds, with the specified groupbox, graphics, bounds, text, font, textcolor, text format flags, and state.
         /// </summary>
@@ -76,83 +77,165 @@ namespace Ekstrand.Windows.Forms
         }
 
 
-        private static void DrawText(Graphics g, Rectangle bounds, string text, Font font, Color textColor, TextFormatFlags flags, EnhanceGroupBoxState state)
-        {
-            Rectangle r = Textbounds(g, bounds, text, font, flags);  
-            DrawTextBackground(g, r);
+        internal static Rectangle CalculateBackgroundImageRectangle(Rectangle bounds, Image backgroundImage, ImageLayout imageLayout)
+        {// taken from ControlPaint.cs file
 
-            if (state == EnhanceGroupBoxState.Disabled)
+            Rectangle result = bounds;
+
+            if (backgroundImage != null)
             {
-                //
-                // TODO: Update this code side to reflect active view
-                //
-                TextRenderer.DrawText(g, text, font, r, _eGroupBox.DisabledTextColor, flags);
-
-                if (_eGroupBox.Header.Image != null)
+                switch (imageLayout)
                 {
-                    if (_eGroupBox.Header.ImageSide == ImageSide.Left)
+                    case ImageLayout.Stretch:
+                    result.Size = bounds.Size;
+                    break;
+
+                    case ImageLayout.None:
+                    result.Size = backgroundImage.Size;
+                    break;
+
+                    case ImageLayout.Center:
+                    result.Size = backgroundImage.Size;
+                    Size szCtl = bounds.Size;
+
+                    if (szCtl.Width > result.Width)
                     {
-                        Point p = new Point(r.X - _imagePlaceHolder, r.Y);
-                        g.DrawImage(_eGroupBox.Header.Image, p);
+                        result.X = (szCtl.Width - result.Width) / 2;
+                    }
+                    if (szCtl.Height > result.Height)
+                    {
+                        result.Y = (szCtl.Height - result.Height) / 2;
+                    }
+                    break;
+
+                    case ImageLayout.Zoom:
+                    Size imageSize = backgroundImage.Size;
+                    float xRatio = (float)bounds.Width / (float)imageSize.Width;
+                    float yRatio = (float)bounds.Height / (float)imageSize.Height;
+                    if (xRatio < yRatio)
+                    {
+                        //width should fill the entire bounds.
+                        result.Width = bounds.Width;
+                        // preserve the aspect ratio by multiplying the xRatio by the height
+                        // adding .5 to round to the nearest pixel
+                        result.Height = (int)((imageSize.Height * xRatio) + .5);
+                        if (bounds.Y >= 0)
+                        {
+                            result.Y = (bounds.Height - result.Height) / 2;
+                        }
                     }
                     else
                     {
-
+                        // width should fill the entire bounds
+                        result.Height = bounds.Height;
+                        // preserve the aspect ratio by multiplying the xRatio by the height
+                        // adding .5 to round to the nearest pixel
+                        result.Width = (int)((imageSize.Width * yRatio) + .5);
+                        if (bounds.X >= 0)
+                        {
+                            result.X = (bounds.Width - result.Width) / 2;
+                        }
                     }
+
+                    break;
                 }
             }
+            return result;
+        }
+
+        internal static void DrawBackgroundImage(Graphics g, Image backgroundImage, Color backColor, ImageLayout backgroundImageLayout, Rectangle bounds, Rectangle clipRect, int radius, Point scrollOffset, RightToLeft rightToLeft)
+        {
+            // taken from ControlPaint.cs file
+            // modify for use with rounded rectangle rendering.
+
+            if (g == null)
+            {
+                throw new ArgumentNullException("Graphics");
+            }
+
+            if (backgroundImageLayout == ImageLayout.Tile)
+            {
+                // tile
+
+                using (TextureBrush textureBrush = new TextureBrush(backgroundImage, WrapMode.Tile))
+                {
+                    // Make sure the brush origin matches the display rectangle, not the client rectangle,
+                    // so the background image scrolls on AutoScroll forms.
+                    if (scrollOffset != Point.Empty)
+                    {
+                        Matrix transform = textureBrush.Transform;
+                        transform.Translate(scrollOffset.X, scrollOffset.Y);
+                        textureBrush.Transform = transform;
+                    }
+                    g.FillRectangle(textureBrush, clipRect);
+                }
+            }
+
             else
             {
-                TextRenderer.DrawText(g, text, font, r, textColor, flags);
-                
-                if (_eGroupBox.Header.Image != null)
-                {
-                    Rectangle ir = new Rectangle(0, 0, _eGroupBox.Header.Image.Width , _eGroupBox.Header.Image.Height);
+                // write into bitmap then clip to region if needed.
+                Bitmap bmp = new Bitmap(backgroundImage.Width, backgroundImage.Height);
 
-                    if (_eGroupBox.Header.ImageSide == ImageSide.Left)
+                // Center, Stretch, Zoom
+
+                Rectangle imageRectangle = CalculateBackgroundImageRectangle(bounds, backgroundImage, backgroundImageLayout);
+
+                //flip the coordinates only if we don't do any layout, since otherwise the image should be at the center of the
+                //displayRectangle anyway.
+
+                if (rightToLeft == RightToLeft.Yes && backgroundImageLayout == ImageLayout.None)
+                {
+                    imageRectangle.X += clipRect.Width - imageRectangle.Width;
+                }
+
+                // We fill the entire cliprect with the backcolor in case the image is transparent.
+                // Also, if gdi+ can't quite fill the rect with the image, they will interpolate the remaining
+                // pixels, and make them semi-transparent. This is another reason why we need to fill the entire rect.
+                // If we didn't where ever the image was transparent, we would get garbage. VS Whidbey #504388
+                using (SolidBrush brush = new SolidBrush(backColor))
+                {
+                    //g.FillRectangle(brush, clipRect);
+                    g.FillRoundedRectangle(brush, clipRect, radius);
+                }
+
+                if (!clipRect.Contains(imageRectangle))
+                {
+                    if (backgroundImageLayout == ImageLayout.Stretch || backgroundImageLayout == ImageLayout.Zoom)
                     {
-                        if (GetTextSide() == TextSide.Top)
-                        {
-                            Point p = new Point(r.X - _imagePlaceHolder, r.Y / 2);
-                            ir.Location = p;
-                            Brush ib = GradientBrush(ir,_eGroupBox.BackColor,_eGroupBox.BackColor, EnhanceGroupBoxGradientMode.Horizontal);
-                            g.FillRectangle(ib, ir);
-                            ib.Dispose();
-                            g.DrawImage(_eGroupBox.Header.Image, p);
-                        }
-                        else
-                        {
-                            Point p = new Point(r.X - _imagePlaceHolder, r.Y - 4);
-                            ir.Location = p;
-                            Brush ib = GradientBrush(ir, _eGroupBox.BackColor, _eGroupBox.BackColor, EnhanceGroupBoxGradientMode.Horizontal);
-                            g.FillRectangle(ib, ir);
-                            ib.Dispose();
-                            g.DrawImage(_eGroupBox.Header.Image, p);
-                        }
+                        imageRectangle.Intersect(clipRect);
+                        g.DrawImage(backgroundImage, imageRectangle);
+                    }
+                    else if (backgroundImageLayout == ImageLayout.None)
+                    {
+                        imageRectangle.Offset(clipRect.Location);
+                        Rectangle imageRect = imageRectangle;
+                        imageRect.Intersect(clipRect);
+                        Rectangle partOfImageToDraw = new Rectangle(Point.Empty, imageRect.Size);
+                        g.DrawImage(backgroundImage, imageRect, partOfImageToDraw.X, partOfImageToDraw.Y, partOfImageToDraw.Width,
+                            partOfImageToDraw.Height, GraphicsUnit.Pixel);
                     }
                     else
                     {
-                        if (GetTextSide() == TextSide.Top)
-                        {
-                            Point p = new Point(r.X + r.Width + (_eGroupBox.Header.Width/2), r.Y / 2);
-                            ir.Location = p;
-                            Brush ib = GradientBrush(ir, _eGroupBox.BackColor, _eGroupBox.BackColor, EnhanceGroupBoxGradientMode.Horizontal);
-                            g.FillRectangle(ib, ir);
-                            ib.Dispose();
-                            g.DrawImage(_eGroupBox.Header.Image, p);
-                        }
-                        else
-                        {
-                            Point p = new Point(r.X + r.Width + (_eGroupBox.Header.Width / 2), r.Y - 4);
-                            ir.Location = p;
-                            Brush ib = GradientBrush(ir, _eGroupBox.BackColor, _eGroupBox.BackColor, EnhanceGroupBoxGradientMode.Horizontal);
-                            g.FillRectangle(ib, ir);
-                            ib.Dispose();
-                            g.DrawImage(_eGroupBox.Header.Image, p);
-                        }
+                        Rectangle imageRect = imageRectangle;
+                        imageRect.Intersect(clipRect);
+                        Rectangle partOfImageToDraw = new Rectangle(new Point(imageRect.X - imageRectangle.X, imageRect.Y - imageRectangle.Y)
+                                    , imageRect.Size);
+
+                        g.DrawImage(backgroundImage, imageRect, partOfImageToDraw.X, partOfImageToDraw.Y, partOfImageToDraw.Width,
+                            partOfImageToDraw.Height, GraphicsUnit.Pixel);
                     }
                 }
+                else
+                {
+                    ImageAttributes imageAttrib = new ImageAttributes();
+                    imageAttrib.SetWrapMode(WrapMode.TileFlipXY);
+                    g.DrawImage(backgroundImage, imageRectangle, 0, 0, backgroundImage.Width, backgroundImage.Height, GraphicsUnit.Pixel, imageAttrib);
+                    imageAttrib.Dispose();
+
+                }
+
             }
+
         }
 
         private static Rectangle BorderRectangle(Rectangle bounds, Font font)
@@ -170,14 +253,14 @@ namespace Ekstrand.Windows.Forms
 
         private static void DrawBorder(Graphics g, Rectangle bounds, Font font)
         {
-            Rectangle border = new Rectangle();
+            Rectangle border = BorderRectangle(bounds, font);
+            Rectangle tr = border;
+            tr.Inflate(-2, -2);
 
             switch (_eGroupBox.GroupBoxStyles)
             {
                 case GroupBoxStyles.Standard:
                     {
-                        border = BorderRectangle(bounds, font);
-
                         if (_eGroupBox.InsideBorder.GradientMode != EnhanceGroupBoxGradientMode.None)
                         {
                             LinearGradientBrush gb = GradientBrush(border, _eGroupBox.InsideBorder.GradientStartColor,
@@ -189,8 +272,6 @@ namespace Ekstrand.Windows.Forms
 
                         if (_eGroupBox.InsideBorder.Image != null)
                         {
-                            Rectangle tr = border;
-                            tr.Inflate(-2, -2);
                             Point pt = new Point(tr.X, tr.Y);
                             DrawBackgroundImage(g, _eGroupBox.InsideBorder.Image, _eGroupBox.InsideBorder.BackColor, _eGroupBox.InsideBorder.ImageLayout, _clientRectangle, tr, _eGroupBox.BorderItems.Radius, pt, RightToLeft.No);
                         }
@@ -204,7 +285,6 @@ namespace Ekstrand.Windows.Forms
                     break;
                 case GroupBoxStyles.Enhance:
                     {
-                        border = BorderRectangle(bounds, font);
                         if (_eGroupBox.InsideBorder.GradientMode != EnhanceGroupBoxGradientMode.None)
                         {
                             LinearGradientBrush gb = GradientBrush(border, _eGroupBox.InsideBorder.GradientStartColor,
@@ -212,9 +292,9 @@ namespace Ekstrand.Windows.Forms
 
                             g.FillRoundedRectangle(gb, border, _eGroupBox.BorderItems.Radius, _eGroupBox.BorderItems.BorderCorners);
                             gb.Dispose();
-                        }                        
+                        }
 
-                        if(_eGroupBox.InsideBorder.BackColor != SystemColors.Control)
+                        if (_eGroupBox.InsideBorder.BackColor != SystemColors.Control)
                         {
                             LinearGradientBrush gb = GradientBrush(border, _eGroupBox.InsideBorder.BackColor,
                                 _eGroupBox.InsideBorder.BackColor, EnhanceGroupBoxGradientMode.Horizontal);
@@ -225,8 +305,6 @@ namespace Ekstrand.Windows.Forms
 
                         if (_eGroupBox.InsideBorder.Image != null)
                         {
-                            Rectangle tr = border;
-                            tr.Inflate(-2, -2);
                             Point pt = new Point(tr.X, tr.Y);
                             DrawBackgroundImage(g, _eGroupBox.InsideBorder.Image, _eGroupBox.InsideBorder.BackColor, _eGroupBox.InsideBorder.ImageLayout, _clientRectangle, tr, _eGroupBox.BorderItems.Radius, pt, RightToLeft.No);
                         }
@@ -236,13 +314,10 @@ namespace Ekstrand.Windows.Forms
 
                         g.DrawRoundedRectangle(p, border, _eGroupBox.BorderItems.Radius, _eGroupBox.BorderItems.BorderCorners);
                         p.Dispose();
-
-                        
                     }
                     break;
                 case GroupBoxStyles.Excitative:
                     {
-                        border = BorderRectangle(bounds, font);
                         if (_eGroupBox.InsideBorder.GradientMode != EnhanceGroupBoxGradientMode.None)
                         {
                             LinearGradientBrush gb = GradientBrush(_clientRectangle, _eGroupBox.InsideBorder.GradientStartColor,
@@ -255,36 +330,25 @@ namespace Ekstrand.Windows.Forms
                         Pen p = PenBorder(_eGroupBox.BorderItems.BorderColor, _eGroupBox.BorderItems.Width, _eGroupBox.BorderItems.DashCap,
                             _eGroupBox.BorderItems.DashStyle, _eGroupBox.BorderItems.DashOffset, _eGroupBox.BorderItems.DashPattern);
 
-                        //Pen pp = PenBorder(_eGroupBox.BorderItems.BackColor, font.Height, DashCap.Flat, DashStyle.Solid, 0, null);
-
                         if (GetTextSide() == TextSide.Top)
                         {
-                            //g.DrawLine(pp, border.X + textOffset, border.Y, border.Width - textOffset + 2, border.Y);
-                            //pp.Dispose();
 
                             g.DrawLine(p, border.X + textOffset, border.Y, border.Width - textOffset + 2, border.Y);
                             p.Dispose();
 
                             if (_eGroupBox.InsideBorder.Image != null)
                             {
-                                Rectangle tr = border;
-                                tr.Inflate(-2, -2);
                                 Point pt = new Point(tr.X, tr.Y);
                                 DrawBackgroundImage(g, _eGroupBox.InsideBorder.Image, _eGroupBox.InsideBorder.BackColor, _eGroupBox.InsideBorder.ImageLayout, _clientRectangle, tr, _eGroupBox.BorderItems.Radius, pt, RightToLeft.No);
                             }
                         }
                         else
                         {
-                            //g.DrawLine(pp, border.X + textOffset, border.Height + (font.Height / 2), border.Width - textOffset + 2, border.Height + (font.Height / 2));
-                            //pp.Dispose();
-
                             g.DrawLine(p, border.X + textOffset, border.Height + (font.Height / 2), border.Width - textOffset + 2, border.Height + (font.Height / 2));
                             p.Dispose();
 
                             if (_eGroupBox.InsideBorder.Image != null)
                             {
-                                Rectangle tr = border;
-                                tr.Inflate(-2, -2);
                                 Point pt = new Point(tr.X, tr.Y);
                                 DrawBackgroundImage(g, _eGroupBox.InsideBorder.Image, _eGroupBox.InsideBorder.BackColor, _eGroupBox.InsideBorder.ImageLayout, _clientRectangle, tr, _eGroupBox.BorderItems.Radius, pt, RightToLeft.No);
                             }
@@ -302,7 +366,7 @@ namespace Ekstrand.Windows.Forms
                             body = new Rectangle(0, hrec.Height, bounds.Width, bounds.Height - hrec.Height);
                         }
                         else
-                        {                            
+                        {
                             body = new Rectangle(0, 0, bounds.Width, hrec.Y);
                         }
 
@@ -319,15 +383,83 @@ namespace Ekstrand.Windows.Forms
             }
         }
 
+        private static void DrawHeaderImage(Graphics g, Rectangle r)
+        {
+            if (_eGroupBox.Header.Image != null)
+            {
+                Rectangle ir = new Rectangle(0, 0, _eGroupBox.Header.Image.Width, _eGroupBox.Header.Image.Height);
+
+                if (_eGroupBox.Header.ImageSide == ImageSide.Left)
+                {
+                    if (GetTextSide() == TextSide.Top)
+                    {
+                        Point p = new Point(r.X - _imagePlaceHolder, r.Y / 2);
+                        ir.Location = p;
+                        Brush ib = GradientBrush(ir, _eGroupBox.BackColor, _eGroupBox.BackColor, EnhanceGroupBoxGradientMode.Horizontal);
+                        g.FillRectangle(ib, ir);
+                        ib.Dispose();
+                        g.DrawImage(_eGroupBox.Header.Image, p);
+                    }
+                    else
+                    {
+                        Point p = new Point(r.X - _imagePlaceHolder, r.Y - 4);
+                        ir.Location = p;
+                        Brush ib = GradientBrush(ir, _eGroupBox.BackColor, _eGroupBox.BackColor, EnhanceGroupBoxGradientMode.Horizontal);
+                        g.FillRectangle(ib, ir);
+                        ib.Dispose();
+                        g.DrawImage(_eGroupBox.Header.Image, p);
+                    }
+                }
+                else
+                {
+                    if (GetTextSide() == TextSide.Top)
+                    {
+                        Point p = new Point(r.X + r.Width + (_eGroupBox.Header.Width / 2), r.Y / 2);
+                        ir.Location = p;
+                        Brush ib = GradientBrush(ir, _eGroupBox.BackColor, _eGroupBox.BackColor, EnhanceGroupBoxGradientMode.Horizontal);
+                        g.FillRectangle(ib, ir);
+                        ib.Dispose();
+                        g.DrawImage(_eGroupBox.Header.Image, p);
+                    }
+                    else
+                    {
+                        Point p = new Point(r.X + r.Width + (_eGroupBox.Header.Width / 2), r.Y - 2);
+                        ir.Location = p;
+                        Brush ib = GradientBrush(ir, _eGroupBox.BackColor, _eGroupBox.BackColor, EnhanceGroupBoxGradientMode.Horizontal);
+                        g.FillRectangle(ib, ir);
+                        ib.Dispose();
+                        g.DrawImage(_eGroupBox.Header.Image, p);
+                    }
+                }
+            }
+
+        }
+
+        private static void DrawText(Graphics g, Rectangle bounds, string text, Font font, Color textColor, TextFormatFlags flags, EnhanceGroupBoxState state)
+        {
+            Rectangle r = Textbounds(g, bounds, text, font, flags);  
+            DrawTextBackground(g, r);
+
+            if (state == EnhanceGroupBoxState.Disabled)
+            {
+                TextRenderer.DrawText(g, text, font, r, _eGroupBox.DisabledTextColor, flags);
+				DrawHeaderImage(g, r);                
+            }
+            else
+            {
+                TextRenderer.DrawText(g, text, font, r, textColor, flags);
+                DrawHeaderImage(g, r);                
+            }
+        }
         private static void DrawTextBackground(Graphics g, Rectangle bounds)
         {
-
+			Rectangle r = bounds;
+            r.Inflate(1, 1);
+			
             switch (_eGroupBox.GroupBoxStyles)
             {
                 case GroupBoxStyles.Standard:
-                    {
-                        Rectangle r = bounds;
-                        r.Inflate(1, 1);
+                    {                        
                         r.Width -= 2;
                         SolidBrush b = new SolidBrush(_eGroupBox.BackColor);
                         g.FillRectangle(b, r);
@@ -376,10 +508,7 @@ namespace Ekstrand.Windows.Forms
                     break;
                 case GroupBoxStyles.Excitative:
                     {
-                        Rectangle r = bounds;
-                        r.Inflate(1, 1);
                         r.Width -= 3;
-
 
                         if (_eGroupBox.Header.GradientMode != EnhanceGroupBoxGradientMode.None)
                         {
@@ -443,8 +572,6 @@ namespace Ekstrand.Windows.Forms
                     }
                 break;
             }
-
-
         }
 
         private static TextSide GetTextSide()
@@ -481,12 +608,10 @@ namespace Ekstrand.Windows.Forms
             }
 
             return new Rectangle(-1, r.Height - (font.Height / 2) - fontHeight, r.Width + 1, r.Height);
-
         }
 
         private static Pen PenBorder(Color c, int width, DashCap dashCap, DashStyle dashStyle, float dashOffset, float[] dashPattern)
         {
-
             _Pen = new Pen(c, width);
             _Pen.DashCap = dashCap;
             _Pen.DashOffset = dashOffset;
@@ -499,6 +624,7 @@ namespace Ekstrand.Windows.Forms
 
             return _Pen;
         }
+		
         private static Rectangle Textbounds(Graphics g, Rectangle bounds, string text, Font font, TextFormatFlags textFlags)
         {
             Size measured = TextRenderer.MeasureText(g, text, font, new Size(Int32.MaxValue, Int32.MaxValue), textFlags);
@@ -570,12 +696,12 @@ namespace Ekstrand.Windows.Forms
                                 {
                                     if (_eGroupBox.Header.Image == null || _eGroupBox.Header.ImageSide == ImageSide.Left)
                                     {
-                                        location.X = bounds.Width - measured.Width - _eGroupBox.BorderItems.Radius - boxHeaderWidth - 4;
+                                        location.X = bounds.Width - measured.Width - _eGroupBox.BorderItems.Radius - boxHeaderWidth ;
                                         location.Y = measured.Height / 2;
                                     }
                                     else
                                     {
-                                        location.X = bounds.Width - measured.Width - _eGroupBox.BorderItems.Radius - boxHeaderWidth - _imagePlaceHolder - 4;
+                                        location.X = bounds.Width - measured.Width - _eGroupBox.BorderItems.Radius - boxHeaderWidth - _imagePlaceHolder ;
                                         location.Y = measured.Height / 2;
                                     }
                                 }
@@ -685,168 +811,6 @@ namespace Ekstrand.Windows.Forms
             r.Width = measured.Width;
             r.Height = measured.Height;
             return r;
-        }
-
-        
-        internal static void DrawBackgroundImage(Graphics g, Image backgroundImage, Color backColor, ImageLayout backgroundImageLayout, Rectangle bounds, Rectangle clipRect, int radius, Point scrollOffset, RightToLeft rightToLeft)
-        {
-            // taken from ControlPaint.cs file
-            // modify for use with rounded rectangle rendering.
-
-            if (g == null)
-            {
-                throw new ArgumentNullException("Graphics");
-            }
-
-            if (backgroundImageLayout == ImageLayout.Tile)
-            {
-                // tile
-
-                using (TextureBrush textureBrush = new TextureBrush(backgroundImage, WrapMode.Tile))
-                {
-                    // Make sure the brush origin matches the display rectangle, not the client rectangle,
-                    // so the background image scrolls on AutoScroll forms.
-                    if (scrollOffset != Point.Empty)
-                    {
-                        Matrix transform = textureBrush.Transform;
-                        transform.Translate(scrollOffset.X, scrollOffset.Y);
-                        textureBrush.Transform = transform;
-                    }
-                    g.FillRectangle(textureBrush, clipRect);
-                }
-            }
-
-            else
-            {
-                // write into bitmap then clip to region if needed.
-                Bitmap bmp = new Bitmap(backgroundImage.Width, backgroundImage.Height);
-
-                // Center, Stretch, Zoom
-
-                Rectangle imageRectangle = CalculateBackgroundImageRectangle(bounds, backgroundImage, backgroundImageLayout);
-
-                //flip the coordinates only if we don't do any layout, since otherwise the image should be at the center of the
-                //displayRectangle anyway.
-
-                if (rightToLeft == RightToLeft.Yes && backgroundImageLayout == ImageLayout.None)
-                {
-                    imageRectangle.X += clipRect.Width - imageRectangle.Width;
-                }
-
-                // We fill the entire cliprect with the backcolor in case the image is transparent.
-                // Also, if gdi+ can't quite fill the rect with the image, they will interpolate the remaining
-                // pixels, and make them semi-transparent. This is another reason why we need to fill the entire rect.
-                // If we didn't where ever the image was transparent, we would get garbage. VS Whidbey #504388
-                using (SolidBrush brush = new SolidBrush(backColor))
-                {
-                    //g.FillRectangle(brush, clipRect);
-                    g.FillRoundedRectangle(brush,clipRect,radius);
-                }
-
-                if (!clipRect.Contains(imageRectangle))
-                {
-                    if (backgroundImageLayout == ImageLayout.Stretch || backgroundImageLayout == ImageLayout.Zoom)
-                    {
-                        imageRectangle.Intersect(clipRect);
-                        g.DrawImage(backgroundImage, imageRectangle);
-                    }
-                    else if (backgroundImageLayout == ImageLayout.None)
-                    {
-                        imageRectangle.Offset(clipRect.Location);
-                        Rectangle imageRect = imageRectangle;
-                        imageRect.Intersect(clipRect);
-                        Rectangle partOfImageToDraw = new Rectangle(Point.Empty, imageRect.Size);
-                        g.DrawImage(backgroundImage, imageRect, partOfImageToDraw.X, partOfImageToDraw.Y, partOfImageToDraw.Width,
-                            partOfImageToDraw.Height, GraphicsUnit.Pixel);
-                    }
-                    else
-                    {
-                        Rectangle imageRect = imageRectangle;
-                        imageRect.Intersect(clipRect);
-                        Rectangle partOfImageToDraw = new Rectangle(new Point(imageRect.X - imageRectangle.X, imageRect.Y - imageRectangle.Y)
-                                    , imageRect.Size);
-
-                        g.DrawImage(backgroundImage, imageRect, partOfImageToDraw.X, partOfImageToDraw.Y, partOfImageToDraw.Width,
-                            partOfImageToDraw.Height, GraphicsUnit.Pixel);
-                    }
-                }
-                else
-                {
-                    ImageAttributes imageAttrib = new ImageAttributes();
-                    imageAttrib.SetWrapMode(WrapMode.TileFlipXY);
-                    g.DrawImage(backgroundImage, imageRectangle, 0, 0, backgroundImage.Width, backgroundImage.Height, GraphicsUnit.Pixel, imageAttrib);
-                    imageAttrib.Dispose();
-
-                }
-
-            }
-
-        }
-
-        internal static Rectangle CalculateBackgroundImageRectangle(Rectangle bounds, Image backgroundImage, ImageLayout imageLayout)
-        {// taken from ControlPaint.cs file
-
-            Rectangle result = bounds;
-
-            if (backgroundImage != null)
-            {
-                switch (imageLayout)
-                {
-                    case ImageLayout.Stretch:
-                    result.Size = bounds.Size;
-                    break;
-
-                    case ImageLayout.None:
-                    result.Size = backgroundImage.Size;
-                    break;
-
-                    case ImageLayout.Center:
-                    result.Size = backgroundImage.Size;
-                    Size szCtl = bounds.Size;
-
-                    if (szCtl.Width > result.Width)
-                    {
-                        result.X = (szCtl.Width - result.Width) / 2;
-                    }
-                    if (szCtl.Height > result.Height)
-                    {
-                        result.Y = (szCtl.Height - result.Height) / 2;
-                    }
-                    break;
-
-                    case ImageLayout.Zoom:
-                    Size imageSize = backgroundImage.Size;
-                    float xRatio = (float)bounds.Width / (float)imageSize.Width;
-                    float yRatio = (float)bounds.Height / (float)imageSize.Height;
-                    if (xRatio < yRatio)
-                    {
-                        //width should fill the entire bounds.
-                        result.Width = bounds.Width;
-                        // preserve the aspect ratio by multiplying the xRatio by the height
-                        // adding .5 to round to the nearest pixel
-                        result.Height = (int)((imageSize.Height * xRatio) + .5);
-                        if (bounds.Y >= 0)
-                        {
-                            result.Y = (bounds.Height - result.Height) / 2;
-                        }
-                    }
-                    else
-                    {
-                        // width should fill the entire bounds
-                        result.Height = bounds.Height;
-                        // preserve the aspect ratio by multiplying the xRatio by the height
-                        // adding .5 to round to the nearest pixel
-                        result.Width = (int)((imageSize.Width * yRatio) + .5);
-                        if (bounds.X >= 0)
-                        {
-                            result.X = (bounds.Width - result.Width) / 2;
-                        }
-                    }
-
-                    break;
-                }
-            }
-            return result;
         }
 
         #endregion Methods

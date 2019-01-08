@@ -10,6 +10,7 @@ using Ekstrand;
 
 namespace Ekstrand.Windows.Forms
 {
+    [Serializable]
     internal partial class CornerSelector : UserControl
     {
 
@@ -23,15 +24,15 @@ namespace Ekstrand.Windows.Forms
 
         #region Constructors
 
-        public CornerSelector()
-        {
+        public CornerSelector(object bc)
+        {        
             InitializeComponent();
             InitButtonTag();
-            _borderCorners = BorderCorners.None;
-            btnNone.BackColor = _selectedState;
-            btnNone.Focus();
+                       
             btnAll.BackColor = btnBL.BackColor = btnBR.BackColor = 
-                btnTL.BackColor = btnTR.BackColor = _normalState;
+                btnTL.BackColor = btnTR.BackColor = btnNone.BackColor= _normalState;
+
+            ImportSelection((BorderCorners)bc);
         }
 
         #endregion Constructors
@@ -69,10 +70,15 @@ namespace Ekstrand.Windows.Forms
                 {
                     sb.Append(Enum.GetName(typeof(BorderCorners), items[i]).ToString() + " ");
                 }
-
             }
 
             return sb.ToString();
+        }
+
+        private void ImportSelection(BorderCorners bc)
+        {
+            _borderCorners = bc;
+            SetBorderCorners();
         }
 
         private void AllRule(bool select)

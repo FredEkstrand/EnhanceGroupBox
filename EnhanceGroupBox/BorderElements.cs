@@ -57,6 +57,7 @@ namespace Ekstrand.Windows.Forms
             set
             {
                 _backColor = value;
+                _egroupBox.RenderingDirty = true;
                 _egroupBox.Invalidate();
             }
         }
@@ -75,6 +76,7 @@ namespace Ekstrand.Windows.Forms
             set
             {
                 _borderColor = value;
+                _egroupBox.RenderingDirty = true;
                 _egroupBox.Invalidate();
             }
         }
@@ -95,6 +97,7 @@ namespace Ekstrand.Windows.Forms
             set
             {
                 _borderCorners = value;
+                _egroupBox.RenderingDirty = true;
                 _egroupBox.Invalidate();
             }
         }
@@ -114,6 +117,7 @@ namespace Ekstrand.Windows.Forms
             set
             {
                 _dashCapBorder = value;
+                _egroupBox.RenderingDirty = true;
                 _egroupBox.Invalidate();
             }
         }
@@ -133,6 +137,7 @@ namespace Ekstrand.Windows.Forms
             set
             {
                 _dashOffsetBorder = value;
+                _egroupBox.RenderingDirty = true;
                 _egroupBox.Invalidate();
             }
         }
@@ -147,6 +152,7 @@ namespace Ekstrand.Windows.Forms
             set
             {
                 _dashPatternBorder = value;
+                _egroupBox.RenderingDirty = true;
                 _egroupBox.Invalidate();
             }
         }
@@ -166,6 +172,7 @@ namespace Ekstrand.Windows.Forms
             set
             {
                 _dashStyleBorder = value;
+                _egroupBox.RenderingDirty = true;
                 _egroupBox.Invalidate();
             }
         }
@@ -198,6 +205,7 @@ namespace Ekstrand.Windows.Forms
                     }
 
                     _radiusBorder = value;
+                    _egroupBox.RenderingDirty = true;
                     _egroupBox.Invalidate();
                 }
 
@@ -231,6 +239,7 @@ namespace Ekstrand.Windows.Forms
                     }
 
                     _widthBorder = value;
+                    _egroupBox.RenderingDirty = true;
                     _egroupBox.Invalidate();
                 }
             }

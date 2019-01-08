@@ -38,6 +38,7 @@ namespace Ekstrand.Windows.Forms
         private HeaderElements _headerElements;
         private InsideBorderElements _insideBoarderElements;
         private TextFormatFlags _textFlags = TextFormatFlags.Default | TextFormatFlags.TextBoxControl | TextFormatFlags.WordBreak | TextFormatFlags.PreserveGraphicsTranslateTransform | TextFormatFlags.PreserveGraphicsClipping;
+        private bool _dirty;
 
         #endregion Fields
 
@@ -50,12 +51,12 @@ namespace Ekstrand.Windows.Forms
         {
             SetStyle(ControlStyles.ContainerControl, true);
             SetStyle(ControlStyles.SupportsTransparentBackColor |
-                     ControlStyles.UserPaint | ControlStyles.OptimizedDoubleBuffer |
+                     ControlStyles.UserPaint | 
                      ControlStyles.ResizeRedraw, true);
 
             SetStyle(ControlStyles.Selectable, false);
             TabStop = false;
-
+            _dirty = true;
             _headerElements = new HeaderElements(this);
             _insideBoarderElements = new InsideBorderElements(this);
             _borderElements = new BorderElements(this);
@@ -105,7 +106,7 @@ namespace Ekstrand.Windows.Forms
         [NotifyParentProperty(true)]
         [CategoryAttribute("Appearance")]
         [Description("Properties for BorderItems apperance")]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public BorderElements BorderItems
         {
             get { return _borderElements; }
@@ -124,7 +125,11 @@ namespace Ekstrand.Windows.Forms
         public Color DisabledTextColor
         {
             get { return _disabledTextColor; }
-            set { _disabledTextColor = value; }
+            set
+            {
+                _disabledTextColor = value;
+                _dirty = true;
+            }
         }
 
         /// <summary>
@@ -139,6 +144,7 @@ namespace Ekstrand.Windows.Forms
             set
             {
                 base.Enabled = value;
+                _dirty = true;
                 Invalidate();
             }
         }
@@ -160,6 +166,7 @@ namespace Ekstrand.Windows.Forms
                 if (value != _groupBoxStyles)
                 {
                     _groupBoxStyles = value;
+                    _dirty = true;
                     Invalidate();
                 }
             }
@@ -171,7 +178,7 @@ namespace Ekstrand.Windows.Forms
         [NotifyParentProperty(true)]
         [CategoryAttribute("Appearance")]
         [Description("Properties for header area apperance")]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public HeaderElements Header
         {
             get { return _headerElements; }
@@ -185,7 +192,7 @@ namespace Ekstrand.Windows.Forms
         [NotifyParentProperty(true)]
         [CategoryAttribute("Appearance")]
         [Description("Properties for InsideBorder area apperance")]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public InsideBorderElements InsideBorder
         {
             get { return _insideBoarderElements; }
@@ -221,6 +228,7 @@ namespace Ekstrand.Windows.Forms
             set
             {
                 base.Text = value;
+                _dirty = true;
                 Invalidate();
             }
         }
@@ -259,6 +267,18 @@ namespace Ekstrand.Windows.Forms
             get
             {
                 return new Size(200, 100);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the rendering dirty bool value to invalidate internal drawing buffering.
+        /// </summary>
+        internal bool RenderingDirty
+        {
+            get { return _dirty; }
+            set
+            {
+                _dirty = true;
             }
         }
 

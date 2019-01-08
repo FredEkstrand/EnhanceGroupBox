@@ -63,6 +63,7 @@ namespace Ekstrand.Windows.Forms
             set
             {
                 _backColorHeader = value;
+                _egroupBox.RenderingDirty = true;
                 _egroupBox.Invalidate();
             }
         }
@@ -78,7 +79,12 @@ namespace Ekstrand.Windows.Forms
         public Color BorderColor
         {
             get { return _borderColorHeader; }
-            set { _borderColorHeader = value; _egroupBox.Invalidate(); }
+            set
+            {
+                _borderColorHeader = value;
+                _egroupBox.RenderingDirty = true;
+                _egroupBox.Invalidate();
+            }
         }
 
         /// <summary>
@@ -94,7 +100,12 @@ namespace Ekstrand.Windows.Forms
         public BorderCorners BorderCorners
         {
             get { return _borderCornersHeader; }
-            set { _borderCornersHeader = value; _egroupBox.Invalidate(); }
+            set
+            {
+                _borderCornersHeader = value;
+                _egroupBox.RenderingDirty = true;
+                _egroupBox.Invalidate();
+            }
         }
 
         /// <summary>
@@ -109,7 +120,12 @@ namespace Ekstrand.Windows.Forms
         public DashCap DashCap
         {
             get { return _dashCapHeader; }
-            set { _dashCapHeader = value; _egroupBox.Invalidate(); }
+            set
+            {
+                _dashCapHeader = value;
+                _egroupBox.RenderingDirty = true;
+                _egroupBox.Invalidate();
+            }
         }
 
         /// <summary>
@@ -124,7 +140,12 @@ namespace Ekstrand.Windows.Forms
         public float DashOffset
         {
             get { return _dashOffsetHeader; }
-            set { _dashOffsetHeader = value; _egroupBox.Invalidate(); }
+            set
+            {
+                _dashOffsetHeader = value;
+                _egroupBox.RenderingDirty = true;
+                _egroupBox.Invalidate();
+            }
         }
 
         /// <summary>
@@ -135,7 +156,12 @@ namespace Ekstrand.Windows.Forms
         public float[] DashPattern
         {
             get { return _dashPatternHeader; }
-            set { _dashPatternHeader = value; _egroupBox.Invalidate(); }
+            set
+            {
+                _dashPatternHeader = value;
+                _egroupBox.RenderingDirty = true;
+                _egroupBox.Invalidate();
+            }
         }
 
         /// <summary>
@@ -150,7 +176,12 @@ namespace Ekstrand.Windows.Forms
         public DashStyle DashStyle
         {
             get { return _dashStyleHeader; }
-            set { _dashStyleHeader = value; _egroupBox.Invalidate(); }
+            set
+            {
+                _dashStyleHeader = value;
+                _egroupBox.RenderingDirty = true;
+                _egroupBox.Invalidate();
+            }
         }
 
         /// <summary>
@@ -167,6 +198,7 @@ namespace Ekstrand.Windows.Forms
             set
             {
                 _gradientEndColorHeader = value;
+                _egroupBox.RenderingDirty = true;
                 _egroupBox.Invalidate();
             }
         }
@@ -186,6 +218,7 @@ namespace Ekstrand.Windows.Forms
             set
             {
                 _BoxGradientModeHeader = value;
+                _egroupBox.RenderingDirty = true;
                 _egroupBox.Invalidate();
             }
         }
@@ -204,6 +237,7 @@ namespace Ekstrand.Windows.Forms
             set
             {
                 _gradientStartColorHeader = value;
+                _egroupBox.RenderingDirty = true;
                 _egroupBox.Invalidate();
             }
         }
@@ -235,6 +269,7 @@ namespace Ekstrand.Windows.Forms
                     }
 
                     _radiusHeader = value;
+                    _egroupBox.RenderingDirty = true;
                     _egroupBox.Invalidate();
                 }
 
@@ -253,7 +288,12 @@ namespace Ekstrand.Windows.Forms
         public BorderTextAlignment TextAlignment
         {
             get { return m_TextAlignment; }
-            set { m_TextAlignment = value; _egroupBox.Invalidate(); }
+            set
+            {
+                m_TextAlignment = value;
+                _egroupBox.RenderingDirty = true;
+                _egroupBox.Invalidate();
+            }
         }
 
         /// <summary>
@@ -283,6 +323,7 @@ namespace Ekstrand.Windows.Forms
                     }
 
                     _widthHeader = value;
+                    _egroupBox.RenderingDirty = true;
                     _egroupBox.Invalidate();
                 }
             }
@@ -312,6 +353,7 @@ namespace Ekstrand.Windows.Forms
                     }
                 }
                 _image = value;
+                _egroupBox.RenderingDirty = true;
                 _egroupBox.Invalidate();
             }
         }
@@ -331,6 +373,7 @@ namespace Ekstrand.Windows.Forms
             set
             {
                 _imageSide = value;
+                _egroupBox.RenderingDirty = true;
                 _egroupBox.Invalidate();
             }
         }

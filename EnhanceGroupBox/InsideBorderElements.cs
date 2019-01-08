@@ -57,6 +57,7 @@ namespace Ekstrand.Windows.Forms
             set
             {
                 _backColorIBorder = value;
+                _egroupBox.RenderingDirty = true;
                 _egroupBox.Invalidate();
             }
         }
@@ -76,6 +77,7 @@ namespace Ekstrand.Windows.Forms
             set
             {
                 _gradientEndColorIBorder = value;
+                _egroupBox.RenderingDirty = true;
                 _egroupBox.Invalidate();
             }
         }
@@ -95,6 +97,7 @@ namespace Ekstrand.Windows.Forms
             set
             {
                 _BoxGradientModeIBorder = value;
+                _egroupBox.RenderingDirty = true;
                 _egroupBox.Invalidate();
             }
         }
@@ -114,6 +117,7 @@ namespace Ekstrand.Windows.Forms
             set
             {
                 _gradientStartColorIBorder = value;
+                _egroupBox.RenderingDirty = true;
                 _egroupBox.Invalidate();
             }
         }
@@ -133,6 +137,7 @@ namespace Ekstrand.Windows.Forms
             set
             {
                 _image = value;
+                _egroupBox.RenderingDirty = true;
                 _egroupBox.Invalidate();
             }
         }
@@ -152,6 +157,7 @@ namespace Ekstrand.Windows.Forms
             set
             {
                 _imageLayout = value;
+                _egroupBox.RenderingDirty = true;
                 _egroupBox.Invalidate();
             }
         }

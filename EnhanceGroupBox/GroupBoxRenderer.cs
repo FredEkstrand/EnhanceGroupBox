@@ -23,6 +23,8 @@ namespace Ekstrand.Windows.Forms
         private static LinearGradientBrush _gradientBrush = null;
         private static Pen _Pen = null;
         private static bool _renderMatchingApplicationState = false;
+        private static Bitmap _bitmap;
+        private static Graphics _graphicsObj;
 
         #endregion Fields
 
@@ -69,11 +71,31 @@ namespace Ekstrand.Windows.Forms
         /// <param name="flags">A bitwise combination of the TextFormatFlags values.</param>
         /// <param name="state">One of the EnhanceGroupBoxState values that specifies the visual state of the group box.</param>
         public static void DrawEnhanceGroupBox(GroupBox ecb, Graphics g, Rectangle bounds, string text, Font font, Color textColor, TextFormatFlags flags, EnhanceGroupBoxState state)
-        {
-            _eGroupBox = ecb;
-            _clientRectangle = bounds;
+        {            
+            _eGroupBox = ecb;            
+            _clientRectangle = bounds;            
+
+            // check if dirty bit is flipped if not return previously drawn image.
+            if (_eGroupBox.RenderingDirty == false)
+            {
+                //_bitmap = new Bitmap(_clientRectangle.Width, _clientRectangle.Height, PixelFormat.Format24bppRgb);
+                Graphics.FromImage(_bitmap);
+                g.DrawImage(_bitmap, 0, 0, _bitmap.Width, _bitmap.Height);
+                _graphicsObj.Dispose();
+                return;
+            }
+                       
+            _bitmap = new Bitmap(_clientRectangle.Width, _clientRectangle.Height, PixelFormat.Format32bppArgb);
+            _graphicsObj = Graphics.FromImage(_bitmap);
+            _graphicsObj.Clear(Color.Transparent);
+            
             DrawBorder(g, bounds, font);
             DrawText(g, bounds, text, font, textColor, flags, state);
+
+            g.DrawImage(_bitmap, 0, 0, _bitmap.Width, _bitmap.Height);
+            _graphicsObj.Dispose();
+
+            _eGroupBox.RenderingDirty = false;
         }
 
 
@@ -167,7 +189,7 @@ namespace Ekstrand.Windows.Forms
                         transform.Translate(scrollOffset.X, scrollOffset.Y);
                         textureBrush.Transform = transform;
                     }
-                    g.FillRectangle(textureBrush, clipRect);
+                    _graphicsObj.FillRectangle(textureBrush, clipRect);
                 }
             }
 
@@ -195,7 +217,7 @@ namespace Ekstrand.Windows.Forms
                 using (SolidBrush brush = new SolidBrush(backColor))
                 {
                     //g.FillRectangle(brush, clipRect);
-                    g.FillRoundedRectangle(brush, clipRect, radius);
+                    _graphicsObj.FillRoundedRectangle(brush, clipRect, radius);
                 }
 
                 if (!clipRect.Contains(imageRectangle))
@@ -203,7 +225,7 @@ namespace Ekstrand.Windows.Forms
                     if (backgroundImageLayout == ImageLayout.Stretch || backgroundImageLayout == ImageLayout.Zoom)
                     {
                         imageRectangle.Intersect(clipRect);
-                        g.DrawImage(backgroundImage, imageRectangle);
+                        _graphicsObj.DrawImage(backgroundImage, imageRectangle);
                     }
                     else if (backgroundImageLayout == ImageLayout.None)
                     {
@@ -211,7 +233,7 @@ namespace Ekstrand.Windows.Forms
                         Rectangle imageRect = imageRectangle;
                         imageRect.Intersect(clipRect);
                         Rectangle partOfImageToDraw = new Rectangle(Point.Empty, imageRect.Size);
-                        g.DrawImage(backgroundImage, imageRect, partOfImageToDraw.X, partOfImageToDraw.Y, partOfImageToDraw.Width,
+                        _graphicsObj.DrawImage(backgroundImage, imageRect, partOfImageToDraw.X, partOfImageToDraw.Y, partOfImageToDraw.Width,
                             partOfImageToDraw.Height, GraphicsUnit.Pixel);
                     }
                     else
@@ -221,7 +243,7 @@ namespace Ekstrand.Windows.Forms
                         Rectangle partOfImageToDraw = new Rectangle(new Point(imageRect.X - imageRectangle.X, imageRect.Y - imageRectangle.Y)
                                     , imageRect.Size);
 
-                        g.DrawImage(backgroundImage, imageRect, partOfImageToDraw.X, partOfImageToDraw.Y, partOfImageToDraw.Width,
+                        _graphicsObj.DrawImage(backgroundImage, imageRect, partOfImageToDraw.X, partOfImageToDraw.Y, partOfImageToDraw.Width,
                             partOfImageToDraw.Height, GraphicsUnit.Pixel);
                     }
                 }
@@ -229,7 +251,7 @@ namespace Ekstrand.Windows.Forms
                 {
                     ImageAttributes imageAttrib = new ImageAttributes();
                     imageAttrib.SetWrapMode(WrapMode.TileFlipXY);
-                    g.DrawImage(backgroundImage, imageRectangle, 0, 0, backgroundImage.Width, backgroundImage.Height, GraphicsUnit.Pixel, imageAttrib);
+                    _graphicsObj.DrawImage(backgroundImage, imageRectangle, 0, 0, backgroundImage.Width, backgroundImage.Height, GraphicsUnit.Pixel, imageAttrib);
                     imageAttrib.Dispose();
 
                 }
@@ -266,20 +288,20 @@ namespace Ekstrand.Windows.Forms
                             LinearGradientBrush gb = GradientBrush(border, _eGroupBox.InsideBorder.GradientStartColor,
                                 _eGroupBox.InsideBorder.GradientEndColor, _eGroupBox.InsideBorder.GradientMode);
 
-                            g.FillRoundedRectangle(gb, border, _eGroupBox.BorderItems.Radius, _eGroupBox.BorderItems.BorderCorners);
+                            _graphicsObj.FillRoundedRectangle(gb, border, _eGroupBox.BorderItems.Radius, _eGroupBox.BorderItems.BorderCorners);
                             gb.Dispose();
                         }
 
                         if (_eGroupBox.InsideBorder.Image != null)
                         {
                             Point pt = new Point(tr.X, tr.Y);
-                            DrawBackgroundImage(g, _eGroupBox.InsideBorder.Image, _eGroupBox.InsideBorder.BackColor, _eGroupBox.InsideBorder.ImageLayout, _clientRectangle, tr, _eGroupBox.BorderItems.Radius, pt, RightToLeft.No);
+                            DrawBackgroundImage(_graphicsObj, _eGroupBox.InsideBorder.Image, _eGroupBox.InsideBorder.BackColor, _eGroupBox.InsideBorder.ImageLayout, _clientRectangle, tr, _eGroupBox.BorderItems.Radius, pt, RightToLeft.No);
                         }
 
                         Pen p = PenBorder(_eGroupBox.BorderItems.BorderColor, _eGroupBox.BorderItems.Width, _eGroupBox.BorderItems.DashCap,
                             _eGroupBox.BorderItems.DashStyle, _eGroupBox.BorderItems.DashOffset, _eGroupBox.BorderItems.DashPattern);
 
-                        g.DrawRoundedRectangle(p, border, _eGroupBox.BorderItems.Radius, _eGroupBox.BorderItems.BorderCorners);
+                        _graphicsObj.DrawRoundedRectangle(p, border, _eGroupBox.BorderItems.Radius, _eGroupBox.BorderItems.BorderCorners);
                         p.Dispose();
                     }
                     break;
@@ -290,7 +312,7 @@ namespace Ekstrand.Windows.Forms
                             LinearGradientBrush gb = GradientBrush(border, _eGroupBox.InsideBorder.GradientStartColor,
                                 _eGroupBox.InsideBorder.GradientEndColor, _eGroupBox.InsideBorder.GradientMode);
 
-                            g.FillRoundedRectangle(gb, border, _eGroupBox.BorderItems.Radius, _eGroupBox.BorderItems.BorderCorners);
+                            _graphicsObj.FillRoundedRectangle(gb, border, _eGroupBox.BorderItems.Radius, _eGroupBox.BorderItems.BorderCorners);
                             gb.Dispose();
                         }
 
@@ -299,20 +321,20 @@ namespace Ekstrand.Windows.Forms
                             LinearGradientBrush gb = GradientBrush(border, _eGroupBox.InsideBorder.BackColor,
                                 _eGroupBox.InsideBorder.BackColor, EnhanceGroupBoxGradientMode.Horizontal);
 
-                            g.FillRoundedRectangle(gb, border, _eGroupBox.BorderItems.Radius, _eGroupBox.BorderItems.BorderCorners);
+                            _graphicsObj.FillRoundedRectangle(gb, border, _eGroupBox.BorderItems.Radius, _eGroupBox.BorderItems.BorderCorners);
                             gb.Dispose();
                         }
 
                         if (_eGroupBox.InsideBorder.Image != null)
                         {
                             Point pt = new Point(tr.X, tr.Y);
-                            DrawBackgroundImage(g, _eGroupBox.InsideBorder.Image, _eGroupBox.InsideBorder.BackColor, _eGroupBox.InsideBorder.ImageLayout, _clientRectangle, tr, _eGroupBox.BorderItems.Radius, pt, RightToLeft.No);
+                            DrawBackgroundImage(_graphicsObj, _eGroupBox.InsideBorder.Image, _eGroupBox.InsideBorder.BackColor, _eGroupBox.InsideBorder.ImageLayout, _clientRectangle, tr, _eGroupBox.BorderItems.Radius, pt, RightToLeft.No);
                         }
 
                         Pen p = PenBorder(_eGroupBox.BorderItems.BorderColor, _eGroupBox.BorderItems.Width, _eGroupBox.BorderItems.DashCap,
                             _eGroupBox.BorderItems.DashStyle, _eGroupBox.BorderItems.DashOffset, _eGroupBox.BorderItems.DashPattern);
 
-                        g.DrawRoundedRectangle(p, border, _eGroupBox.BorderItems.Radius, _eGroupBox.BorderItems.BorderCorners);
+                        _graphicsObj.DrawRoundedRectangle(p, border, _eGroupBox.BorderItems.Radius, _eGroupBox.BorderItems.BorderCorners);
                         p.Dispose();
                     }
                     break;
@@ -323,7 +345,7 @@ namespace Ekstrand.Windows.Forms
                             LinearGradientBrush gb = GradientBrush(_clientRectangle, _eGroupBox.InsideBorder.GradientStartColor,
                                 _eGroupBox.InsideBorder.GradientEndColor, _eGroupBox.InsideBorder.GradientMode);
 
-                            g.FillRectangle(gb, _clientRectangle);
+                            _graphicsObj.FillRectangle(gb, _clientRectangle);
                             gb.Dispose();
                         }
 
@@ -333,24 +355,24 @@ namespace Ekstrand.Windows.Forms
                         if (GetTextSide() == TextSide.Top)
                         {
 
-                            g.DrawLine(p, border.X + textOffset, border.Y, border.Width - textOffset + 2, border.Y);
+                            _graphicsObj.DrawLine(p, border.X + textOffset, border.Y, border.Width - textOffset + 2, border.Y);
                             p.Dispose();
 
                             if (_eGroupBox.InsideBorder.Image != null)
                             {
                                 Point pt = new Point(tr.X, tr.Y);
-                                DrawBackgroundImage(g, _eGroupBox.InsideBorder.Image, _eGroupBox.InsideBorder.BackColor, _eGroupBox.InsideBorder.ImageLayout, _clientRectangle, tr, _eGroupBox.BorderItems.Radius, pt, RightToLeft.No);
+                                DrawBackgroundImage(_graphicsObj, _eGroupBox.InsideBorder.Image, _eGroupBox.InsideBorder.BackColor, _eGroupBox.InsideBorder.ImageLayout, _clientRectangle, tr, _eGroupBox.BorderItems.Radius, pt, RightToLeft.No);
                             }
                         }
                         else
                         {
-                            g.DrawLine(p, border.X + textOffset, border.Height + (font.Height / 2), border.Width - textOffset + 2, border.Height + (font.Height / 2));
+                            _graphicsObj.DrawLine(p, border.X + textOffset, border.Height + (font.Height / 2), border.Width - textOffset + 2, border.Height + (font.Height / 2));
                             p.Dispose();
 
                             if (_eGroupBox.InsideBorder.Image != null)
                             {
                                 Point pt = new Point(tr.X, tr.Y);
-                                DrawBackgroundImage(g, _eGroupBox.InsideBorder.Image, _eGroupBox.InsideBorder.BackColor, _eGroupBox.InsideBorder.ImageLayout, _clientRectangle, tr, _eGroupBox.BorderItems.Radius, pt, RightToLeft.No);
+                                DrawBackgroundImage(_graphicsObj, _eGroupBox.InsideBorder.Image, _eGroupBox.InsideBorder.BackColor, _eGroupBox.InsideBorder.ImageLayout, _clientRectangle, tr, _eGroupBox.BorderItems.Radius, pt, RightToLeft.No);
                             }
                         }
 
@@ -375,7 +397,7 @@ namespace Ekstrand.Windows.Forms
                             LinearGradientBrush gb = GradientBrush(body, _eGroupBox.InsideBorder.GradientStartColor,
                                 _eGroupBox.InsideBorder.GradientEndColor, _eGroupBox.InsideBorder.GradientMode);
 
-                            g.FillRectangle(gb, body);
+                            _graphicsObj.FillRectangle(gb, body);
                             gb.Dispose();
                         }
                     }
@@ -383,52 +405,52 @@ namespace Ekstrand.Windows.Forms
             }
         }
 
-        private static void DrawHeaderImage(Graphics g, Rectangle r)
+        private static void DrawHeaderImage(Graphics g, RectangleF r)
         {
             if (_eGroupBox.Header.Image != null)
             {
-                Rectangle ir = new Rectangle(0, 0, _eGroupBox.Header.Image.Width, _eGroupBox.Header.Image.Height);
+                RectangleF ir = new Rectangle(0, 0, _eGroupBox.Header.Image.Width, _eGroupBox.Header.Image.Height);
 
                 if (_eGroupBox.Header.ImageSide == ImageSide.Left)
                 {
                     if (GetTextSide() == TextSide.Top)
                     {
-                        Point p = new Point(r.X - _imagePlaceHolder, r.Y / 2);
+                        PointF p = new PointF(r.X - _imagePlaceHolder, r.Y / 2);
                         ir.Location = p;
                         Brush ib = GradientBrush(ir, _eGroupBox.BackColor, _eGroupBox.BackColor, EnhanceGroupBoxGradientMode.Horizontal);
-                        g.FillRectangle(ib, ir);
+                        _graphicsObj.FillRectangle(ib, ir);
                         ib.Dispose();
-                        g.DrawImage(_eGroupBox.Header.Image, p);
+                        _graphicsObj.DrawImage(_eGroupBox.Header.Image, p);
                     }
                     else
                     {
-                        Point p = new Point(r.X - _imagePlaceHolder, r.Y - 4);
+                        PointF p = new PointF(r.X - _imagePlaceHolder, r.Y - 4);
                         ir.Location = p;
                         Brush ib = GradientBrush(ir, _eGroupBox.BackColor, _eGroupBox.BackColor, EnhanceGroupBoxGradientMode.Horizontal);
-                        g.FillRectangle(ib, ir);
+                        _graphicsObj.FillRectangle(ib, ir);
                         ib.Dispose();
-                        g.DrawImage(_eGroupBox.Header.Image, p);
+                        _graphicsObj.DrawImage(_eGroupBox.Header.Image, p);
                     }
                 }
                 else
                 {
                     if (GetTextSide() == TextSide.Top)
                     {
-                        Point p = new Point(r.X + r.Width + (_eGroupBox.Header.Width / 2), r.Y / 2);
+                        PointF p = new PointF(r.X + r.Width + (_eGroupBox.Header.Width / 2), r.Y / 2);
                         ir.Location = p;
                         Brush ib = GradientBrush(ir, _eGroupBox.BackColor, _eGroupBox.BackColor, EnhanceGroupBoxGradientMode.Horizontal);
-                        g.FillRectangle(ib, ir);
+                        _graphicsObj.FillRectangle(ib, ir);
                         ib.Dispose();
-                        g.DrawImage(_eGroupBox.Header.Image, p);
+                        _graphicsObj.DrawImage(_eGroupBox.Header.Image, p);
                     }
                     else
                     {
-                        Point p = new Point(r.X + r.Width + (_eGroupBox.Header.Width / 2), r.Y - 2);
+                        PointF p = new PointF(r.X + r.Width + (_eGroupBox.Header.Width / 2), r.Y - 2);
                         ir.Location = p;
                         Brush ib = GradientBrush(ir, _eGroupBox.BackColor, _eGroupBox.BackColor, EnhanceGroupBoxGradientMode.Horizontal);
-                        g.FillRectangle(ib, ir);
+                        _graphicsObj.FillRectangle(ib, ir);
                         ib.Dispose();
-                        g.DrawImage(_eGroupBox.Header.Image, p);
+                        _graphicsObj.DrawImage(_eGroupBox.Header.Image, p);
                     }
                 }
             }
@@ -437,23 +459,30 @@ namespace Ekstrand.Windows.Forms
 
         private static void DrawText(Graphics g, Rectangle bounds, string text, Font font, Color textColor, TextFormatFlags flags, EnhanceGroupBoxState state)
         {
-            Rectangle r = Textbounds(g, bounds, text, font, flags);  
+            RectangleF r = Textbounds(g, bounds, text, font, flags);  
             DrawTextBackground(g, r);
+
+            SolidBrush sb = new SolidBrush(_eGroupBox.ForeColor);
+            // StringFormat.GenericTypographic
+            StringFormat drawFormat = new StringFormat();
+            
 
             if (state == EnhanceGroupBoxState.Disabled)
             {
-                TextRenderer.DrawText(g, text, font, r, _eGroupBox.DisabledTextColor, flags);
-				DrawHeaderImage(g, r);                
+                _graphicsObj.DrawString(text,font,sb,r, drawFormat);
+                //TextRenderer.DrawText(_graphicsObj, text, font, r, _eGroupBox.DisabledTextColor, flags);
+				DrawHeaderImage(_graphicsObj, r);                
             }
             else
             {
-                TextRenderer.DrawText(g, text, font, r, textColor, flags);
-                DrawHeaderImage(g, r);                
+                _graphicsObj.DrawString(text, font, sb, r, drawFormat);
+                //TextRenderer.DrawText(_graphicsObj, text, font, r, textColor, flags);
+                DrawHeaderImage(_graphicsObj, r);                
             }
         }
-        private static void DrawTextBackground(Graphics g, Rectangle bounds)
+        private static void DrawTextBackground(Graphics g, RectangleF bounds)
         {
-			Rectangle r = bounds;
+			RectangleF r = bounds;
             r.Inflate(1, 1);
 			
             switch (_eGroupBox.GroupBoxStyles)
@@ -462,7 +491,7 @@ namespace Ekstrand.Windows.Forms
                     {                        
                         r.Width -= 2;
                         SolidBrush b = new SolidBrush(_eGroupBox.BackColor);
-                        g.FillRectangle(b, r);
+                        _graphicsObj.FillRectangle(b, r);
                         b.Dispose();
                     }
                     break;
@@ -480,11 +509,11 @@ namespace Ekstrand.Windows.Forms
 
                             if (_eGroupBox.Header.Radius != 0)
                             {
-                                g.FillRoundedRectangle(gb, rr, _eGroupBox.Header.Radius, _eGroupBox.Header.BorderCorners);
+                                _graphicsObj.FillRoundedRectangle(gb, rr, _eGroupBox.Header.Radius, _eGroupBox.Header.BorderCorners);
                             }
                             else
                             {
-                                g.FillRectangle(gb,rr.X+1,rr.Y, rr.Width-1, rr.Height);
+                                _graphicsObj.FillRectangle(gb,rr.X+1,rr.Y, rr.Width-1, rr.Height);
                             }
 
                             gb.Dispose();
@@ -492,7 +521,7 @@ namespace Ekstrand.Windows.Forms
                         else
                         {
                             SolidBrush b = new SolidBrush(_eGroupBox.Header.BackColor);
-                            g.FillRoundedRectangle(b, rr, _eGroupBox.Header.Radius);
+                            _graphicsObj.FillRoundedRectangle(b, rr, _eGroupBox.Header.Radius);
                             b.Dispose();
                         }
 
@@ -501,7 +530,7 @@ namespace Ekstrand.Windows.Forms
                             Pen p = PenBorder(_eGroupBox.Header.BorderColor, _eGroupBox.Header.Width, _eGroupBox.Header.DashCap,
                                 _eGroupBox.Header.DashStyle, _eGroupBox.Header.DashOffset, _eGroupBox.Header.DashPattern);
 
-                            g.DrawRoundedRectangle(p, rr, _eGroupBox.Header.Radius, _eGroupBox.Header.BorderCorners);
+                            _graphicsObj.DrawRoundedRectangle(p, rr, _eGroupBox.Header.Radius, _eGroupBox.Header.BorderCorners);
                             p.Dispose();
                         }
                     }
@@ -515,13 +544,13 @@ namespace Ekstrand.Windows.Forms
                             LinearGradientBrush gb = GradientBrush(r, _eGroupBox.Header.GradientStartColor,
                                 _eGroupBox.Header.GradientEndColor, _eGroupBox.Header.GradientMode);
 
-                            g.FillRoundedRectangle(gb, r, _eGroupBox.Header.Radius, _eGroupBox.Header.BorderCorners);
+                            _graphicsObj.FillRoundedRectangle(gb, r, _eGroupBox.Header.Radius, _eGroupBox.Header.BorderCorners);
                             gb.Dispose();
                         }
                         else
                         {
                             SolidBrush b = new SolidBrush(_eGroupBox.Header.BackColor);
-                            g.FillRoundedRectangle(b, r, _eGroupBox.Header.Radius);
+                            _graphicsObj.FillRoundedRectangle(b, r, _eGroupBox.Header.Radius);
                             b.Dispose();
                         }
 
@@ -530,7 +559,7 @@ namespace Ekstrand.Windows.Forms
                             Pen p = PenBorder(_eGroupBox.Header.BorderColor, _eGroupBox.Header.Width, _eGroupBox.Header.DashCap,
                                 _eGroupBox.Header.DashStyle, _eGroupBox.Header.DashOffset, _eGroupBox.Header.DashPattern);
 
-                            g.DrawRoundedRectangle(p, r, _eGroupBox.Header.Radius, _eGroupBox.Header.BorderCorners);
+                            _graphicsObj.DrawRoundedRectangle(p, r, _eGroupBox.Header.Radius, _eGroupBox.Header.BorderCorners);
                             p.Dispose();
                         }
                     }
@@ -555,18 +584,18 @@ namespace Ekstrand.Windows.Forms
 
                         if (GetTextSide() == TextSide.Top)
                         {
-                            g.FillRectangle(pp, border);
+                            _graphicsObj.FillRectangle(pp, border);
                             pp.Dispose();
 
-                            g.DrawLine(p, border.X, border.Height, border.Width, border.Height);
+                            _graphicsObj.DrawLine(p, border.X, border.Height, border.Width, border.Height);
                             p.Dispose();
                         }
                         else
                         {
-                            g.FillRectangle(pp, border);
+                            _graphicsObj.FillRectangle(pp, border);
                             pp.Dispose();
 
-                            g.DrawLine(p, 0, border.Y, _clientRectangle.Width, border.Y);
+                            _graphicsObj.DrawLine(p, 0, border.Y, _clientRectangle.Width, border.Y);
                             p.Dispose();
                         }
                     }
@@ -625,11 +654,12 @@ namespace Ekstrand.Windows.Forms
             return _Pen;
         }
 		
-        private static Rectangle Textbounds(Graphics g, Rectangle bounds, string text, Font font, TextFormatFlags textFlags)
+        private static RectangleF Textbounds(Graphics g, Rectangle bounds, string text, Font font, TextFormatFlags textFlags)
         {
-            Size measured = TextRenderer.MeasureText(g, text, font, new Size(Int32.MaxValue, Int32.MaxValue), textFlags);
-            Rectangle r = new Rectangle();
-            Point location = new Point(0,0);
+            SizeF measured = g.MeasureString(text,font);
+            //Size measured = TextRenderer.MeasureText(g, text, font, new Size(Int32.MaxValue, Int32.MaxValue), textFlags);
+            RectangleF r = new Rectangle();
+            PointF location = new Point(0,0);
 
             switch (_eGroupBox.Header.TextAlignment)
             {

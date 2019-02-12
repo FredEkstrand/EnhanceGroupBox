@@ -72,3 +72,5 @@ Sources for project feature ideas:
 **Rounded GroupBox by: Kevin Carbis**
 
 **Header-only GroupBox By: Matthew Adams**
+
+[![HitCount](http://hits.dwyl.io/fredekstrand/EnhanceGroupBox.svg)](http://hits.dwyl.io/fredekstrand/EnhanceGroupBox)

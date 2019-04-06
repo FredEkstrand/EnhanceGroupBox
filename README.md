@@ -68,8 +68,8 @@ This project is licensed under the MIT License - see the LICENSE.md file for det
 The project came about through the need in an application development to allow the user to easily and cleanly locate controls in defined sections. The Visual Studio standard GroupBox control is limited in setting its appearance to allow for an intuitive UI flow for the end user. These limitation lead to quick extension to the GroupBox which lead to even more further extensions of the control from project to project. This caused me to move from quick extensions to a more formal enhance GroupBox control. In the development of the enhance GroupBox control I had taken ideas from some other works and incorporated them to provide range of features divided into styles.<br/>
 
 ##### Sources for project feature ideas:
-**The Grouper** - A Custom Groupbox Control By: M@dHatter, 23 Jan 2006
-**Header-only GroupBox** By: Matthew Adams, 22 Sep 2001
-**RoundedGroupBox Winforms Rounded Group Box Control** By: Kevin Carbis
-**Extended Graphics** - An implementation of Rounded Rectangle in C# By: Arun Reginald Zaheeruddin
+**The Grouper** - A Custom Groupbox Control By: M@dHatter, 23 Jan 2006</br>
+**Header-only GroupBox** By: Matthew Adams, 22 Sep 2001</br>
+**RoundedGroupBox Winforms Rounded Group Box Control** By: Kevin Carbis</br>
+**Extended Graphics** - An implementation of Rounded Rectangle in C# By: Arun Reginald Zaheeruddin</br>
 

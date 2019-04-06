@@ -30,6 +30,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\GroupBox.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EnumExtensions">
@@ -61,9 +62,9 @@
     <Compile Include="GroupBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="GroupBoxRenderer.cs" />
     <Compile Include="Enumerations.cs" />
     <Compile Include="GraphicsExtension.cs" />
+    <Compile Include="GroupBoxRenderer.cs" />
     <Compile Include="HeaderElements.cs" />
     <Compile Include="HeaderElementsConverter.cs" />
     <Compile Include="InsideBorderElements.cs" />

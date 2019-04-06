@@ -103,7 +103,7 @@ namespace Ekstrand.Windows.Forms
     /// <summary>
     /// Specifies the group box rendering styles.
     /// </summary>
-    public enum GroupBoxStyles
+    public enum GroupBoxStyle
     {
         /// <summary>
         /// Specifies the standard style.

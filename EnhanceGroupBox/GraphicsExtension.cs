@@ -28,7 +28,7 @@ namespace Ekstrand.Drawing
             RectangleF rectangle = new RectangleF(x, y, width, height);
             GraphicsPath path = graphics.GenerateRoundedRectangle(rectangle, radius, filter);
             SmoothingMode old = graphics.SmoothingMode;
-            graphics.SmoothingMode = SmoothingMode.AntiAlias;
+            graphics.SmoothingMode = SmoothingMode.HighQuality;
             graphics.DrawPath(pen, path);
             graphics.SmoothingMode = old;
         }
@@ -481,10 +481,20 @@ namespace Ekstrand.Drawing
                     arc.Y = rectangle.Bottom - diameter;
                     path.AddArc(arc, 0, 180);
                 }
-                else path.AddEllipse(rectangle);
+                else
+                {
+                    path.AddEllipse(rectangle);
+                }
             }
-            catch { path.AddEllipse(rectangle); }
-            finally { path.CloseFigure(); }
+            catch
+            {
+                path.AddEllipse(rectangle);
+            }
+            finally
+            {
+                path.CloseFigure();
+            }
+
             return path;
         }
 
@@ -501,36 +511,54 @@ namespace Ekstrand.Drawing
             else
             {
                 if (radius >= (Math.Min(rectangle.Width, rectangle.Height)) / 2.0)
+                {
                     return graphics.GenerateCapsule(rectangle);
+                }
+
                 diameter = radius * 2.0F;
                 SizeF sizeF = new SizeF(diameter, diameter);
                 RectangleF arc = new RectangleF(rectangle.Location, sizeF);
+
                 if ((BorderCorners.TopLeft & filter) == BorderCorners.TopLeft)
+                {
                     path.AddArc(arc, 180, 90);
+                }
                 else
                 {
                     path.AddLine(arc.X, arc.Y + arc.Height, arc.X, arc.Y);
                     path.AddLine(arc.X, arc.Y, arc.X + arc.Width, arc.Y);
                 }
+
                 arc.X = rectangle.Right - diameter;
+
                 if ((BorderCorners.TopRight & filter) == BorderCorners.TopRight)
+                {
                     path.AddArc(arc, 270, 90);
+                }
                 else
                 {
                     path.AddLine(arc.X, arc.Y, arc.X + arc.Width, arc.Y);
                     path.AddLine(arc.X + arc.Width, arc.Y + arc.Height, arc.X + arc.Width, arc.Y);
                 }
+
                 arc.Y = rectangle.Bottom - diameter;
+
                 if ((BorderCorners.BottomRight & filter) == BorderCorners.BottomRight)
-                    path.AddArc(arc, 0, 90);
+                {
+                    path.AddArc(arc, 0.1f, 89.99f);
+                }
                 else
                 {
                     path.AddLine(arc.X + arc.Width, arc.Y, arc.X + arc.Width, arc.Y + arc.Height);
                     path.AddLine(arc.X, arc.Y + arc.Height, arc.X + arc.Width, arc.Y + arc.Height);
                 }
+
                 arc.X = rectangle.Left;
+
                 if ((BorderCorners.BottomLeft & filter) == BorderCorners.BottomLeft)
+                {
                     path.AddArc(arc, 90, 90);
+                }
                 else
                 {
                     path.AddLine(arc.X + arc.Width, arc.Y + arc.Height, arc.X, arc.Y + arc.Height);

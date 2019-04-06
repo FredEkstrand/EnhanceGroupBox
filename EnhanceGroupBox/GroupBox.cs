@@ -10,6 +10,7 @@ using System.Security.Permissions;
 using System.Diagnostics.CodeAnalysis;
 using Ekstrand.Drawing;
 using System.Web.UI.Design;
+using System.Windows.Forms.Layout;
 
 namespace Ekstrand.Windows.Forms
 {
@@ -24,7 +25,7 @@ namespace Ekstrand.Windows.Forms
     Description("Enhance GroupBox"),
     ToolboxItem(true),
     ToolboxBitmap(typeof(GroupBox), "Resources.GroupBox_16x"),
-    Designer("System.Windows.Forms.Design.ParentControlDesigner, System.Design", typeof(IDesigner))]  
+    Designer("System.Windows.Forms.Design.ParentControlDesigner, System.Design", typeof(IDesigner))]
     public class GroupBox : Control
     {
 
@@ -32,13 +33,14 @@ namespace Ekstrand.Windows.Forms
 
         private const int STATE2_USEPREFERREDSIZECACHE = 0x00000800;
         private BorderElements _borderElements;
-        private Rectangle _clientRectangle;
+        //private TextFormatFlags _textFlags = TextFormatFlags.Default | TextFormatFlags.TextBoxControl | TextFormatFlags.WordBreak | TextFormatFlags.PreserveGraphicsTranslateTransform | TextFormatFlags.PreserveGraphicsClipping;
+        private bool _dirty;
+
+        //private Rectangle _clientRectangle;
         private Color _disabledTextColor = SystemColors.GrayText;
-        private GroupBoxStyles _groupBoxStyles = GroupBoxStyles.Standard;
+        private GroupBoxStyle _groupBoxStyles = GroupBoxStyle.Standard;
         private HeaderElements _headerElements;
         private InsideBorderElements _insideBoarderElements;
-        private TextFormatFlags _textFlags = TextFormatFlags.Default | TextFormatFlags.TextBoxControl | TextFormatFlags.WordBreak | TextFormatFlags.PreserveGraphicsTranslateTransform | TextFormatFlags.PreserveGraphicsClipping;
-        private bool _dirty;
 
         #endregion Fields
 
@@ -51,7 +53,7 @@ namespace Ekstrand.Windows.Forms
         {
             SetStyle(ControlStyles.ContainerControl, true);
             SetStyle(ControlStyles.SupportsTransparentBackColor |
-                     ControlStyles.UserPaint | 
+                     ControlStyles.UserPaint |
                      ControlStyles.ResizeRedraw, true);
 
             SetStyle(ControlStyles.Selectable, false);
@@ -105,15 +107,14 @@ namespace Ekstrand.Windows.Forms
         /// </summary>
         [NotifyParentProperty(true)]
         [CategoryAttribute("Appearance")]
-        [Description("Properties for BorderItems apperance")]
+        [Description("Properties for Border Elements appearance")]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public BorderElements BorderItems
+        public BorderElements BorderElements
         {
             get { return _borderElements; }
             private set { _borderElements = value; }
         }
 
-        
 
         /// <summary>
         /// Gets or sets text disabled color
@@ -129,6 +130,22 @@ namespace Ekstrand.Windows.Forms
             {
                 _disabledTextColor = value;
                 _dirty = true;
+            }
+        }
+
+        /// <summary>
+        /// Gets the rectangle that represents the display area of the control.
+        /// </summary>
+        [
+         Browsable(false), EditorBrowsable(EditorBrowsableState.Advanced),
+         DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden),
+         Description("A Rectangle that represents the display area of the control.")
+         ]
+        public override Rectangle DisplayRectangle
+        {
+            get
+            {
+                return CalculateDisplayRectangle();
             }
         }
 
@@ -153,12 +170,12 @@ namespace Ekstrand.Windows.Forms
         /// Get or sets GroupBox Style used for rendering
         /// </summary>
         [Browsable(true)]
-        [DefaultValue(GroupBoxStyles.Standard)]
+        [DefaultValue(GroupBoxStyle.Standard)]
         [NotifyParentProperty(true)]
         [Category("Appearance")]
         [Description("Specifies the rendering style to use")]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
-        public GroupBoxStyles GroupBoxStyles
+        public GroupBoxStyle GroupBoxStyle
         {
             get { return _groupBoxStyles; }
             set
@@ -167,6 +184,7 @@ namespace Ekstrand.Windows.Forms
                 {
                     _groupBoxStyles = value;
                     _dirty = true;
+                    LayoutEngine.Layout(this, new LayoutEventArgs(this, "DisplayRectangle"));
                     Invalidate();
                 }
             }
@@ -177,12 +195,12 @@ namespace Ekstrand.Windows.Forms
         /// </summary>
         [NotifyParentProperty(true)]
         [CategoryAttribute("Appearance")]
-        [Description("Properties for header area apperance")]
+        [Description("Properties for header area appearance")]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public HeaderElements Header
+        public HeaderElements HeaderElements
         {
             get { return _headerElements; }
-            set { _headerElements = value;}
+            set { _headerElements = value; }
 
         }
 
@@ -191,12 +209,27 @@ namespace Ekstrand.Windows.Forms
         /// </summary>
         [NotifyParentProperty(true)]
         [CategoryAttribute("Appearance")]
-        [Description("Properties for InsideBorder area apperance")]
+        [Description("Properties for InsideBorder area appearance")]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public InsideBorderElements InsideBorder
+        public InsideBorderElements InsideBorderElements
         {
             get { return _insideBoarderElements; }
-            private set {  _insideBoarderElements = value; }
+            private set { _insideBoarderElements = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether control's elements are aligned to support locales using right-to-left fonts.
+        /// </summary>
+        public override RightToLeft RightToLeft
+        {
+            get { return base.RightToLeft; }
+            set
+            {
+                if (base.RightToLeft != RightToLeft.No)
+                {
+                    base.RightToLeft = RightToLeft.No;
+                }
+            }
         }
 
         /// <summary>
@@ -227,9 +260,29 @@ namespace Ekstrand.Windows.Forms
             }
             set
             {
+                bool empty = base.Text.Equals(string.Empty);
                 base.Text = value;
                 _dirty = true;
+                if (empty && !base.Text.Equals(string.Empty))
+                {
+                    UpdateLayout();
+                }
+                if (!empty && base.Text.Equals(string.Empty))
+                {
+                    UpdateLayout();
+                }
                 Invalidate();
+            }
+        }
+        /// <summary>
+        /// Gets or sets the rendering dirty boolean value to invalidate internal drawing buffering.
+        /// </summary>
+        internal bool RenderingDirty
+        {
+            get { return _dirty; }
+            set
+            {
+                _dirty = true;
             }
         }
 
@@ -270,18 +323,6 @@ namespace Ekstrand.Windows.Forms
             }
         }
 
-        /// <summary>
-        /// Gets or sets the rendering dirty bool value to invalidate internal drawing buffering.
-        /// </summary>
-        internal bool RenderingDirty
-        {
-            get { return _dirty; }
-            set
-            {
-                _dirty = true;
-            }
-        }
-
         #endregion Properties
 
         #region Methods
@@ -289,12 +330,16 @@ namespace Ekstrand.Windows.Forms
         /// <summary>
         ///  Returns a String containing the name of the Component, if any.This method should not be overridden.
         /// </summary>
-        /// <returns>Return the text repersentation of the control</returns>
+        /// <returns>Return the text representation of the control</returns>
         public override string ToString()
         {
 
             string s = base.ToString();
             return s + ", Text: " + Text;
+        }
+        internal void RequestLayout()
+        {
+            LayoutEngine.Layout(this, new LayoutEventArgs(this, "DisplayRectangle"));
         }
 
         /// <summary>
@@ -322,25 +367,26 @@ namespace Ekstrand.Windows.Forms
         /// <param name="e">A PaintEventArgs that contains the event data.</param>
         protected override void OnPaint(PaintEventArgs e)
         {
-
             SmoothingMode cachSmothingMode = e.Graphics.SmoothingMode;
-            e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+            e.Graphics.SmoothingMode = SmoothingMode.HighQuality;
+            e.Graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
             ControlShape(e);
 
             EnhanceGroupBoxState state = Enabled ? EnhanceGroupBoxState.Normal : EnhanceGroupBoxState.Disabled;
-            GroupBoxRenderer.DrawEnhanceGroupBox(this, e.Graphics, ClientRectangle, Text, Font, ForeColor, _textFlags, state);
+            //GroupBoxRenderer.DrawEnhanceGroupBox(this, e.Graphics, ClientRectangle, Text, Font, ForeColor, _textFlags, state);
+            GroupBoxRenderer.DrawEnhanceGroupBox(this, e.Graphics, ClientRectangle, state);
 
             e.Graphics.SmoothingMode = cachSmothingMode;
 
-            // pass to base last
-            base.OnPaint(e); // raise paint event
+            // pass to base last to raise paint event
+            base.OnPaint(e);
         }
 
         /// <summary>
         /// Processes a mnemonic character.
         /// </summary>
         /// <param name="charCode">The character to process.</param>
-        /// <returns></returns>
+        /// <returns>true if the character was processed as a mnemonic by the control; otherwise, false.</returns>
         [UIPermission(SecurityAction.LinkDemand, Window = UIPermissionWindow.AllWindows)]
         protected override bool ProcessMnemonic(char charCode)
         {
@@ -352,16 +398,166 @@ namespace Ekstrand.Windows.Forms
             return false;
         }
 
+        private Rectangle CalculateDisplayRectangle()
+        {
+            const int borderPadding = 3;
+            int bWidth = BorderElements.Width;
+            int hWidth = Text == string.Empty ? 0: HeaderElements.Width;
+            int fHeight = Text == string.Empty ? 0: Font.Height;
+            Rectangle r = new Rectangle();
+            TextSide tSide = GetTextSide();
+            
+            switch(tSide)
+            {
+                case TextSide.Top:
+                    {
+                        switch (GroupBoxStyle)
+                        {
+                            case GroupBoxStyle.Standard:
+                                {
+                                    r.X = bWidth + borderPadding + 1;
+                                    r.Y = fHeight + borderPadding * 2 + RadiusSpacing() - 2;
+                                    r.Height = ClientSize.Height - r.Y - r.X - RadiusSpacing();
+                                    r.Width = ClientSize.Width - r.X * 2;
+                                }
+                                break;
+                            case GroupBoxStyle.Enhance:
+                                {
+                                    r.X = bWidth + borderPadding + 1;
+                                    r.Y = fHeight + hWidth * 2 + borderPadding * 2 + RadiusSpacing() - 2;
+                                    r.Height = ClientSize.Height - r.Y - r.X - RadiusSpacing();
+                                    r.Width = ClientSize.Width - r.X * 2;
+                                }
+                                break;
+                            case GroupBoxStyle.Excitative:
+                                {
+                                    r.X = borderPadding;
+                                    r.Y = fHeight + hWidth * 2 + borderPadding + 3;
+                                    r.Height = ClientSize.Height - r.Y - r.X;
+                                    r.Width = ClientSize.Width - r.X * 2;
+                                }
+                                break;
+                            case GroupBoxStyle.Header:
+                                {
+                                    r.X = borderPadding;
+                                    r.Y = fHeight + hWidth * 2 + borderPadding + 3;
+                                    r.Height = ClientSize.Height - r.Y - r.X;
+                                    r.Width = ClientSize.Width - r.X * 2;
+                                }
+                                break;
+                        }
+                        
+                    }
+                    break;
+                case TextSide.Bottom:
+                    {
+                        switch (GroupBoxStyle)
+                        {
+                            case GroupBoxStyle.Standard:
+                                {
+                                    r.X = bWidth + borderPadding + 1;
+                                    r.Y = bWidth + borderPadding + RadiusSpacing();
+                                    r.Height = ClientSize.Height - r.Y - fHeight - hWidth - RadiusSpacing() - 2;
+                                    r.Width = ClientSize.Width - r.X * 2;
+                                }
+                                break;
+                            case GroupBoxStyle.Enhance:
+                                {
+                                    r.X = bWidth + borderPadding + 1;
+                                    r.Y = bWidth + borderPadding * 2 + RadiusSpacing();
+                                    r.Height = ClientSize.Height - r.Y - fHeight - hWidth * 2 - RadiusSpacing() - 2;
+                                    r.Width = ClientSize.Width - r.X * 2;
+                                }
+                                break;
+                            case GroupBoxStyle.Excitative:
+                                {
+                                    r.X = borderPadding;
+                                    r.Y = fHeight + hWidth * 2 + borderPadding + 3;
+                                    r.Height = ClientSize.Height - r.Y - r.X;
+                                    r.Width = ClientSize.Width - r.X * 2;
+                                }
+                                break;
+                            case GroupBoxStyle.Header:
+                                {
+                                    r.X = borderPadding;
+                                    r.Y = fHeight + hWidth * 2 + borderPadding + 3;
+                                    r.Height = ClientSize.Height - r.Y - r.X;
+                                    r.Width = ClientSize.Width - r.X * 2;
+                                }
+                                break;
+                        }
+                    }
+                    break;
+            }
+
+            return r;
+        }
+
         private void ControlShape(PaintEventArgs e)
         {
             GraphicsPath controlEdge = new GraphicsPath();
-            Rectangle newRectangle = ClientRectangle;
-            controlEdge.AddPath(e.Graphics.RoundedRectanglePath(newRectangle, BorderItems.Radius, BorderItems.BorderCorners), true);
-
+            RectangleF rec = ClientRectangle;
+            controlEdge.AddPath(e.Graphics.RoundedRectanglePath(rec, BorderElements.Radius, BorderElements.BorderCorners), true);
             Region = new Region(controlEdge);
-            _clientRectangle = Rectangle.Inflate(ClientRectangle, -4, -4);
+            Region.Dispose();
+        }
 
+        private TextSide GetTextSide()
+        {
+            switch (HeaderElements.TextAlignment)
+            {
+                case BorderTextAlignment.TopCenter:
+                case BorderTextAlignment.TopLeft:
+                case BorderTextAlignment.TopRight:
+                return TextSide.Top;
 
+                case BorderTextAlignment.BottomCenter:
+                case BorderTextAlignment.BottomLeft:
+                case BorderTextAlignment.BottomRight:
+                return TextSide.Bottom;
+            }
+
+            return TextSide.Top;
+        }
+
+        private int RadiusSpacing()
+        {
+            if (BorderElements.BorderCorners == BorderCorners.None)
+            {
+                return 0;
+            }
+
+            switch (BorderElements.Radius)
+            {
+                case 0:
+                    return 0;
+
+                case 1:
+                    return 1;
+
+                case 2:
+                case 3:
+                    return 2;
+
+                case 4:
+                case 5:
+                    return 3;
+
+                case 6:
+                case 7:
+                    return 4;
+
+                case 8:
+                case 9:
+                case 10:
+                    return 5;
+            }
+
+            return 0;
+        }
+        private void UpdateLayout()
+        {
+            LayoutEngine.Layout(this, new LayoutEventArgs(this, "DisplayRectangle"));
         }
 
         #endregion Methods
@@ -625,6 +821,12 @@ namespace Ekstrand.Windows.Forms
 
             #endregion Properties
 
+        }
+
+        private enum TextSide
+        {
+            Top,
+            Bottom
         }
 
         #endregion Structs + Classes + Enums

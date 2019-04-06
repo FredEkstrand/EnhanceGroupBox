@@ -29,9 +29,6 @@ namespace Ekstrand.Windows.Forms
         private Color _gradientEndColorHeader = Color.Empty;
         private Color _gradientStartColorHeader = Color.Empty;       
         private BorderTextAlignment m_TextAlignment = BorderTextAlignment.TopLeft;
-        private Image _image = null;
-        private int _imageSizeLimit = 16;
-        private ImageSide _imageSide = ImageSide.Left;
 
         #endregion Fields
 
@@ -94,7 +91,7 @@ namespace Ekstrand.Windows.Forms
         [NotifyParentProperty(true)]
         [DefaultValue("None")]
         [Category("Appearance Header Area")]
-        [Description("Use to defined which cornner to be rounded")]
+        [Description("Use to defined which corner to be rounded")]
         [EditorAttribute(typeof(BorderCornerEditor), typeof(UITypeEditor))]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public BorderCorners BorderCorners
@@ -243,13 +240,13 @@ namespace Ekstrand.Windows.Forms
         }
 
         /// <summary>
-        /// Gets or sets the radius for each cornner.
+        /// Gets or sets the radius for each corner.
         /// </summary>
         [Browsable(true)]
         [DefaultValue(0)]
         [NotifyParentProperty(true)]
         [Category("Appearance Header Area")]
-        [Description("Specifies the radius for each cornner")]
+        [Description("Specifies the radius for each corner")]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int Radius
         {
@@ -292,6 +289,7 @@ namespace Ekstrand.Windows.Forms
             {
                 m_TextAlignment = value;
                 _egroupBox.RenderingDirty = true;
+                _egroupBox.RequestLayout();
                 _egroupBox.Invalidate();
             }
         }
@@ -324,60 +322,11 @@ namespace Ekstrand.Windows.Forms
 
                     _widthHeader = value;
                     _egroupBox.RenderingDirty = true;
+                    _egroupBox.RequestLayout();
                     _egroupBox.Invalidate();
                 }
             }
         }
-
-        
-        /// <summary>
-        /// Gets or sets the image inside the header area.
-        /// </summary>
-        /// <remarks>The image is restricted to a maximum size of 16x16 pixels.</remarks>
-        [Browsable(true)]
-        [NotifyParentProperty(true)]
-        [Category("Appearance Header Area")]
-        [Description("Specifies the image to be displayed by the header text")]
-        [DefaultValue(null)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
-        public Image Image
-        {
-            get { return _image; }
-            set
-            {
-                if (value != null)
-                {
-                    if (value.Size.Height > _imageSizeLimit || value.Size.Width > _imageSizeLimit)
-                    {
-                        throw new Exception("Image size too big.");
-                    }
-                }
-                _image = value;
-                _egroupBox.RenderingDirty = true;
-                _egroupBox.Invalidate();
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the placement of the image in relation to the header text.
-        /// </summary>
-        [Browsable(true)]
-        [NotifyParentProperty(true)]
-        [Category("Appearance Header Area")]
-        [Description("Specifies which side to render the image to the header text")]
-        [DefaultValue(ImageSide.Left)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
-        public ImageSide ImageSide
-        {
-            get { return _imageSide; }
-            set
-            {
-                _imageSide = value;
-                _egroupBox.RenderingDirty = true;
-                _egroupBox.Invalidate();
-            }
-        }
-
 
         #endregion Properties
     }

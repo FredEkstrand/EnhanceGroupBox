@@ -18,11 +18,11 @@ namespace Ekstrand.Windows.Forms
     {
         #region Fields
 
-        private Color _backColorIBorder = SystemColors.Control;
-        private EnhanceGroupBoxGradientMode _BoxGradientModeIBorder = EnhanceGroupBoxGradientMode.None;
+        private Color _backColor = SystemColors.Control;
+        private EnhanceGroupBoxGradientMode _BoxGradientMode = EnhanceGroupBoxGradientMode.None;
         private GroupBox _egroupBox;
-        private Color _gradientEndColorIBorder;
-        private Color _gradientStartColorIBorder = Color.Empty;
+        private Color _gradientEndColor;
+        private Color _gradientStartColor = Color.Empty;
         private Image _image = null;
         private ImageLayout _imageLayout = ImageLayout.Tile;
 
@@ -33,9 +33,10 @@ namespace Ekstrand.Windows.Forms
         /// Initializes a new instance of the HeaderElements class.
         /// </summary>
         /// <param name="egb">GroupBox instance</param>
-        public InsideBorderElements(GroupBox egb) //EnhanceGroupBox egb
+        public InsideBorderElements(GroupBox egb) 
         {
             _egroupBox = egb;
+            _backColor = _egroupBox.BackColor;
         }
 
         #endregion Constructors
@@ -53,10 +54,10 @@ namespace Ekstrand.Windows.Forms
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Color BackColor
         {
-            get { return _backColorIBorder; }
+            get { return _backColor; }
             set
             {
-                _backColorIBorder = value;
+                _backColor = value;
                 _egroupBox.RenderingDirty = true;
                 _egroupBox.Invalidate();
             }
@@ -73,10 +74,10 @@ namespace Ekstrand.Windows.Forms
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Color GradientEndColor
         {
-            get { return _gradientEndColorIBorder; }
+            get { return _gradientEndColor; }
             set
             {
-                _gradientEndColorIBorder = value;
+                _gradientEndColor = value;
                 _egroupBox.RenderingDirty = true;
                 _egroupBox.Invalidate();
             }
@@ -93,10 +94,10 @@ namespace Ekstrand.Windows.Forms
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public EnhanceGroupBoxGradientMode GradientMode
         {
-            get { return _BoxGradientModeIBorder; }
+            get { return _BoxGradientMode; }
             set
             {
-                _BoxGradientModeIBorder = value;
+                _BoxGradientMode = value;
                 _egroupBox.RenderingDirty = true;
                 _egroupBox.Invalidate();
             }
@@ -113,10 +114,10 @@ namespace Ekstrand.Windows.Forms
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Color GradientStartColor
         {
-            get { return _gradientStartColorIBorder; }
+            get { return _gradientStartColor; }
             set
             {
-                _gradientStartColorIBorder = value;
+                _gradientStartColor = value;
                 _egroupBox.RenderingDirty = true;
                 _egroupBox.Invalidate();
             }

@@ -3,12 +3,12 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Design;
 using System.Drawing.Drawing2D;
-
+using System.Windows.Forms;
 
 namespace Ekstrand.Windows.Forms
 {
     /// <summary>
-    /// Properties grouped for border apperance
+    /// Properties grouped for border appearance
     /// </summary>
     [TypeConverter(typeof(BorderElementsConverter))]
     [Serializable]
@@ -82,13 +82,13 @@ namespace Ekstrand.Windows.Forms
         }
 
         /// <summary>
-        /// Corners to have a rounded apperance.
+        /// Corners to have a rounded appearance.
         /// </summary>
         [Browsable(true)]
         [NotifyParentProperty(true)]
         [DefaultValue("None")]
         [Category("Appearance Border")]
-        [Description("Use to defined which cornner to be rounded")]
+        [Description("Use to defined which corner to be rounded")]
         [EditorAttribute(typeof(BorderCornerEditor), typeof(UITypeEditor))]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public BorderCorners BorderCorners
@@ -164,7 +164,7 @@ namespace Ekstrand.Windows.Forms
         [DefaultValue(DashStyle.Solid)]
         [NotifyParentProperty(true)]
         [Category("Appearance Border")]
-        [Description("Specifies the style of dashed lines drawn for borader")]
+        [Description("Specifies the style of dashed lines drawn for border")]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DashStyle DashStyle
         {
@@ -178,14 +178,14 @@ namespace Ekstrand.Windows.Forms
         }
 
         /// <summary>
-        /// Gets or sets the radius for each cornner.
+        /// Gets or sets the radius for each corner.
         /// </summary>
         /// <remarks>Radius value is restricted to the range of 0 to 10.</remarks>
         [Browsable(true)]
         [DefaultValue(0)]
         [NotifyParentProperty(true)]
         [Category("Appearance Border")]
-        [Description("Specifies the radius for each cornner")]
+        [Description("Specifies the radius for each corner")]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int Radius
         {
@@ -206,9 +206,10 @@ namespace Ekstrand.Windows.Forms
 
                     _radiusBorder = value;
                     _egroupBox.RenderingDirty = true;
+                    _egroupBox.RequestLayout();
                     _egroupBox.Invalidate();
                 }
-
+                
             }
         }
 
@@ -240,6 +241,7 @@ namespace Ekstrand.Windows.Forms
 
                     _widthBorder = value;
                     _egroupBox.RenderingDirty = true;
+                    _egroupBox.RequestLayout();
                     _egroupBox.Invalidate();
                 }
             }

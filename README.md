@@ -75,5 +75,5 @@ formal enhanced GroupBox control which included ideas from some other works to p
 **Header-only GroupBox** By: Matthew Adams, 22 Sep 2001</br>
 **RoundedGroupBox Winforms Rounded Group Box Control** By: Kevin Carbis<br/>
 #### Source Code Used
-**Extended Graphics** - An implementation of Rounded Rectangle in C# By: Arun Reginald Zaheeruddin<br/>
+**Extended Graphics** - Rounded rectangles, Font metrics and more for C# 3.0 By: Arun Reginald Zaheeruddin<br/>
 

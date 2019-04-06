@@ -1,4 +1,16 @@
-﻿using System;
+﻿/*
+ * Source code based on Extended Graphics - Rounded rectangles, Font metrics and more for C# 3.0
+ *  By: Arun Reginald Zaheeruddin 27 Jul 2009
+ *  
+ *  Enhancements and history
+ *  -------------------------------------
+ *  2014 Added flags enum for corners
+ *  2018 Added RoundedRectanglePath for use in cropping images
+ *  2018 Added LinearGradientBrush 
+ *  
+ */
+
+using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using Ekstrand.Windows.Forms;
@@ -545,7 +557,7 @@ namespace Ekstrand.Drawing
 
                 if ((BorderCorners.BottomRight & filter) == BorderCorners.BottomRight)
                 {
-                    path.AddArc(arc, 0.1f, 89.99f);
+                    path.AddArc(arc, 0, 90);
                 }
                 else
                 {

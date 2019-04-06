@@ -71,7 +71,7 @@ namespace Ekstrand.Windows.Forms
         #region Methods
 
         /// <summary>
-        /// Draws a group box control in the specified state and bounds, with the specified group-box, graphics, bounds, text, font, text-color, text format flags, and state.
+        /// Draws a group box control in the specified state and bounds, with the specified group-box, graphics and state.
         /// </summary>
         /// <param name="ecb">GroupBox object</param>
         /// <param name="g">The Graphics used to draw the group box.</param>

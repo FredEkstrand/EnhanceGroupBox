@@ -123,18 +123,4 @@ namespace Ekstrand.Windows.Forms
         Header
     }
 
-    /// <summary>
-    /// Specifies which side should the image be rendered to the header text.
-    /// </summary>
-    public enum ImageSide
-    {
-        /// <summary>
-        /// Specifies the left hand side of the header text area.
-        /// </summary>
-        Left = 0,
-        /// <summary>
-        /// Specifies the right hand side of the header text area.
-        /// </summary>
-        Right = 1
-    }
 }

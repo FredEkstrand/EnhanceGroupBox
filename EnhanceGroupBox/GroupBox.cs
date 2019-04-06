@@ -373,7 +373,6 @@ namespace Ekstrand.Windows.Forms
             ControlShape(e);
 
             EnhanceGroupBoxState state = Enabled ? EnhanceGroupBoxState.Normal : EnhanceGroupBoxState.Disabled;
-            //GroupBoxRenderer.DrawEnhanceGroupBox(this, e.Graphics, ClientRectangle, Text, Font, ForeColor, _textFlags, state);
             GroupBoxRenderer.DrawEnhanceGroupBox(this, e.Graphics, ClientRectangle, state);
 
             e.Graphics.SmoothingMode = cachSmothingMode;

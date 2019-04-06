@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0855C9C9-207E-4367-AC71-9E8A3D8782B1}</ProjectGuid>
+    <ProjectGuid>{FAD086ED-079A-4077-8608-CADD65B95838}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>GroupBoxDemo</RootNamespace>
     <AssemblyName>GroupBoxDemo</AssemblyName>
@@ -32,9 +32,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="GroupBox, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\EnhanceGroupBox\bin\Debug\GroupBox.dll</HintPath>
+    <Reference Include="GroupBox">
+      <HintPath>..\EnhanceGroupBox\EnhanceGroupBox\bin\Release\GroupBox.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -93,7 +92,6 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

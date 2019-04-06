@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Ekstrand.Windows.Forms;
 
 namespace GroupBoxDemo
 {
@@ -26,6 +27,16 @@ namespace GroupBoxDemo
         public Form1()
         {
             InitializeComponent();
+
+            Ekstrand.Windows.Forms.GroupBox gp = new Ekstrand.Windows.Forms.GroupBox();
+            gp.Location = new Point(558, 140);
+            gp.GroupBoxStyle = GroupBoxStyle.Enhance;
+            gp.HeaderElements.Width = 0;
+            gp.HeaderElements.GradientEndColor = Color.White;
+            gp.HeaderElements.GradientStartColor = Color.Red;
+            gp.HeaderElements.GradientMode = EnhanceGroupBoxGradientMode.Horizontal;
+            gp.Text = "Enhance";
+            this.Controls.Add(gp);
         }
 
         #endregion Constructors

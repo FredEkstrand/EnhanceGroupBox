@@ -33,9 +33,9 @@
             // 
             // contentView1
             // 
-            this.contentView1.Location = new System.Drawing.Point(4, 6);
+            this.contentView1.Location = new System.Drawing.Point(0, 0);
             this.contentView1.Name = "contentView1";
-            this.contentView1.Size = new System.Drawing.Size(533, 432);
+            this.contentView1.Size = new System.Drawing.Size(540, 450);
             this.contentView1.TabIndex = 0;
             // 
             // Form1
@@ -57,7 +57,6 @@
         #endregion
 
         private ContentView contentView1;
-
     }
 }
 

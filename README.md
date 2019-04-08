@@ -1,4 +1,4 @@
-![image](https://github.com/FredEkstrand/ImageFiles/GroupBox/raw/master/GroupBoxHeader.png)
+![image](https://github.com/FredEkstrand/ImageFiles/raw/master/GroupBox/GroupBoxHeader.png)
 # The Enhanced GroupBox Project
 
 ![Version 1.0.0](https://img.shields.io/badge/Version-1.0.0-brightgreen.svg) ![License MIT](https://img.shields.io/badge/Licence-MIT-blue.svg)
@@ -40,11 +40,11 @@ Use of the control is the same as with the basic Visual Studio GroupBox control 
 
 In the image below is a screen shot of the property grid with the parts highlighted. 
 
-![image](https://github.com/FredEkstrand/ImageFiles/GroupBox/raw/master/PropertyGridView.png)
+![image](https://github.com/FredEkstrand/ImageFiles/raw/master/GroupBox/PropertyGridView.png)
 
 ### Examples
 Below are some example configurations.
-![image](https://github.com/FredEkstrand/ImageFiles/GroupBox/raw/master/GroupBoxSamples1.png)
+![image](https://github.com/FredEkstrand/ImageFiles/raw/master/GroupBox/GroupBoxSamples1.png)
 
 ## API
 Code API can be found [here](http://fredekstrand.github.io/EnhanceGroupBox).

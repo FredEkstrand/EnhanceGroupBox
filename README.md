@@ -4,7 +4,7 @@
 ![Version 1.0.0](https://img.shields.io/badge/Version-1.0.0-brightgreen.svg) ![License MIT](https://img.shields.io/badge/Licence-MIT-blue.svg)
 
 ## Overview
-The Enhanced GroupBox control is a collection of features and styling to provide a richer UI control for application development.
+The Enhanced GroupBox control is a collection of features and styling to provide a richer UI control for application development in windows Form.
 
 ### Features
 *	Borders can now have their color and width set.
@@ -43,7 +43,7 @@ In the image below is a screen shot of the property grid with the parts highligh
 ![image](https://github.com/FredEkstrand/ImageFiles/raw/master/GroupBox/PropertyGridView.png)
 
 ### Examples
-Below are some example configurations.
+Below are some example GroupBox configurations.
 ![image](https://github.com/FredEkstrand/ImageFiles/raw/master/GroupBox/GroupBoxSamples1.png)
 
 ## API

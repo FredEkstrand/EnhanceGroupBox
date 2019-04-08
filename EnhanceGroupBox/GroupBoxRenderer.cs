@@ -149,7 +149,7 @@ namespace Ekstrand.Windows.Forms
             Rectangle bounds = BorderRectangle();
             Pen p = PenBorder(_eGroupBox.BorderElements.BorderColor, _eGroupBox.BorderElements.Width, _eGroupBox.BorderElements.DashCap,
                             _eGroupBox.BorderElements.DashStyle, _eGroupBox.BorderElements.DashOffset, _eGroupBox.BorderElements.DashPattern);
-            p.Alignment = PenAlignment.Inset;
+            //p.Alignment = PenAlignment.Inset;
             _graphicsObj.DrawRoundedRectangle(p, bounds, _eGroupBox.BorderElements.Radius, _eGroupBox.BorderElements.BorderCorners);
             p.Dispose();
         }
@@ -496,17 +496,22 @@ namespace Ekstrand.Windows.Forms
             Size size = _clientRectangle.Size;
             int fontHeight = GetFontHeight();
             int beWidth = _eGroupBox.BorderElements.Width;
+            int widthOffset = beWidth / 2;
             int bhWidth = _eGroupBox.GroupBoxStyle == GroupBoxStyle.Enhance ? _eGroupBox.HeaderElements.Width + 1: 0;
 
 
             if (GetTextSide() == TextSide.Top && _eGroupBox.Text != string.Empty)
-            {   //                      x,             y,                                       width,                                           height 
-                return new Rectangle(borderPadding, fontHeight + borderPadding + bhWidth, Math.Max(size.Width - (borderPadding * 2) - 1, 0), Math.Max(size.Height - (borderPadding * 2 + fontHeight + bhWidth + 1), 0));
+            {
+                return new Rectangle(borderPadding + widthOffset, fontHeight + borderPadding + bhWidth + widthOffset, Math.Max(size.Width - (borderPadding * 2 + widthOffset * 2) - 1, 0), Math.Max(size.Height - (borderPadding * 2 + fontHeight + bhWidth + widthOffset * 2 + 1), 0));
+                //                      x,             y,                                       width,                                           height 
+                //return new Rectangle(borderPadding, fontHeight + borderPadding + bhWidth, Math.Max(size.Width - (borderPadding * 2) - 1, 0), Math.Max(size.Height - (borderPadding * 2 + fontHeight + bhWidth + 1), 0));
             } 
             
             if(GetTextSide() == TextSide.Bottom && _eGroupBox.Text != string.Empty)
-            {   //                      x,             y,                             width,                                        height
-                return new Rectangle(borderPadding, borderPadding, Math.Max(size.Width - (borderPadding * 2) - 1, 0), Math.Max(size.Height - (borderPadding * 2 + fontHeight - beWidth/2 + bhWidth) - 1, 0));
+            {
+                return new Rectangle(borderPadding + widthOffset, borderPadding + widthOffset, Math.Max(size.Width - (borderPadding * 2 + widthOffset * 2) - 1, 0), Math.Max(size.Height - (borderPadding * 2 + fontHeight - beWidth / 2 + bhWidth + widthOffset * 2) - 1, 0));
+                //                      x,             y,                             width,                                        height
+                //return new Rectangle(borderPadding, borderPadding, Math.Max(size.Width - (borderPadding * 2) - 1, 0), Math.Max(size.Height - (borderPadding * 2 + fontHeight - beWidth/2 + bhWidth) - 1, 0));
             }
             
             //                      x,             y,                                       width,                                           height 

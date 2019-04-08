@@ -148,8 +148,7 @@ namespace Ekstrand.Windows.Forms
         {
             Rectangle bounds = BorderRectangle();
             Pen p = PenBorder(_eGroupBox.BorderElements.BorderColor, _eGroupBox.BorderElements.Width, _eGroupBox.BorderElements.DashCap,
-                            _eGroupBox.BorderElements.DashStyle, _eGroupBox.BorderElements.DashOffset, _eGroupBox.BorderElements.DashPattern);
-            //p.Alignment = PenAlignment.Inset;
+                            _eGroupBox.BorderElements.DashStyle, _eGroupBox.BorderElements.DashOffset, _eGroupBox.BorderElements.DashPattern);         
             _graphicsObj.DrawRoundedRectangle(p, bounds, _eGroupBox.BorderElements.Radius, _eGroupBox.BorderElements.BorderCorners);
             p.Dispose();
         }
@@ -316,8 +315,7 @@ namespace Ekstrand.Windows.Forms
                 return;
             }
 
-            Rectangle r = _textBounds;
-            //r.Width += 10;
+            Rectangle r = _textBounds;            
             StringFormat drawFormat = new StringFormat();
             drawFormat.Alignment = StringAlignment.Center;
             drawFormat.LineAlignment = StringAlignment.Center;
@@ -331,6 +329,8 @@ namespace Ekstrand.Windows.Forms
             Rectangle r = _textBounds;
             StringFormat drawFormat = new StringFormat();
             drawFormat.Alignment = StringAlignment.Center;
+            drawFormat.LineAlignment = StringAlignment.Center;
+            drawFormat.Trimming = StringTrimming.Character;
             _brush = _state == EnhanceGroupBoxState.Normal ? BackGroundBrush(_eGroupBox.ForeColor) : BackGroundBrush(_eGroupBox.DisabledTextColor);
             _graphicsObj.DrawString(_eGroupBox.Text, _eGroupBox.Font, _brush, r, drawFormat);
         }
@@ -491,8 +491,7 @@ namespace Ekstrand.Windows.Forms
         }
 
         private static Rectangle BorderRectangle()
-        {
-            // we are assuming pen alignment is set to inset in these calculations for border bounds
+        {            
             Size size = _clientRectangle.Size;
             int fontHeight = GetFontHeight();
             int beWidth = _eGroupBox.BorderElements.Width;
@@ -503,15 +502,11 @@ namespace Ekstrand.Windows.Forms
             if (GetTextSide() == TextSide.Top && _eGroupBox.Text != string.Empty)
             {
                 return new Rectangle(borderPadding + widthOffset, fontHeight + borderPadding + bhWidth + widthOffset, Math.Max(size.Width - (borderPadding * 2 + widthOffset * 2) - 1, 0), Math.Max(size.Height - (borderPadding * 2 + fontHeight + bhWidth + widthOffset * 2 + 1), 0));
-                //                      x,             y,                                       width,                                           height 
-                //return new Rectangle(borderPadding, fontHeight + borderPadding + bhWidth, Math.Max(size.Width - (borderPadding * 2) - 1, 0), Math.Max(size.Height - (borderPadding * 2 + fontHeight + bhWidth + 1), 0));
             } 
             
             if(GetTextSide() == TextSide.Bottom && _eGroupBox.Text != string.Empty)
             {
                 return new Rectangle(borderPadding + widthOffset, borderPadding + widthOffset, Math.Max(size.Width - (borderPadding * 2 + widthOffset * 2) - 1, 0), Math.Max(size.Height - (borderPadding * 2 + fontHeight - beWidth / 2 + bhWidth + widthOffset * 2) - 1, 0));
-                //                      x,             y,                             width,                                        height
-                //return new Rectangle(borderPadding, borderPadding, Math.Max(size.Width - (borderPadding * 2) - 1, 0), Math.Max(size.Height - (borderPadding * 2 + fontHeight - beWidth/2 + bhWidth) - 1, 0));
             }
             
             //                      x,             y,                                       width,                                           height 
@@ -551,13 +546,13 @@ namespace Ekstrand.Windows.Forms
             {
                 case BorderTextAlignment.TopLeft:
                     {
-                        r.X += captionSpace + borderPadding + RadiusSpacing(_eGroupBox.BorderElements.Radius) + bhWidth;
+                        r.X += borderPadding + RadiusSpacing(_eGroupBox.BorderElements.Radius) + bhWidth;
                         r.Y += borderPadding + bhWidth + 1;
                     }
                     break;
                 case BorderTextAlignment.TopRight:
                     {
-                        r.X += bounds.Width - (captionSpace + borderPadding + RadiusSpacing(_eGroupBox.BorderElements.Radius) + bhWidth + 2) - (int)sizef.Width;
+                        r.X += bounds.Width - (borderPadding + RadiusSpacing(_eGroupBox.BorderElements.Radius) + bhWidth + 2) - (int)sizef.Width;
                         r.Y += borderPadding + bhWidth + 1;
                     }
                     break;
@@ -570,13 +565,13 @@ namespace Ekstrand.Windows.Forms
                     break;
                 case BorderTextAlignment.BottomLeft:
                     {
-                        r.X += captionSpace + borderPadding + RadiusSpacing(_eGroupBox.BorderElements.Radius) + bhWidth;
+                        r.X += borderPadding + RadiusSpacing(_eGroupBox.BorderElements.Radius) + bhWidth;
                         r.Y += bounds.Height - ((int)sizef.Height + borderPadding + bhWidth + 1);
                     }
                     break;
                 case BorderTextAlignment.BottomRight:
                     {
-                        r.X += bounds.Width - (captionSpace + borderPadding + RadiusSpacing(_eGroupBox.BorderElements.Radius) + bhWidth + 2) - (int)sizef.Width;
+                        r.X += bounds.Width - (borderPadding + RadiusSpacing(_eGroupBox.BorderElements.Radius) + bhWidth + 2) - (int)sizef.Width;
                         r.Y += bounds.Height - ((int)sizef.Height + borderPadding + bhWidth + 1);
                     }
                     break;
@@ -706,7 +701,7 @@ namespace Ekstrand.Windows.Forms
                     break;
             }
 
-            r.Width = (int)Math.Round(sizef.Width, 0);
+            r.Width = (int)sizef.Width + 1;
             r.Height = (int)Math.Round(sizef.Height, 0);
             return r;
         }        
@@ -955,7 +950,7 @@ namespace Ekstrand.Windows.Forms
         {
             if(_eGroupBox.BorderElements.BorderCorners == BorderCorners.None)
             {
-                return 0;
+                return captionSpace;
             }
 
             switch (radius)

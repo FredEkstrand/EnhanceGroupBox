@@ -1,4 +1,4 @@
-![image](https://github.com/FredEkstrand/ImageFiles/raw/master/ProjectImgaeHeader.png)
+![image](https://github.com/FredEkstrand/ImageFiles/GroupBox/raw/master/GroupBoxHeader.png)
 # The Enhanced GroupBox Project
 
 ![Version 1.0.0](https://img.shields.io/badge/Version-1.0.0-brightgreen.svg) ![License MIT](https://img.shields.io/badge/Licence-MIT-blue.svg)
@@ -36,15 +36,15 @@ Download the entire project and compile and add to the toolbox yourself.
 Use of the control is the same as with the basic Visual Studio GroupBox control with the exception of more options to change its appearance. To keep the additional options organized the property grid appearance section have subsection: HeaderElements, BorderElements, and InsideBorderElements. Below is an image showing the parts of the Enhance GroupBox control in relation to the property grid subsections.
 
 
-![image](https://github.com/FredEkstrand/ImageFiles/raw/master/EnhanceGroupBoxParts.png)
+![image](https://github.com/FredEkstrand/ImageFiles/GroupBox/raw/master/EnhanceGroupBoxParts.png)
 
 In the image below is a screen shot of the property grid with the parts highlighted. 
 
-![image](https://github.com/FredEkstrand/ImageFiles/raw/master/PropertyGridView.png)
+![image](https://github.com/FredEkstrand/ImageFiles/GroupBox/raw/master/PropertyGridView.png)
 
 ### Examples
 Below are some example configurations.
-![image](https://github.com/FredEkstrand/ImageFiles/raw/master/EnhanceGroupBoxSamples.png)
+![image](https://github.com/FredEkstrand/ImageFiles/GroupBox/raw/master/GroupBoxSamples1.png)
 
 ## API
 Code API can be found [here](http://fredekstrand.github.io/EnhanceGroupBox).

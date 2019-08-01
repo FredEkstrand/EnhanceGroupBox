@@ -55,7 +55,7 @@ A VSIX installer is created for installation into the toolbox for Visual Studio 
 ### Option 2:
 Download the entire project and compile and add to the toolbox yourself.
 
-## Usage
+# Usage
 Use of the control is similar to the basic Visual Studio GroupBox control with the exception of more options to change its appearance. To keep the additional options organized the property grid appearance section have subsection: HeaderElements, BorderElements, and InsideBorderElements. Below is an image showing the parts of the Enhance GroupBox control in relation to the property grid subsections.
 
 

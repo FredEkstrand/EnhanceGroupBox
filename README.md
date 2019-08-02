@@ -71,7 +71,7 @@ Below are some Enhance GroupBox configurations examples.
 { Some code examples? }
 
 # Code Documentation
-MSDN-style code documentation [here](http://fredekstrand.github.io/EnhanceGroupBox).
+MSDN-style code documentation [here](http://fredekstrand.github.io/ClassDocEnhanceGroupBox).
 
 # History
 1.0.0 Initial release into the wild.

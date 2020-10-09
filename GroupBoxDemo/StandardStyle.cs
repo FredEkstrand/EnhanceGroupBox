@@ -7,7 +7,7 @@ namespace GroupBoxDemo
 {
     internal class StandardStyle
     {
-        private Ekstrand.Windows.Forms.GroupBox[] _groupBoxes;
+        private Ekstrand.Windows.Forms.EnhanceGroupBox[] _groupBoxes;
         private const int ArraySize = 3;
         public StandardStyle()
         {
@@ -16,11 +16,11 @@ namespace GroupBoxDemo
 
         private void InitGroupBoxes()
         {
-            _groupBoxes = new GroupBox[ArraySize];
+            _groupBoxes = new EnhanceGroupBox[ArraySize];
 
             for(int i = 0; i < ArraySize; i++)
             {
-                _groupBoxes[i] = new GroupBox();
+                _groupBoxes[i] = new EnhanceGroupBox();
             }
             
             _groupBoxes[0].Text = "Standard";            
@@ -41,7 +41,7 @@ namespace GroupBoxDemo
 
         }
 
-        public Ekstrand.Windows.Forms.GroupBox[] GroupBoxes
+        public Ekstrand.Windows.Forms.EnhanceGroupBox[] GroupBoxes
         {
             get { return _groupBoxes; }
         }

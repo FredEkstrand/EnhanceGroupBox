@@ -9,7 +9,7 @@ namespace GroupBoxDemo
     {
         #region Fields
 
-        private Ekstrand.Windows.Forms.GroupBox _groupBox;
+        private Ekstrand.Windows.Forms.EnhanceGroupBox _groupBox;
         private bool _haveFocus = false;
 
         #endregion Fields
@@ -29,7 +29,7 @@ namespace GroupBoxDemo
 
         #region Properties
 
-        public Ekstrand.Windows.Forms.GroupBox GroupBox
+        public Ekstrand.Windows.Forms.EnhanceGroupBox GroupBox
         {
             get { return _groupBox; }
             set { _groupBox = value; InitGroupBox();}
@@ -99,7 +99,7 @@ namespace GroupBoxDemo
             Invalidate();
         }
 
-        private void RaiseSelected(Ekstrand.Windows.Forms.GroupBox groupBox)
+        private void RaiseSelected(Ekstrand.Windows.Forms.EnhanceGroupBox groupBox)
         {
             EventHandler<SelectedEventArgs> handler = Selected;
             if (handler != null)
@@ -113,7 +113,7 @@ namespace GroupBoxDemo
             Focus();
             HaveFocus = true;
             Invalidate();
-            RaiseSelected(this.Controls[0] as Ekstrand.Windows.Forms.GroupBox);
+            RaiseSelected(this.Controls[0] as Ekstrand.Windows.Forms.EnhanceGroupBox);
 
         }
 

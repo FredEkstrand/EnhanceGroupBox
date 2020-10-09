@@ -1,0 +1,16 @@
+C:\SoftwareProjects\GroupBoxDemo\bin\Release\GroupBoxDemo.exe
+C:\SoftwareProjects\GroupBoxDemo\bin\Release\GroupBoxDemo.pdb
+C:\SoftwareProjects\GroupBoxDemo\bin\Release\EnumExtensions.dll
+C:\SoftwareProjects\GroupBoxDemo\bin\Release\GroupBox.dll
+C:\SoftwareProjects\GroupBoxDemo\bin\Release\EnumExtensions.pdb
+C:\SoftwareProjects\GroupBoxDemo\bin\Release\GroupBox.pdb
+C:\SoftwareProjects\GroupBoxDemo\obj\Release\GroupBoxDemo.csprojAssemblyReference.cache
+C:\SoftwareProjects\GroupBoxDemo\obj\Release\GroupBoxDemo.ContentView.resources
+C:\SoftwareProjects\GroupBoxDemo\obj\Release\GroupBoxDemo.Form1.resources
+C:\SoftwareProjects\GroupBoxDemo\obj\Release\GroupBoxDemo.Form2.resources
+C:\SoftwareProjects\GroupBoxDemo\obj\Release\GroupBoxDemo.Properties.Resources.resources
+C:\SoftwareProjects\GroupBoxDemo\obj\Release\GroupBoxDemo.csproj.GenerateResource.cache
+C:\SoftwareProjects\GroupBoxDemo\obj\Release\GroupBoxDemo.csproj.CoreCompileInputs.cache
+C:\SoftwareProjects\GroupBoxDemo\obj\Release\GroupBoxDemo.csproj.CopyComplete
+C:\SoftwareProjects\GroupBoxDemo\obj\Release\GroupBoxDemo.exe
+C:\SoftwareProjects\GroupBoxDemo\obj\Release\GroupBoxDemo.pdb

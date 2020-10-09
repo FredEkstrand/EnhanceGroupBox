@@ -12,7 +12,7 @@ namespace Ekstrand.Windows.Forms
     /// </summary>
     [TypeConverter(typeof(BorderElementsConverter))]
     [Serializable]
-    public class BorderElements
+    public class BorderElements : IBorderElements
     {
         #region Fields
 
@@ -22,8 +22,7 @@ namespace Ekstrand.Windows.Forms
         private DashCap _dashCapBorder = DashCap.Flat;
         private float _dashOffsetBorder = 0f;
         private float[] _dashPatternBorder = null;
-        private DashStyle _dashStyleBorder = DashStyle.Solid;
-        private GroupBox _egroupBox;
+        private DashStyle _dashStyleBorder = DashStyle.Solid;        
         private int _radiusBorder = 0;
         private int _widthBorder = 1;
 
@@ -33,10 +32,9 @@ namespace Ekstrand.Windows.Forms
         /// <summary>
         /// Initializes a new instance of the BorderElements class.
         /// </summary>
-        /// <param name="egb">Instance of GroupBox</param>
-        public BorderElements(GroupBox egb) 
+        public BorderElements()
         {
-            _egroupBox = egb;
+            
         }
 
         #endregion Constructors
@@ -57,8 +55,7 @@ namespace Ekstrand.Windows.Forms
             set
             {
                 _backColor = value;
-                _egroupBox.RenderingDirty = true;
-                _egroupBox.Invalidate();
+                OnRaisePropertyChanged(PropertyChangeTypes.GraphicElements);
             }
         }
 
@@ -76,8 +73,7 @@ namespace Ekstrand.Windows.Forms
             set
             {
                 _borderColor = value;
-                _egroupBox.RenderingDirty = true;
-                _egroupBox.Invalidate();
+                OnRaisePropertyChanged(PropertyChangeTypes.GraphicElements);
             }
         }
 
@@ -97,8 +93,7 @@ namespace Ekstrand.Windows.Forms
             set
             {
                 _borderCorners = value;
-                _egroupBox.RenderingDirty = true;
-                _egroupBox.Invalidate();
+                OnRaisePropertyChanged(PropertyChangeTypes.GraphicElements);
             }
         }
 
@@ -117,8 +112,7 @@ namespace Ekstrand.Windows.Forms
             set
             {
                 _dashCapBorder = value;
-                _egroupBox.RenderingDirty = true;
-                _egroupBox.Invalidate();
+                OnRaisePropertyChanged(PropertyChangeTypes.GraphicElements);
             }
         }
 
@@ -137,8 +131,7 @@ namespace Ekstrand.Windows.Forms
             set
             {
                 _dashOffsetBorder = value;
-                _egroupBox.RenderingDirty = true;
-                _egroupBox.Invalidate();
+                OnRaisePropertyChanged(PropertyChangeTypes.GraphicElements);
             }
         }
 
@@ -152,8 +145,7 @@ namespace Ekstrand.Windows.Forms
             set
             {
                 _dashPatternBorder = value;
-                _egroupBox.RenderingDirty = true;
-                _egroupBox.Invalidate();
+                OnRaisePropertyChanged(PropertyChangeTypes.GraphicElements);
             }
         }
 
@@ -172,8 +164,7 @@ namespace Ekstrand.Windows.Forms
             set
             {
                 _dashStyleBorder = value;
-                _egroupBox.RenderingDirty = true;
-                _egroupBox.Invalidate();
+                OnRaisePropertyChanged(PropertyChangeTypes.GraphicElements);
             }
         }
 
@@ -205,11 +196,9 @@ namespace Ekstrand.Windows.Forms
                     }
 
                     _radiusBorder = value;
-                    _egroupBox.RenderingDirty = true;
-                    _egroupBox.RequestLayout();
-                    _egroupBox.Invalidate();
+                    OnRaisePropertyChanged(PropertyChangeTypes.GraphicElements | PropertyChangeTypes.LayoutNeeded);
                 }
-                
+
             }
         }
 
@@ -240,10 +229,32 @@ namespace Ekstrand.Windows.Forms
                     }
 
                     _widthBorder = value;
-                    _egroupBox.RenderingDirty = true;
-                    _egroupBox.RequestLayout();
-                    _egroupBox.Invalidate();
+                    OnRaisePropertyChanged(PropertyChangeTypes.GraphicElements | PropertyChangeTypes.LayoutNeeded);
                 }
+            }
+        }
+
+        /// <summary>
+        /// Occurs when the value for one of the class property changes.
+        /// </summary>
+        public event EventHandler RaisePropertyChanged;
+
+        /// <summary>
+        /// Occurs when the value for one of the class property changes.
+        /// </summary>
+        public void OnRaisePropertyChanged(PropertyChangeTypes types)
+        {
+            PropertyChanged e = new PropertyChanged(types);
+            // Make a temporary copy of the event to avoid possibility of
+            // a race condition if the last subscriber unsubscribes
+            // immediately after the null check and before the event is raised.
+            EventHandler handler = RaisePropertyChanged;
+
+            // Event will be null if there are no subscribers
+            if (handler != null)
+            {
+                // Use the () operator to raise the event.
+                handler(this, e);
             }
         }
 

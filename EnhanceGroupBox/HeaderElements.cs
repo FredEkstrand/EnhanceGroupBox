@@ -11,7 +11,7 @@ namespace Ekstrand.Windows.Forms
     /// </summary>
     [TypeConverter(typeof(HeaderElementsConverter))]
     [Serializable]
-    public class HeaderElements
+    public class HeaderElements : IHeaderElements
     {
         #region Fields
 
@@ -25,9 +25,9 @@ namespace Ekstrand.Windows.Forms
         private float _dashOffsetHeader = 0f;
         private float[] _dashPatternHeader = null;
         private DashStyle _dashStyleHeader = DashStyle.Solid;
-        private GroupBox _egroupBox;
+        //private GroupBox _egroupBox;
         private Color _gradientEndColorHeader = Color.Empty;
-        private Color _gradientStartColorHeader = Color.Empty;       
+        private Color _gradientStartColorHeader = Color.Empty;
         private BorderTextAlignment m_TextAlignment = BorderTextAlignment.TopLeft;
 
         #endregion Fields
@@ -36,11 +36,8 @@ namespace Ekstrand.Windows.Forms
         /// <summary>
         /// Initializes a new instance of the HeaderElements class.
         /// </summary>
-        /// <param name="ecb">GroupBox instance</param>
-        public HeaderElements(GroupBox ecb) //EnhanceGroupBox ecb
-        {
-            _egroupBox = ecb;
-        }
+        public HeaderElements()
+        { }
 
         #endregion Constructors
 
@@ -60,8 +57,7 @@ namespace Ekstrand.Windows.Forms
             set
             {
                 _backColorHeader = value;
-                _egroupBox.RenderingDirty = true;
-                _egroupBox.Invalidate();
+                OnRaisePropertyChanged(PropertyChangeTypes.GraphicElements);
             }
         }
 
@@ -79,13 +75,12 @@ namespace Ekstrand.Windows.Forms
             set
             {
                 _borderColorHeader = value;
-                _egroupBox.RenderingDirty = true;
-                _egroupBox.Invalidate();
+                OnRaisePropertyChanged(PropertyChangeTypes.GraphicElements);
             }
         }
 
         /// <summary>
-        /// Gets or sets the corners to have a rounded edge
+        /// Gets or sets the corners to have a rounded edge.
         /// </summary>
         [Browsable(true)]
         [NotifyParentProperty(true)]
@@ -100,8 +95,7 @@ namespace Ekstrand.Windows.Forms
             set
             {
                 _borderCornersHeader = value;
-                _egroupBox.RenderingDirty = true;
-                _egroupBox.Invalidate();
+                OnRaisePropertyChanged(PropertyChangeTypes.GraphicElements);
             }
         }
 
@@ -120,8 +114,7 @@ namespace Ekstrand.Windows.Forms
             set
             {
                 _dashCapHeader = value;
-                _egroupBox.RenderingDirty = true;
-                _egroupBox.Invalidate();
+                OnRaisePropertyChanged(PropertyChangeTypes.GraphicElements);
             }
         }
 
@@ -140,8 +133,7 @@ namespace Ekstrand.Windows.Forms
             set
             {
                 _dashOffsetHeader = value;
-                _egroupBox.RenderingDirty = true;
-                _egroupBox.Invalidate();
+                OnRaisePropertyChanged(PropertyChangeTypes.GraphicElements);
             }
         }
 
@@ -156,8 +148,7 @@ namespace Ekstrand.Windows.Forms
             set
             {
                 _dashPatternHeader = value;
-                _egroupBox.RenderingDirty = true;
-                _egroupBox.Invalidate();
+                OnRaisePropertyChanged(PropertyChangeTypes.GraphicElements);
             }
         }
 
@@ -176,8 +167,7 @@ namespace Ekstrand.Windows.Forms
             set
             {
                 _dashStyleHeader = value;
-                _egroupBox.RenderingDirty = true;
-                _egroupBox.Invalidate();
+                OnRaisePropertyChanged(PropertyChangeTypes.GraphicElements);
             }
         }
 
@@ -195,8 +185,7 @@ namespace Ekstrand.Windows.Forms
             set
             {
                 _gradientEndColorHeader = value;
-                _egroupBox.RenderingDirty = true;
-                _egroupBox.Invalidate();
+                OnRaisePropertyChanged(PropertyChangeTypes.GraphicElements);
             }
         }
 
@@ -215,8 +204,7 @@ namespace Ekstrand.Windows.Forms
             set
             {
                 _BoxGradientModeHeader = value;
-                _egroupBox.RenderingDirty = true;
-                _egroupBox.Invalidate();
+                OnRaisePropertyChanged(PropertyChangeTypes.GraphicElements);
             }
         }
 
@@ -234,8 +222,7 @@ namespace Ekstrand.Windows.Forms
             set
             {
                 _gradientStartColorHeader = value;
-                _egroupBox.RenderingDirty = true;
-                _egroupBox.Invalidate();
+                OnRaisePropertyChanged(PropertyChangeTypes.GraphicElements);
             }
         }
 
@@ -266,8 +253,7 @@ namespace Ekstrand.Windows.Forms
                     }
 
                     _radiusHeader = value;
-                    _egroupBox.RenderingDirty = true;
-                    _egroupBox.Invalidate();
+                    OnRaisePropertyChanged(PropertyChangeTypes.GraphicElements);
                 }
 
             }
@@ -288,9 +274,7 @@ namespace Ekstrand.Windows.Forms
             set
             {
                 m_TextAlignment = value;
-                _egroupBox.RenderingDirty = true;
-                _egroupBox.RequestLayout();
-                _egroupBox.Invalidate();
+                OnRaisePropertyChanged(PropertyChangeTypes.GraphicElements | PropertyChangeTypes.LayoutNeeded);
             }
         }
 
@@ -321,10 +305,32 @@ namespace Ekstrand.Windows.Forms
                     }
 
                     _widthHeader = value;
-                    _egroupBox.RenderingDirty = true;
-                    _egroupBox.RequestLayout();
-                    _egroupBox.Invalidate();
+                    OnRaisePropertyChanged(PropertyChangeTypes.GraphicElements | PropertyChangeTypes.LayoutNeeded);
                 }
+            }
+        }
+
+        /// <summary>
+        /// Occurs when the value for one of the class property changes.
+        /// </summary>
+        public event EventHandler RaisePropertyChanged;
+
+        /// <summary>
+        /// Occurs when the value for one of the class property changes.
+        /// </summary>
+        public void OnRaisePropertyChanged(PropertyChangeTypes types)
+        {
+            PropertyChanged e = new PropertyChanged(types);
+            // Make a temporary copy of the event to avoid possibility of
+            // a race condition if the last subscriber unsubscribes
+            // immediately after the null check and before the event is raised.
+            EventHandler handler = RaisePropertyChanged;
+
+            // Event will be null if there are no subscribers
+            if (handler != null)
+            {
+                // Use the () operator to raise the event.
+                handler(this, e);
             }
         }
 

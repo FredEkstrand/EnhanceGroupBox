@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Ekstrand.Windows.Forms.CornerSelector" Collapsed="true">
+    <Position X="9.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAgAgAAAEGAEEACAAQCEECEmCAiGBAABAADABEAARCA=</HashCode>
+      <FileName>CornerSelector.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ekstrand.Windows.Forms.EnhanceGroupBox" Collapsed="true">
+    <Position X="0.5" Y="1.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>IgCCBiCCAAUAgMkFAwwUGCBKJEQAEIQACAEqDASEAgg=</HashCode>
+      <FileName>EnhanceGroupBox.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ekstrand.Windows.Forms.PropertyChanged" Collapsed="true">
+    <Position X="9.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>EnhanceGroupBox.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ekstrand.Windows.Forms.EnhanceGroupBoxRenderer" Collapsed="true">
+    <Position X="0.5" Y="2.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>ACAAYCigLYiBCgAgACBQGAAIIBCQKIYZAAiACCIAAIg=</HashCode>
+      <FileName>EnhanceGroupBoxRenderer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ekstrand.Windows.Forms.HeaderElements" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="3" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAiIAAASCAIgAAgAEACUAkACAQgAAAAUAiBAAAEBAAA=</HashCode>
+      <FileName>HeaderElements.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Ekstrand.Windows.Forms.HeaderElementsConverter" Collapsed="true">
+    <Position X="11.75" Y="2" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>HeaderElementsConverter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ekstrand.Windows.Forms.InsideBorderElements" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="3" Y="2.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAACCAIAAAAAAACAQAAAQAgAQBAQACAAAAABAAI=</HashCode>
+      <FileName>InsideBorderElements.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Ekstrand.Windows.Forms.InsideBorderElementsConverter" Collapsed="true">
+    <Position X="11.75" Y="2.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>InsideBorderElementsConverter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ekstrand.Drawing.GraphicsExtension" Collapsed="true">
+    <Position X="9.5" Y="3.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAAAAAAAAAAAAAAAAAAAAABAAAIAAAEgA=</HashCode>
+      <FileName>GraphicsExtension.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ekstrand.Windows.Forms.BorderCornerEditor" Collapsed="true">
+    <Position X="9.5" Y="2" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BorderCornerEditor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ekstrand.Windows.Forms.BorderElements" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="3" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAiIAAACCAIgAAAAQACAAEISAAAQAAAQAABAAAABAIA=</HashCode>
+      <FileName>BorderElements.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Ekstrand.Windows.Forms.BorderElementsConverter" Collapsed="true">
+    <Position X="11.75" Y="1.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>BorderElementsConverter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ekstrand.Windows.Forms.ControlElements" Collapsed="true">
+    <Position X="3" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAwAAAAAAAAAAAAAAAAAACAAAAIAAAAAACAADAgA=</HashCode>
+      <FileName>ControlElements.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Ekstrand.Windows.Forms.ControlShape" Collapsed="true">
+    <Position X="9.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgIAAAAAAAgAAAAAAAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>ControlShape.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ekstrand.Windows.Forms.EnhanceGroupBoxControlShapeConverter" Collapsed="true">
+    <Position X="11.75" Y="3.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>EnhanceGroupBoxControlShapeConverter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Ekstrand.Windows.Forms.IBorderElements" Collapsed="true">
+    <Position X="5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAiIAAACCAAAAAAAAACAAEACAAAAAAAQAABAAAABAAA=</HashCode>
+      <FileName>IBorderElements.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Ekstrand.Windows.Forms.IControlElements" Collapsed="true">
+    <Position X="5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAwAAAAAAAAAAAAAAAAAACAAAAIAAAAAACAADAgA=</HashCode>
+      <FileName>IControlElements.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Ekstrand.Windows.Forms.IHeaderElements" Collapsed="true">
+    <Position X="5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAiIAAACCAIAAAAAEACAAEACAAgAAAAQACBAAAABAAA=</HashCode>
+      <FileName>IHeaderElements.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Ekstrand.Windows.Forms.IInsideBorderElements" Collapsed="true">
+    <Position X="5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAACAAIAAAAAAACAAAAAAAgAABAAACAAAAABAAA=</HashCode>
+      <FileName>IInsideBorderElements.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Ekstrand.Windows.Forms.PropertyChangeTypes" Collapsed="true">
+    <Position X="6.75" Y="4.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>EnhanceGroupBox.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Ekstrand.Windows.Forms.BorderCorners" Collapsed="true">
+    <Position X="6.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAIAAAAABAAAAAAAAAAAAAAAAAAAIAAAAEAAEA=</HashCode>
+      <FileName>Enumerations.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Ekstrand.Windows.Forms.BorderTextAlignment" Collapsed="true">
+    <Position X="6.75" Y="5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAIAAAAABAAAAAAAQAAAAAAAAAAAAAAAAgAAEA=</HashCode>
+      <FileName>Enumerations.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Ekstrand.Windows.Forms.EnhanceGroupBoxGradientMode" Collapsed="true">
+    <Position X="6.75" Y="2.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQEABAAAAAAAAAAAIAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Enumerations.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Ekstrand.Windows.Forms.EnhanceGroupBoxState" Collapsed="true">
+    <Position X="6.75" Y="2" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAACAAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Enumerations.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Ekstrand.Windows.Forms.GroupBoxStyle" Collapsed="true">
+    <Position X="6.75" Y="3.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAABAAAAAAAAAIAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>Enumerations.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

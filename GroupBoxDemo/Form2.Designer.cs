@@ -31,7 +31,7 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.groupBox1 = new Ekstrand.Windows.Forms.GroupBox();
+            this.groupBox1 = new Ekstrand.Windows.Forms.EnhanceGroupBox();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,7 +46,7 @@
             // 
             this.groupBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.groupBox2.Controls.Add(this.tableLayoutPanel1);
-            this.groupBox2.Location = new System.Drawing.Point(231, 154);
+            this.groupBox2.Location = new System.Drawing.Point(44, 70);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.groupBox2.Size = new System.Drawing.Size(200, 100);
@@ -72,27 +72,30 @@
             // 
             this.groupBox1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.groupBox1.BorderElements.BackColor = System.Drawing.SystemColors.Control;
-            this.groupBox1.BorderElements.BorderColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.groupBox1.BorderElements.BorderColor = System.Drawing.SystemColors.ControlDark;
             this.groupBox1.BorderElements.BorderCorners = ((Ekstrand.Windows.Forms.BorderCorners)((((Ekstrand.Windows.Forms.BorderCorners.TopLeft | Ekstrand.Windows.Forms.BorderCorners.TopRight) 
             | Ekstrand.Windows.Forms.BorderCorners.BottomLeft) 
             | Ekstrand.Windows.Forms.BorderCorners.BottomRight)));
             this.groupBox1.BorderElements.DashPattern = null;
-            this.groupBox1.BorderElements.Radius = 5;
             this.groupBox1.DisabledTextColor = System.Drawing.SystemColors.GrayText;
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.GroupBoxStyle = Ekstrand.Windows.Forms.GroupBoxStyle.Header;
-            this.groupBox1.HeaderElements.BackColor = System.Drawing.Color.Tomato;
-            this.groupBox1.HeaderElements.BorderColor = System.Drawing.Color.Black;
-            this.groupBox1.HeaderElements.BorderCorners = Ekstrand.Windows.Forms.BorderCorners.None;
-            this.groupBox1.HeaderElements.GradientEndColor = System.Drawing.Color.Empty;
-            this.groupBox1.HeaderElements.GradientStartColor = System.Drawing.Color.Empty;
+            this.groupBox1.HeaderElements.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.groupBox1.HeaderElements.BorderColor = System.Drawing.SystemColors.ControlDark;
+            this.groupBox1.HeaderElements.BorderCorners = ((Ekstrand.Windows.Forms.BorderCorners)((((Ekstrand.Windows.Forms.BorderCorners.TopLeft | Ekstrand.Windows.Forms.BorderCorners.TopRight) 
+            | Ekstrand.Windows.Forms.BorderCorners.BottomLeft) 
+            | Ekstrand.Windows.Forms.BorderCorners.BottomRight)));
+            this.groupBox1.HeaderElements.GradientEndColor = System.Drawing.Color.FloralWhite;
+            this.groupBox1.HeaderElements.GradientMode = Ekstrand.Windows.Forms.EnhanceGroupBoxGradientMode.Horizontal;
+            this.groupBox1.HeaderElements.GradientStartColor = System.Drawing.Color.Yellow;
             this.groupBox1.HeaderElements.TextAlignment = Ekstrand.Windows.Forms.BorderTextAlignment.BottomCenter;
+            this.groupBox1.HeaderElements.Width = 0;
+            this.groupBox1.InsideBorderElements.BackColor = System.Drawing.SystemColors.ControlLight;
             this.groupBox1.InsideBorderElements.GradientEndColor = System.Drawing.SystemColors.Control;
-            this.groupBox1.InsideBorderElements.GradientMode = Ekstrand.Windows.Forms.EnhanceGroupBoxGradientMode.Vertical;
-            this.groupBox1.InsideBorderElements.GradientStartColor = System.Drawing.Color.Red;
-            this.groupBox1.Location = new System.Drawing.Point(490, 154);
+            this.groupBox1.InsideBorderElements.GradientStartColor = System.Drawing.Color.PaleGreen;
+            this.groupBox1.Location = new System.Drawing.Point(503, 117);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(218, 100);
+            this.groupBox1.Size = new System.Drawing.Size(200, 100);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Header";
@@ -121,6 +124,6 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private Ekstrand.Windows.Forms.GroupBox groupBox1;
+        private Ekstrand.Windows.Forms.EnhanceGroupBox groupBox1;
     }
 }

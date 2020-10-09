@@ -1,9 +1,9 @@
 C:\SoftwareProjects\EnhanceGroupBox\EnhanceGroupBox\bin\Release\Resources\GroupBox_16x.bmp
+C:\SoftwareProjects\EnhanceGroupBox\EnhanceGroupBox\bin\Release\GroupBox.xml
 C:\SoftwareProjects\EnhanceGroupBox\EnhanceGroupBox\bin\Release\GroupBox.dll
 C:\SoftwareProjects\EnhanceGroupBox\EnhanceGroupBox\bin\Release\GroupBox.pdb
 C:\SoftwareProjects\EnhanceGroupBox\EnhanceGroupBox\bin\Release\EnumExtensions.dll
 C:\SoftwareProjects\EnhanceGroupBox\EnhanceGroupBox\bin\Release\EnumExtensions.pdb
-C:\SoftwareProjects\EnhanceGroupBox\EnhanceGroupBox\obj\Release\GroupBox.csprojAssemblyReference.cache
 C:\SoftwareProjects\EnhanceGroupBox\EnhanceGroupBox\obj\Release\Ekstrand.Windows.Forms.CornerSelector.resources
 C:\SoftwareProjects\EnhanceGroupBox\EnhanceGroupBox\obj\Release\Ekstrand.Windows.Forms.Properties.Resources.resources
 C:\SoftwareProjects\EnhanceGroupBox\EnhanceGroupBox\obj\Release\GroupBox.csproj.GenerateResource.cache
@@ -11,4 +11,4 @@ C:\SoftwareProjects\EnhanceGroupBox\EnhanceGroupBox\obj\Release\GroupBox.csproj.
 C:\SoftwareProjects\EnhanceGroupBox\EnhanceGroupBox\obj\Release\GroupBox.csproj.CopyComplete
 C:\SoftwareProjects\EnhanceGroupBox\EnhanceGroupBox\obj\Release\GroupBox.dll
 C:\SoftwareProjects\EnhanceGroupBox\EnhanceGroupBox\obj\Release\GroupBox.pdb
-C:\SoftwareProjects\EnhanceGroupBox\EnhanceGroupBox\bin\Release\GroupBox.xml
+C:\SoftwareProjects\EnhanceGroupBox\EnhanceGroupBox\obj\Release\GroupBox.csprojAssemblyReference.cache

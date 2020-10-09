@@ -10,10 +10,10 @@
  *  
  */
 
+using Ekstrand.Windows.Forms;
 using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using Ekstrand.Windows.Forms;
 
 namespace Ekstrand.Drawing
 {
@@ -527,7 +527,7 @@ namespace Ekstrand.Drawing
                     return graphics.GenerateCapsule(rectangle);
                 }
 
-                diameter = radius * 2.0F;
+                diameter = radius * 2.0f;
                 SizeF sizeF = new SizeF(diameter, diameter);
                 RectangleF arc = new RectangleF(rectangle.Location, sizeF);
 
@@ -576,7 +576,7 @@ namespace Ekstrand.Drawing
                     path.AddLine(arc.X + arc.Width, arc.Y + arc.Height, arc.X, arc.Y + arc.Height);
                     path.AddLine(arc.X, arc.Y + arc.Height, arc.X, arc.Y);
                 }
-                path.CloseFigure();
+                path.CloseAllFigures();
             }
             return path;
         }

@@ -8,7 +8,7 @@ namespace GroupBoxDemo
 {
     internal class ExcitativeStyle
     {
-        private Ekstrand.Windows.Forms.GroupBox[] _groupBoxes;
+        private Ekstrand.Windows.Forms.EnhanceGroupBox[] _groupBoxes;
         private const int ArraySize = 4;
         public ExcitativeStyle()
         {
@@ -17,11 +17,11 @@ namespace GroupBoxDemo
 
         private void InitGroupBoxes()
         {
-            _groupBoxes = new Ekstrand.Windows.Forms.GroupBox[ArraySize];
+            _groupBoxes = new Ekstrand.Windows.Forms.EnhanceGroupBox[ArraySize];
 
             for (int i = 0; i < ArraySize; i++)
             {
-                _groupBoxes[i] = new Ekstrand.Windows.Forms.GroupBox();
+                _groupBoxes[i] = new Ekstrand.Windows.Forms.EnhanceGroupBox();
             }
 
             
@@ -67,7 +67,7 @@ namespace GroupBoxDemo
 
         }
 
-        public Ekstrand.Windows.Forms.GroupBox[] GroupBoxes
+        public Ekstrand.Windows.Forms.EnhanceGroupBox[] GroupBoxes
         {
             get { return _groupBoxes; }
         }

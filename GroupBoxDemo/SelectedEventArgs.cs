@@ -9,13 +9,13 @@ namespace GroupBoxDemo
     public class SelectedEventArgs : EventArgs
     {
 
-        private Ekstrand.Windows.Forms.GroupBox _groupBox;
-        public SelectedEventArgs(Ekstrand.Windows.Forms.GroupBox groupBox)
+        private Ekstrand.Windows.Forms.EnhanceGroupBox _groupBox;
+        public SelectedEventArgs(Ekstrand.Windows.Forms.EnhanceGroupBox groupBox)
         {
             _groupBox = groupBox;
         }
 
-        public Ekstrand.Windows.Forms.GroupBox GroupBox
+        public Ekstrand.Windows.Forms.EnhanceGroupBox GroupBox
         {
             get { return _groupBox;}
             set { _groupBox = value;}

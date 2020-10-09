@@ -28,7 +28,7 @@ namespace GroupBoxDemo
         {
             InitializeComponent();
 
-            Ekstrand.Windows.Forms.GroupBox gp = new Ekstrand.Windows.Forms.GroupBox();
+            Ekstrand.Windows.Forms.EnhanceGroupBox gp = new Ekstrand.Windows.Forms.EnhanceGroupBox();
             gp.Location = new Point(558, 140);
             gp.GroupBoxStyle = GroupBoxStyle.Enhance;
             gp.HeaderElements.Width = 0;

@@ -9,11 +9,10 @@
             Properties grouped for border appearance
             </summary>
         </member>
-        <member name="M:Ekstrand.Windows.Forms.BorderElements.#ctor(Ekstrand.Windows.Forms.GroupBox)">
+        <member name="M:Ekstrand.Windows.Forms.BorderElements.#ctor">
             <summary>
             Initializes a new instance of the BorderElements class.
             </summary>
-            <param name="egb">Instance of GroupBox</param>
         </member>
         <member name="P:Ekstrand.Windows.Forms.BorderElements.BackColor">
             <summary>
@@ -61,6 +60,16 @@
             Gets or sets the width of the border.
             </summary>
         </member>
+        <member name="E:Ekstrand.Windows.Forms.BorderElements.RaisePropertyChanged">
+            <summary>
+            Occurs when the value for one of the class property changes.
+            </summary>
+        </member>
+        <member name="M:Ekstrand.Windows.Forms.BorderElements.OnRaisePropertyChanged(Ekstrand.Windows.Forms.PropertyChangeTypes)">
+            <summary>
+            Occurs when the value for one of the class property changes.
+            </summary>
+        </member>
         <member name="T:Ekstrand.Windows.Forms.BorderElementsConverter">
             <summary>
             Provides a type converter to convert BorderElements objects to and from various other representations.
@@ -75,6 +84,77 @@
             <param name="value">The Object to convert.</param>
             <param name="destinationType">The Type to convert the value parameter to.</param>
             <returns>An Object that represents the converted value.</returns>
+        </member>
+        <member name="T:Ekstrand.Windows.Forms.ControlElements">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Ekstrand.Windows.Forms.ControlElements.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.ControlElements.BackColor">
+            <summary>
+            Gets or sets the background color for the control.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.ControlElements.Bounds">
+            <summary>
+            Gets or sets the size and location of the control including its nonclient elements, in pixels, relative to the parent control.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.ControlElements.DisabledTextColor">
+            <summary>
+            Gets or sets the disabled text color.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.ControlElements.Font">
+            <summary>
+            Gets or sets the font of the text displayed by the control.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.ControlElements.ForeColor">
+            <summary>
+            Gets or sets the foreground color of the control.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.ControlElements.Graphics">
+            <summary>
+            The Graphics used to draw the group box.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.ControlElements.GroupBoxStyle">
+            <summary>
+            The styles used to draw the group box.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.ControlElements.Text">
+            <summary>
+            The String to draw with the group box.
+            </summary>
+        </member>
+        <member name="T:Ekstrand.Windows.Forms.ControlShape">
+            <summary>
+            Properties grouped for EnhanceGroupBox control shape.
+            </summary>
+        </member>
+        <member name="M:Ekstrand.Windows.Forms.ControlShape.#ctor">
+            <summary>
+            Initializes a new instance of the ControlShape class.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.ControlShape.Radius">
+            <summary>
+            Gets or sets the radius for each corner.
+            </summary>
+            <remarks>Radius value is restricted to the range of 0 to 10.</remarks>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.ControlShape.BorderCorners">
+            <summary>
+            Corners to have a rounded appearance.
+            </summary>
         </member>
         <member name="F:Ekstrand.Windows.Forms.CornerSelector.components">
             <summary>
@@ -93,196 +173,247 @@
             the contents of this method with the code editor.
             </summary>
         </member>
-        <member name="T:Ekstrand.Windows.Forms.GroupBox">
+        <member name="T:Ekstrand.Windows.Forms.EnhanceGroupBox">
             <summary>
             Represents a control that creates a container that has a border and a header for user interface (UI) content.
             </summary>
         </member>
-        <member name="M:Ekstrand.Windows.Forms.GroupBox.#ctor">
+        <member name="M:Ekstrand.Windows.Forms.EnhanceGroupBox.#ctor">
             <summary>
             Represents a control that creates a container that has a border and a header for user interface (UI) content.
             </summary>
         </member>
-        <member name="P:Ekstrand.Windows.Forms.GroupBox.AllowDrop">
+        <member name="P:Ekstrand.Windows.Forms.EnhanceGroupBox.AllowDrop">
             <summary>
             Gets or sets a value indicating whether the control can accept data that the user drags onto it.
             </summary>
         </member>
-        <member name="P:Ekstrand.Windows.Forms.GroupBox.AutoSize">
+        <member name="P:Ekstrand.Windows.Forms.EnhanceGroupBox.AutoSize">
             <summary>
             Gets or sets a value that indicates whether the GroupBox resizes based on its contents.
             </summary>
         </member>
-        <member name="P:Ekstrand.Windows.Forms.GroupBox.BorderElements">
+        <member name="P:Ekstrand.Windows.Forms.EnhanceGroupBox.BorderElements">
             <summary>
             Gets or sets border items properties
             </summary>
         </member>
-        <member name="P:Ekstrand.Windows.Forms.GroupBox.DisabledTextColor">
+        <member name="P:Ekstrand.Windows.Forms.EnhanceGroupBox.ControlShape">
+            <summary>
+            Gets or sets EnhanceGroupBox control shape.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.EnhanceGroupBox.DisabledTextColor">
             <summary>
             Gets or sets text disabled color
             </summary>
         </member>
-        <member name="P:Ekstrand.Windows.Forms.GroupBox.DisplayRectangle">
+        <member name="P:Ekstrand.Windows.Forms.EnhanceGroupBox.DisplayRectangle">
             <summary>
             Gets the rectangle that represents the display area of the control.
             </summary>
         </member>
-        <member name="P:Ekstrand.Windows.Forms.GroupBox.Enabled">
+        <member name="P:Ekstrand.Windows.Forms.EnhanceGroupBox.Enabled">
             <summary>
             Gets or sets a value indicating whether the control can respond to user interaction.
             </summary>
         </member>
-        <member name="P:Ekstrand.Windows.Forms.GroupBox.GroupBoxStyle">
+        <member name="P:Ekstrand.Windows.Forms.EnhanceGroupBox.GroupBoxStyle">
             <summary>
             Get or sets GroupBox Style used for rendering
             </summary>
         </member>
-        <member name="P:Ekstrand.Windows.Forms.GroupBox.HeaderElements">
+        <member name="P:Ekstrand.Windows.Forms.EnhanceGroupBox.HeaderElements">
             <summary>
             Gets or sets header properties
             </summary>
         </member>
-        <member name="P:Ekstrand.Windows.Forms.GroupBox.InsideBorderElements">
+        <member name="P:Ekstrand.Windows.Forms.EnhanceGroupBox.InsideBorderElements">
             <summary>
             Gets or sets inside border properties
             </summary>
         </member>
-        <member name="P:Ekstrand.Windows.Forms.GroupBox.RightToLeft">
+        <member name="P:Ekstrand.Windows.Forms.EnhanceGroupBox.RightToLeft">
             <summary>
             Gets or sets a value indicating whether control's elements are aligned to support locales using right-to-left fonts.
             </summary>
         </member>
-        <member name="P:Ekstrand.Windows.Forms.GroupBox.TabStop">
+        <member name="P:Ekstrand.Windows.Forms.EnhanceGroupBox.TabStop">
             <summary>
             Gets or sets a value that indicates whether the user can press the TAB key to give the focus to the GroupBox.
             </summary>
         </member>
-        <member name="P:Ekstrand.Windows.Forms.GroupBox.Text">
+        <member name="P:Ekstrand.Windows.Forms.EnhanceGroupBox.Text">
             <summary>
             Gets or sets the text associated with this control.
             </summary>
         </member>
-        <member name="P:Ekstrand.Windows.Forms.GroupBox.RenderingDirty">
+        <member name="P:Ekstrand.Windows.Forms.EnhanceGroupBox.RenderingDirty">
             <summary>
             Gets or sets the rendering dirty boolean value to invalidate internal drawing buffering.
             </summary>
         </member>
-        <member name="P:Ekstrand.Windows.Forms.GroupBox.CreateParams">
+        <member name="P:Ekstrand.Windows.Forms.EnhanceGroupBox.CreateParams">
             <summary>
             Gets the required creation parameters when the control handle is created.
             </summary>
         </member>
-        <member name="P:Ekstrand.Windows.Forms.GroupBox.DefaultPadding">
+        <member name="P:Ekstrand.Windows.Forms.EnhanceGroupBox.DefaultPadding">
             <summary>
             Gets the Padding structure that contains the default padding settings for a GroupBox control.
             </summary>
         </member>
-        <member name="P:Ekstrand.Windows.Forms.GroupBox.DefaultSize">
+        <member name="P:Ekstrand.Windows.Forms.EnhanceGroupBox.DefaultSize">
             <summary>
             Gets the default size of the control.
             </summary>
         </member>
-        <member name="M:Ekstrand.Windows.Forms.GroupBox.ToString">
+        <member name="M:Ekstrand.Windows.Forms.EnhanceGroupBox.ToString">
             <summary>
              Returns a String containing the name of the Component, if any.This method should not be overridden.
             </summary>
             <returns>Return the text representation of the control</returns>
         </member>
-        <member name="M:Ekstrand.Windows.Forms.GroupBox.CreateAccessibilityInstance">
+        <member name="M:Ekstrand.Windows.Forms.EnhanceGroupBox.CreateAccessibilityInstance">
             <summary>
             Creates a new accessibility object for the GroupBox.
             </summary>
             <returns>A new AccessibleObject for the GroupBox.</returns>
         </member>
-        <member name="M:Ekstrand.Windows.Forms.GroupBox.OnFontChanged(System.EventArgs)">
+        <member name="M:Ekstrand.Windows.Forms.EnhanceGroupBox.OnFontChanged(System.EventArgs)">
             <summary>
             Raises the FontChanged event.
             </summary>
             <param name="e">An EventArgs that contains the event data.</param>
         </member>
-        <member name="M:Ekstrand.Windows.Forms.GroupBox.OnPaint(System.Windows.Forms.PaintEventArgs)">
+        <member name="M:Ekstrand.Windows.Forms.EnhanceGroupBox.OnPaint(System.Windows.Forms.PaintEventArgs)">
             <summary>
             Raises the Paint event.
             </summary>
             <param name="e">A PaintEventArgs that contains the event data.</param>
         </member>
-        <member name="M:Ekstrand.Windows.Forms.GroupBox.ProcessMnemonic(System.Char)">
+        <member name="M:Ekstrand.Windows.Forms.EnhanceGroupBox.ProcessMnemonic(System.Char)">
             <summary>
             Processes a mnemonic character.
             </summary>
             <param name="charCode">The character to process.</param>
             <returns>true if the character was processed as a mnemonic by the control; otherwise, false.</returns>
         </member>
-        <member name="E:Ekstrand.Windows.Forms.GroupBox.AutoSizeChanged">
+        <member name="E:Ekstrand.Windows.Forms.EnhanceGroupBox.AutoSizeChanged">
             <summary>
             Occurs when the value of the AutoSize property changes.
             </summary>
         </member>
-        <member name="E:Ekstrand.Windows.Forms.GroupBox.Click">
+        <member name="E:Ekstrand.Windows.Forms.EnhanceGroupBox.Click">
             <summary>
             Occurs when the user clicks the GroupBox control.
             </summary>
         </member>
-        <member name="E:Ekstrand.Windows.Forms.GroupBox.DoubleClick">
+        <member name="E:Ekstrand.Windows.Forms.EnhanceGroupBox.DoubleClick">
             <summary>
             Occurs when the user double-clicks the GroupBox control.
             </summary>
         </member>
-        <member name="E:Ekstrand.Windows.Forms.GroupBox.KeyDown">
+        <member name="E:Ekstrand.Windows.Forms.EnhanceGroupBox.KeyDown">
             <summary>
             Occurs when the user presses a key while the GroupBox control has focus.
             </summary>
         </member>
-        <member name="E:Ekstrand.Windows.Forms.GroupBox.KeyPress">
+        <member name="E:Ekstrand.Windows.Forms.EnhanceGroupBox.KeyPress">
             <summary>
             Occurs when the user presses a key while the GroupBox control has focus.
             </summary>
         </member>
-        <member name="E:Ekstrand.Windows.Forms.GroupBox.KeyUp">
+        <member name="E:Ekstrand.Windows.Forms.EnhanceGroupBox.KeyUp">
             <summary>
              Occurs when the user releases a key while the GroupBox control has focus.
             </summary>
         </member>
-        <member name="E:Ekstrand.Windows.Forms.GroupBox.MouseClick">
+        <member name="E:Ekstrand.Windows.Forms.EnhanceGroupBox.MouseClick">
             <summary>
             Occurs when the user clicks the GroupBox control with the mouse.
             </summary>
         </member>
-        <member name="E:Ekstrand.Windows.Forms.GroupBox.MouseDoubleClick">
+        <member name="E:Ekstrand.Windows.Forms.EnhanceGroupBox.MouseDoubleClick">
             <summary>
             Occurs when the user double-clicks the GroupBox control with the mouse.
             </summary>
         </member>
-        <member name="E:Ekstrand.Windows.Forms.GroupBox.MouseDown">
+        <member name="E:Ekstrand.Windows.Forms.EnhanceGroupBox.MouseDown">
             <summary>
             Occurs when the user presses a mouse button while the mouse pointer is over the control.
             </summary>
         </member>
-        <member name="E:Ekstrand.Windows.Forms.GroupBox.MouseEnter">
+        <member name="E:Ekstrand.Windows.Forms.EnhanceGroupBox.MouseEnter">
             <summary>
             Occurs when the mouse pointer enters the control.
             </summary>
         </member>
-        <member name="E:Ekstrand.Windows.Forms.GroupBox.MouseLeave">
+        <member name="E:Ekstrand.Windows.Forms.EnhanceGroupBox.MouseLeave">
             <summary>
             Occurs when the mouse pointer leaves the control.
             </summary>
         </member>
-        <member name="E:Ekstrand.Windows.Forms.GroupBox.MouseMove">
+        <member name="E:Ekstrand.Windows.Forms.EnhanceGroupBox.MouseMove">
             <summary>
             Occurs when the user moves the mouse pointer over the control.
             </summary>
         </member>
-        <member name="E:Ekstrand.Windows.Forms.GroupBox.MouseUp">
+        <member name="E:Ekstrand.Windows.Forms.EnhanceGroupBox.MouseUp">
             <summary>
             Occurs when the user releases a mouse button while the mouse pointer is over the control.
             </summary>
         </member>
-        <member name="E:Ekstrand.Windows.Forms.GroupBox.TabStopChanged">
+        <member name="E:Ekstrand.Windows.Forms.EnhanceGroupBox.TabStopChanged">
             <summary>
             Occurs when the value of the TabStop property changes.
             </summary>
+        </member>
+        <member name="T:Ekstrand.Windows.Forms.PropertyChanged">
+            <summary>
+            Property changed event with PropertyChangeTypes indicator.
+            </summary>
+        </member>
+        <member name="M:Ekstrand.Windows.Forms.PropertyChanged.#ctor(Ekstrand.Windows.Forms.PropertyChangeTypes)">
+            <summary>
+            Property value changed on the control.
+            </summary>
+            <param name="msg">Integer value indication what type of change.</param>
+        </member>
+        <member name="T:Ekstrand.Windows.Forms.PropertyChangeTypes">
+            <summary>
+            Enumeration of different property change types.
+            </summary>
+        </member>
+        <member name="F:Ekstrand.Windows.Forms.PropertyChangeTypes.None">
+            <summary>
+            Default value.
+            </summary>
+        </member>
+        <member name="F:Ekstrand.Windows.Forms.PropertyChangeTypes.GraphicElements">
+            <summary>
+            Graphic element has changed
+            </summary>
+        </member>
+        <member name="F:Ekstrand.Windows.Forms.PropertyChangeTypes.LayoutNeeded">
+            <summary>
+            Control layout needed
+            </summary>
+        </member>
+        <member name="T:Ekstrand.Windows.Forms.EnhanceGroupBoxControlShapeConverter">
+            <summary>
+            Provides a type converter to convert ControlShape objects to and from various other representations.
+            </summary>
+        </member>
+        <member name="M:Ekstrand.Windows.Forms.EnhanceGroupBoxControlShapeConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)">
+            <summary>
+            Converts the given value object to the specified type, using the specified context and culture information.
+            </summary>
+            <param name="context">An ITypeDescriptorContext that provides a format context.</param>
+            <param name="culture">A CultureInfo. If null is passed, the current culture is assumed.</param>
+            <param name="value">The Object to convert.</param>
+            <param name="destinationType">The Type to convert the value parameter to.</param>
+            <returns>An Object that represents the converted value.</returns>
         </member>
         <member name="T:Ekstrand.Windows.Forms.BorderCorners">
             <summary>
@@ -414,43 +545,30 @@
             Specifies the header style.
             </summary>
         </member>
-        <member name="T:Ekstrand.Windows.Forms.ImageSide">
-            <summary>
-            Specifies which side should the image be rendered to the header text.
-            </summary>
-        </member>
-        <member name="F:Ekstrand.Windows.Forms.ImageSide.Left">
-            <summary>
-            Specifies the left hand side of the header text area.
-            </summary>
-        </member>
-        <member name="F:Ekstrand.Windows.Forms.ImageSide.Right">
-            <summary>
-            Specifies the right hand side of the header text area.
-            </summary>
-        </member>
-        <member name="T:Ekstrand.Windows.Forms.GroupBoxRenderer">
+        <member name="T:Ekstrand.Windows.Forms.EnhanceGroupBoxRenderer">
             <summary>
             Provides methods used to render a group box control with visual styles. This class cannot be inherited.
             </summary>
         </member>
-        <member name="P:Ekstrand.Windows.Forms.GroupBoxRenderer.RenderMatchingApplicationState">
+        <member name="P:Ekstrand.Windows.Forms.EnhanceGroupBoxRenderer.RenderMatchingApplicationState">
             <summary>
             Gets a value indicating whether the renderer uses the application state to determine rendering style.
             </summary>
         </member>
-        <member name="P:Ekstrand.Windows.Forms.GroupBoxRenderer.RenderWithVisualStyles">
+        <member name="P:Ekstrand.Windows.Forms.EnhanceGroupBoxRenderer.RenderWithVisualStyles">
             <summary>
-            Gets a value indicating whether the control would match the current visual style setting of the operating system. 
+            Gets a value indicating whether the control would match the current visual style setting of the operating system.
             </summary>
         </member>
-        <member name="M:Ekstrand.Windows.Forms.GroupBoxRenderer.DrawEnhanceGroupBox(Ekstrand.Windows.Forms.GroupBox,System.Drawing.Graphics,System.Drawing.Rectangle,Ekstrand.Windows.Forms.EnhanceGroupBoxState)">
+        <member name="M:Ekstrand.Windows.Forms.EnhanceGroupBoxRenderer.DrawEnhanceGroupBox(Ekstrand.Windows.Forms.IControlElements,Ekstrand.Windows.Forms.IBorderElements,Ekstrand.Windows.Forms.IHeaderElements,Ekstrand.Windows.Forms.IInsideBorderElements,System.Boolean,Ekstrand.Windows.Forms.EnhanceGroupBoxState)">
             <summary>
-            Draws a group box control in the specified state and bounds, with the specified group-box, graphics, bounds, text, font, text-color, text format flags, and state.
+            Draws a group box control in the specified state and bounds, with the specified group-box, graphics and state.
             </summary>
-            <param name="ecb">GroupBox object</param>
-            <param name="g">The Graphics used to draw the group box.</param>
-            <param name="bounds">The Rectangle that specifies the bounds of the group box.</param>
+            <param name="ce">IControlElements implementation class used for drawing user defined group box control.</param>
+            <param name="be">IBorderElements implemented class used for drawing user defined boarder elements.</param>
+            <param name="he">IHeaderElements implemented class used for drawing user defined header elements.</param>
+            <param name="ie">IInsideBorderElements implemented class used for drawing user defined inside boarder elements.</param>
+            <param name="isDirty">Boolean value specifies one of the graphical element has changed and control rendering needs updating.</param>
             <param name="state">One of the EnhanceGroupBoxState values that specifies the visual state of the group box.</param>
         </member>
         <member name="T:Ekstrand.Windows.Forms.HeaderElements">
@@ -458,11 +576,10 @@
             Properties grouped for rendering group box header area.
             </summary>
         </member>
-        <member name="M:Ekstrand.Windows.Forms.HeaderElements.#ctor(Ekstrand.Windows.Forms.GroupBox)">
+        <member name="M:Ekstrand.Windows.Forms.HeaderElements.#ctor">
             <summary>
             Initializes a new instance of the HeaderElements class.
             </summary>
-            <param name="ecb">GroupBox instance</param>
         </member>
         <member name="P:Ekstrand.Windows.Forms.HeaderElements.BackColor">
             <summary>
@@ -476,7 +593,7 @@
         </member>
         <member name="P:Ekstrand.Windows.Forms.HeaderElements.BorderCorners">
             <summary>
-            Gets or sets the corners to have a rounded edge
+            Gets or sets the corners to have a rounded edge.
             </summary>
         </member>
         <member name="P:Ekstrand.Windows.Forms.HeaderElements.DashCap">
@@ -529,6 +646,16 @@
             Gets or sets the width of the border.
             </summary>
         </member>
+        <member name="E:Ekstrand.Windows.Forms.HeaderElements.RaisePropertyChanged">
+            <summary>
+            Occurs when the value for one of the class property changes.
+            </summary>
+        </member>
+        <member name="M:Ekstrand.Windows.Forms.HeaderElements.OnRaisePropertyChanged(Ekstrand.Windows.Forms.PropertyChangeTypes)">
+            <summary>
+            Occurs when the value for one of the class property changes.
+            </summary>
+        </member>
         <member name="T:Ekstrand.Windows.Forms.HeaderElementsConverter">
             <summary>
             Provides a type converter to convert HeaderElements objects to and from various other representations.
@@ -544,16 +671,248 @@
             <param name="destinationType">The Type to convert the value parameter to.</param>
             <returns>An Object that represents the converted value.</returns>
         </member>
+        <member name="T:Ekstrand.Windows.Forms.IBorderElements">
+            <summary>
+            Interface properties for border appearance
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.IBorderElements.BackColor">
+            <summary>
+            In Excitative style the border back color.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.IBorderElements.BorderColor">
+            <summary>
+            Color of the border.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.IBorderElements.BorderCorners">
+            <summary>
+            Corners to have a rounded appearance.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.IBorderElements.DashCap">
+            <summary>
+            Specifies the type of graphic shape to use on both ends of each dash in a dashed line.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.IBorderElements.DashOffset">
+            <summary>
+            Gets or sets the distance from the start of a line to the beginning of a dash pattern.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.IBorderElements.DashPattern">
+            <summary>
+            Gets or sets an array of custom dashes and spaces.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.IBorderElements.DashStyle">
+            <summary>
+            Gets or sets the style used for dashed lines drawn.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.IBorderElements.Radius">
+            <summary>
+            Gets or sets the radius for each corner.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.IBorderElements.Width">
+            <summary>
+            Gets or sets the width of the border.
+            </summary>
+        </member>
+        <member name="E:Ekstrand.Windows.Forms.IBorderElements.RaisePropertyChanged">
+            <summary>
+            Occurs when the value for one of the class property changes.
+            </summary>
+        </member>
+        <member name="M:Ekstrand.Windows.Forms.IBorderElements.OnRaisePropertyChanged(Ekstrand.Windows.Forms.PropertyChangeTypes)">
+            <summary>
+            Raise property change event.
+            </summary>
+            <param name="types">PropertyChangeType indicator.</param>
+        </member>
+        <member name="T:Ekstrand.Windows.Forms.IControlElements">
+            <summary>
+            Interface properties for control appearance
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.IControlElements.BackColor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.IControlElements.Bounds">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.IControlElements.DisabledTextColor">
+            <summary>
+            Gets or sets the disabled text color.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.IControlElements.Font">
+            <summary>
+            Gets or sets the font of the text displayed by the control.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.IControlElements.ForeColor">
+            <summary>
+            Gets or sets the foreground color of the control.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.IControlElements.Graphics">
+            <summary>
+            The Graphics used to draw the group box.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.IControlElements.GroupBoxStyle">
+            <summary>
+            The styles used to draw the group box.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.IControlElements.Text">
+            <summary>
+            The String to draw with the group box.
+            </summary>
+        </member>
+        <member name="T:Ekstrand.Windows.Forms.IHeaderElements">
+            <summary>
+            Interface properties for rendering group box header area.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.IHeaderElements.BackColor">
+            <summary>
+            Gets or sets color of the text background.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.IHeaderElements.BorderColor">
+            <summary>
+            Gets or sets color of the border in the text header area.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.IHeaderElements.BorderCorners">
+            <summary>
+            Gets or sets the corners to have a rounded edge.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.IHeaderElements.DashCap">
+            <summary>
+            Specifies the type of graphic shape to use on both ends of each dash in a dashed line.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.IHeaderElements.DashOffset">
+            <summary>
+            Gets or sets the distance from the start of a line to the beginning of a dash pattern.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.IHeaderElements.DashPattern">
+            <summary>
+            Gets or sets an array of custom dashes and spaces.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.IHeaderElements.DashStyle">
+            <summary>
+            Gets or sets the style used for dashed lines drawn.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.IHeaderElements.GradientEndColor">
+            <summary>
+            Gets or sets the gradient end color.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.IHeaderElements.GradientMode">
+            <summary>
+            Gets or sets the gradient mode.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.IHeaderElements.GradientStartColor">
+            <summary>
+            Gets or sets the gradient start color.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.IHeaderElements.Radius">
+            <summary>
+            Gets or sets the radius for each corner.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.IHeaderElements.TextAlignment">
+            <summary>
+            Gets or sets the text aligment.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.IHeaderElements.Width">
+            <summary>
+            Gets or sets the width of the border.
+            </summary>
+        </member>
+        <member name="M:Ekstrand.Windows.Forms.IHeaderElements.OnRaisePropertyChanged(Ekstrand.Windows.Forms.PropertyChangeTypes)">
+            <summary>
+            Raise property change event.
+            </summary>
+            <param name="types">PropertyChangeType indicator.</param>
+        </member>
+        <member name="E:Ekstrand.Windows.Forms.IHeaderElements.RaisePropertyChanged">
+            <summary>
+            Occurs when the value for one of the class property changes.
+            </summary>
+        </member>
+        <member name="T:Ekstrand.Windows.Forms.IInsideBorderElements">
+            <summary>
+            Interface properties for rendering group box inside border area.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.IInsideBorderElements.BackColor">
+            <summary>
+            Gets or sets the inside border area color.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.IInsideBorderElements.GradientEndColor">
+            <summary>
+            Gets or sets the gradient end color.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.IInsideBorderElements.GradientMode">
+            <summary>
+            Gets or sets the gradient mode.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.IInsideBorderElements.GradientStartColor">
+            <summary>
+            Gets or sets the gradient start color.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.IInsideBorderElements.Image">
+            <summary>
+            Gets or sets the image inside the border area.
+            </summary>
+        </member>
+        <member name="P:Ekstrand.Windows.Forms.IInsideBorderElements.ImageLayout">
+            <summary>
+            Gets or sets the image layout.
+            </summary>
+        </member>
+        <member name="M:Ekstrand.Windows.Forms.IInsideBorderElements.OnRaisePropertyChanged(Ekstrand.Windows.Forms.PropertyChangeTypes)">
+            <summary>
+            Raise property change event.
+            </summary>
+            <param name="types">PropertyChangeType indicator.</param>
+        </member>
+        <member name="E:Ekstrand.Windows.Forms.IInsideBorderElements.RaisePropertyChanged">
+            <summary>
+            Occurs when the value for one of the class property changes.
+            </summary>
+        </member>
         <member name="T:Ekstrand.Windows.Forms.InsideBorderElements">
             <summary>
             Properties grouped for rendering group box inside border area.
             </summary>
         </member>
-        <member name="M:Ekstrand.Windows.Forms.InsideBorderElements.#ctor(Ekstrand.Windows.Forms.GroupBox)">
+        <member name="M:Ekstrand.Windows.Forms.InsideBorderElements.#ctor">
             <summary>
             Initializes a new instance of the HeaderElements class.
             </summary>
-            <param name="egb">GroupBox instance</param>
         </member>
         <member name="P:Ekstrand.Windows.Forms.InsideBorderElements.BackColor">
             <summary>
@@ -582,7 +941,17 @@
         </member>
         <member name="P:Ekstrand.Windows.Forms.InsideBorderElements.ImageLayout">
             <summary>
-            Gets or sets the image layout
+            Gets or sets the image layout.
+            </summary>
+        </member>
+        <member name="M:Ekstrand.Windows.Forms.InsideBorderElements.OnRaisePropertyChanged(Ekstrand.Windows.Forms.PropertyChangeTypes)">
+            <summary>
+            Raise property change event.
+            </summary>
+        </member>
+        <member name="E:Ekstrand.Windows.Forms.InsideBorderElements.RaisePropertyChanged">
+            <summary>
+            Occurs when the value for one of the class property changes.
             </summary>
         </member>
         <member name="T:Ekstrand.Windows.Forms.InsideBorderElementsConverter">

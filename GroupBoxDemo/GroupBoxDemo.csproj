@@ -32,7 +32,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="GroupBox">
+    <Reference Include="EnumExtensions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\EnhanceGroupBox\EnhanceGroupBox\bin\Release\EnumExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="GroupBox, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\EnhanceGroupBox\EnhanceGroupBox\bin\Release\GroupBox.dll</HintPath>
     </Reference>
     <Reference Include="System" />

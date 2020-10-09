@@ -14,3 +14,4 @@ C:\SoftwareProjects\GroupBoxDemo\obj\Debug\GroupBoxDemo.exe
 C:\SoftwareProjects\GroupBoxDemo\obj\Debug\GroupBoxDemo.pdb
 C:\SoftwareProjects\GroupBoxDemo\obj\Debug\GroupBoxDemo.Form1.resources
 C:\SoftwareProjects\GroupBoxDemo\obj\Debug\GroupBoxDemo.Form2.resources
+C:\SoftwareProjects\GroupBoxDemo\bin\Debug\GroupBox.xml

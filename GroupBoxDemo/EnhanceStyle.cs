@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Ekstrand.Windows.Forms;
+﻿using Ekstrand.Windows.Forms;
 
 namespace GroupBoxDemo
 {
     internal class EnhanceStyle
     {
-        private Ekstrand.Windows.Forms.GroupBox[] _groupBoxes;
+        private Ekstrand.Windows.Forms.EnhanceGroupBox[] _groupBoxes;
         private const int ArraySize = 4;
         public EnhanceStyle()
         {
@@ -17,20 +13,20 @@ namespace GroupBoxDemo
 
         private void InitGroupBoxes()
         {
-            _groupBoxes = new Ekstrand.Windows.Forms.GroupBox[ArraySize];
+            _groupBoxes = new Ekstrand.Windows.Forms.EnhanceGroupBox[ArraySize];
 
             for (int i = 0; i < ArraySize; i++)
             {
-                _groupBoxes[i] = new Ekstrand.Windows.Forms.GroupBox();
+                _groupBoxes[i] = new Ekstrand.Windows.Forms.EnhanceGroupBox();
             }
-            
+
             _groupBoxes[0].Text = "Enhance";
             _groupBoxes[0].GroupBoxStyle = GroupBoxStyle.Enhance;
             _groupBoxes[0].HeaderElements.BackColor = System.Drawing.Color.SkyBlue;
             _groupBoxes[0].HeaderElements.BorderColor = System.Drawing.Color.Black;
             _groupBoxes[0].HeaderElements.TextAlignment = BorderTextAlignment.TopRight;
-            _groupBoxes[0].BorderElements.BorderColor = System.Drawing.Color.Black;         
-                        
+            _groupBoxes[0].BorderElements.BorderColor = System.Drawing.Color.Black;
+
             _groupBoxes[1].Text = "Enhance";
             _groupBoxes[1].GroupBoxStyle = GroupBoxStyle.Enhance;
             _groupBoxes[1].BackColor = System.Drawing.Color.SkyBlue;
@@ -56,7 +52,7 @@ namespace GroupBoxDemo
             _groupBoxes[2].InsideBorderElements.GradientStartColor = System.Drawing.Color.LightGray;
             _groupBoxes[2].InsideBorderElements.GradientEndColor = System.Drawing.SystemColors.Control;
             _groupBoxes[2].InsideBorderElements.GradientMode = EnhanceGroupBoxGradientMode.Vertical;
-            
+
             _groupBoxes[3].Text = "Enhance";
             _groupBoxes[3].GroupBoxStyle = GroupBoxStyle.Enhance;
             _groupBoxes[3].HeaderElements.GradientStartColor = System.Drawing.Color.Red;
@@ -73,7 +69,7 @@ namespace GroupBoxDemo
 
         }
 
-        public Ekstrand.Windows.Forms.GroupBox[] GroupBoxes
+        public Ekstrand.Windows.Forms.EnhanceGroupBox[] GroupBoxes
         {
             get { return _groupBoxes; }
         }

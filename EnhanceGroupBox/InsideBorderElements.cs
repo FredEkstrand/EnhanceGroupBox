@@ -14,13 +14,13 @@ namespace Ekstrand.Windows.Forms
     /// </summary>
     [TypeConverter(typeof(InsideBorderElementsConverter))]
     [Serializable]
-    public class InsideBorderElements
+    public class InsideBorderElements : IInsideBorderElements
     {
+
         #region Fields
 
         private Color _backColor = SystemColors.Control;
-        private EnhanceGroupBoxGradientMode _BoxGradientMode = EnhanceGroupBoxGradientMode.None;
-        private GroupBox _egroupBox;
+        private EnhanceGroupBoxGradientMode _BoxGradientMode = EnhanceGroupBoxGradientMode.None;        
         private Color _gradientEndColor;
         private Color _gradientStartColor = Color.Empty;
         private Image _image = null;
@@ -29,14 +29,13 @@ namespace Ekstrand.Windows.Forms
         #endregion Fields
 
         #region Constructors
+
         /// <summary>
         /// Initializes a new instance of the HeaderElements class.
         /// </summary>
-        /// <param name="egb">GroupBox instance</param>
-        public InsideBorderElements(GroupBox egb) 
+        public InsideBorderElements()
         {
-            _egroupBox = egb;
-            _backColor = _egroupBox.BackColor;
+            
         }
 
         #endregion Constructors
@@ -58,8 +57,7 @@ namespace Ekstrand.Windows.Forms
             set
             {
                 _backColor = value;
-                _egroupBox.RenderingDirty = true;
-                _egroupBox.Invalidate();
+                OnRaisePropertyChanged(PropertyChangeTypes.GraphicElements);
             }
         }
 
@@ -78,8 +76,7 @@ namespace Ekstrand.Windows.Forms
             set
             {
                 _gradientEndColor = value;
-                _egroupBox.RenderingDirty = true;
-                _egroupBox.Invalidate();
+                OnRaisePropertyChanged(PropertyChangeTypes.GraphicElements);
             }
         }
 
@@ -98,8 +95,7 @@ namespace Ekstrand.Windows.Forms
             set
             {
                 _BoxGradientMode = value;
-                _egroupBox.RenderingDirty = true;
-                _egroupBox.Invalidate();
+                OnRaisePropertyChanged(PropertyChangeTypes.GraphicElements);
             }
         }
 
@@ -118,8 +114,7 @@ namespace Ekstrand.Windows.Forms
             set
             {
                 _gradientStartColor = value;
-                _egroupBox.RenderingDirty = true;
-                _egroupBox.Invalidate();
+                OnRaisePropertyChanged(PropertyChangeTypes.GraphicElements);
             }
         }
 
@@ -138,13 +133,12 @@ namespace Ekstrand.Windows.Forms
             set
             {
                 _image = value;
-                _egroupBox.RenderingDirty = true;
-                _egroupBox.Invalidate();
+                OnRaisePropertyChanged(PropertyChangeTypes.GraphicElements);
             }
         }
 
         /// <summary>
-        /// Gets or sets the image layout
+        /// Gets or sets the image layout.
         /// </summary>
         [Browsable(true)]
         [NotifyParentProperty(true)]
@@ -158,13 +152,42 @@ namespace Ekstrand.Windows.Forms
             set
             {
                 _imageLayout = value;
-                _egroupBox.RenderingDirty = true;
-                _egroupBox.Invalidate();
+                OnRaisePropertyChanged(PropertyChangeTypes.GraphicElements);
             }
         }
 
-
         #endregion Properties
 
+        #region Methods
+
+        /// <summary>
+        /// Raise property change event.
+        /// </summary>
+        public void OnRaisePropertyChanged(PropertyChangeTypes types)
+        {
+            PropertyChanged e = new PropertyChanged(types);
+            // Make a temporary copy of the event to avoid possibility of
+            // a race condition if the last subscriber unsubscribes
+            // immediately after the null check and before the event is raised.
+            EventHandler handler = RaisePropertyChanged;
+
+            // Event will be null if there are no subscribers
+            if (handler != null)
+            {
+                // Use the () operator to raise the event.
+                handler(this, e);
+            }
+        }
+
+        #endregion Methods
+
+        #region Delegates + Events
+
+        /// <summary>
+        /// Occurs when the value for one of the class property changes.
+        /// </summary>
+        public event EventHandler RaisePropertyChanged;
+
+        #endregion Delegates + Events
     }
 }
